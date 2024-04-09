@@ -8,6 +8,7 @@ public class PtitexamApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PtitexamApplication.class, args);
+		System.err.println("Hello world");
 	}
 
 }
