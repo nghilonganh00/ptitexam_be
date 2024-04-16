@@ -8,7 +8,7 @@ class PtitexamApplicationTests {
 
 	@Test
 	void contextLoads() {
-		System.out.print("Yes sir");
+		
 	}
 
 }

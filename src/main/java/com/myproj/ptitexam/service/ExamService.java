@@ -16,4 +16,5 @@ public class ExamService {
     public List<Exam> getAllExams() {
         return examDao.findAll();
     }
+
 }
