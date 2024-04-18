@@ -1,9 +1,13 @@
 package com.myproj.ptitexam.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "exam")
+
 public class Exam {
 
     @Id
@@ -13,6 +17,10 @@ public class Exam {
     private String examDescription;
     private String startTime;
     private String endTime;
+
+    @OneToMany(mappedBy = "exam", cascade = CascadeType.ALL)
+    @JsonBackReference
+    private List<Question> listQuestion;
 
     public Integer getId() {
         return id;
@@ -54,14 +62,22 @@ public class Exam {
         this.endTime = endTime;
     }
 
+    public List<Question> getListQuestion() {
+        return listQuestion;
+    }
+
+    public void setListQuestion(List<Question> listQuestion) {
+        this.listQuestion = listQuestion;
+    }
+
     @Override
     public String toString() {
         return "Exam{" +
-                "id=" + id +
-                ", examTitle='" + examTitle + '\'' +
-                ", examDescription='" + examDescription + '\'' +
+                "endTime='" + endTime + '\'' +
                 ", startTime='" + startTime + '\'' +
-                ", endTime='" + endTime + '\'' +
+                ", examDescription='" + examDescription + '\'' +
+                ", examTitle='" + examTitle + '\'' +
+                ", id=" + id +
                 '}';
     }
 }
