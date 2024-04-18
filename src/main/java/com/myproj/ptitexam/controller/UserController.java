@@ -3,6 +3,8 @@ package com.myproj.ptitexam.controller;
 import com.myproj.ptitexam.model.User;
 import com.myproj.ptitexam.service.UserService;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,9 +23,24 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @PostMapping("add")
-    public ResponseEntity<String> addUser(@RequestBody User user) {
-        return userService.addUser(user);
+    @PostMapping("/signup")
+    public ResponseEntity<String> signupUser(@RequestBody User user) {
+        return userService.signupUser(user);
+    }
+
+    @GetMapping("/login")
+    public ResponseEntity<Object> loginUser(@RequestParam String email, @RequestParam String password) {
+       return userService.login(email, password);
+    }
+
+    @GetMapping("/getAll")
+     public ResponseEntity<List<User>> getAllUser() {
+       return userService.getAllUser();
+    }
+
+    @GetMapping("/getByUsernameContaining")
+    public ResponseEntity<java.util.List<User>> getByUsernameContaining(@RequestParam String username) {
+       return userService.getByUsernameContaining(username);
     }
 
     @PutMapping("edit/{userId}")
@@ -36,8 +53,4 @@ public class UserController {
         return userService.deleteUser(userId);
     }
 
-    @GetMapping("/login")
-    public ResponseEntity<Object> loginUser(@RequestParam String email, @RequestParam String password) {
-       return userService.login(email, password);
-    }
 }

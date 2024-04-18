@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.tomcat.util.buf.StringCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -18,23 +17,59 @@ import com.myproj.ptitexam.model.User;
 public class UserService {
     @Autowired
     UserDao userDao;
-
-    public List<User> getAllUser() {
-        return userDao.findAll();
-    }
     
-    public ResponseEntity<String> addUser(User user) {
+    public ResponseEntity<String> signupUser(User user) {
       try {
         if(userDao.existsByEmail(user.getEmail())) {
             return new ResponseEntity<>("Email exists", HttpStatus.BAD_REQUEST);
         }
 
         userDao.save(user);
-        return new ResponseEntity<>("Add success", HttpStatus.CREATED);
+        return new ResponseEntity<>("Sign up success", HttpStatus.CREATED);
       } catch (Exception e) {
         e.printStackTrace();
       }
       return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
+    }
+
+    public ResponseEntity<Object> login(String email, String password) {
+      try {
+          User user = userDao.findByEmail(email);
+          if (user == null || !user.getPassword().equals(password)) {
+            return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+          }
+          Map<String, Object> responseData = new HashMap<>();
+          responseData.put("message", "Login successfully");
+          responseData.put("userId", user.getId());
+          responseData.put("userName", user.getUsername());
+          return new ResponseEntity<>(responseData, HttpStatus.OK);
+      } catch (Exception e) {
+          return new ResponseEntity<>("Login failed", HttpStatus.INTERNAL_SERVER_ERROR);
+      }
+    }
+
+    public ResponseEntity<List<User>> getAllUser() {
+        try {
+          List<User> list_user = userDao.findAll();
+          if(list_user == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+          }
+          return new ResponseEntity<>(list_user, HttpStatus.OK);
+        } catch(Exception e) {
+          return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public ResponseEntity<List<User>> getByUsernameContaining(String username) {
+      try {
+        List<User> list_user = userDao.findByUsernameContaining(username);
+        if(list_user == null) {
+          return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(list_user, HttpStatus.OK);
+      } catch(Exception e) {
+        return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+      }
     }
 
     public ResponseEntity<String> editUser(Integer userId, User updatedUser) {
@@ -67,23 +102,4 @@ public class UserService {
         }
     }
 
-    public ResponseEntity<Object> login(String email, String password) {
-    try {
-        User user = userDao.findByEmail(email);
-        if (user == null || !user.getPassword().equals(password)) {
-            return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
-        }
-        // Creating a map for response data
-        Map<String, Object> responseData = new HashMap<>();
-        responseData.put("message", "Login successfully");
-        responseData.put("userId", user.getId());
-        responseData.put("userName", user.getUsername());
-        return new ResponseEntity<>(responseData, HttpStatus.OK);
-    } catch (Exception e) {
-        System.out.println(e);
-        return new ResponseEntity<>("Login failed", HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-}
-
-    
 }
