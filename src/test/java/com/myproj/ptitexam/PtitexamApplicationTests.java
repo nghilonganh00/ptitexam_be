@@ -8,6 +8,7 @@ class PtitexamApplicationTests {
 
 	@Test
 	void contextLoads() {
+		
 	}
 
 }

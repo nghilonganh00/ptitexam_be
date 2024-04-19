@@ -10,6 +10,4 @@ import java.util.List;
 @Repository
 public interface QuestionDao extends JpaRepository<Question, Integer> {
     List<Question> findByExamId(Integer examId);
-//
-//    Question save(Question question);
 }

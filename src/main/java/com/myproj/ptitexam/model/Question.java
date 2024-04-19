@@ -25,21 +25,13 @@ public class Question {
     private String option4;
     @Column(name = "right_answer")
     private String answer;
-////    @Column(name = "exam_id")
-//    private Integer exam_id;
+
 
     @ManyToOne
     @JoinColumn(name="exam_id", nullable = false, referencedColumnName = "id")
     @JsonBackReference
     private Exam exam;
 
-//    public int getExam_id() {
-//        return exam_id;
-//    }
-//
-//    public void setExam_id(int exam_id) {
-//        this.exam_id = exam_id;
-//    }
 
     public int getId() {
         return id;
