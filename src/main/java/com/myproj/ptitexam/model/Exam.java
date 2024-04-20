@@ -26,6 +26,7 @@ public class Exam {
     @JsonBackReference
     private List<ExamResult> listExamResult;
 
+
     public Integer getId() {
         return id;
     }

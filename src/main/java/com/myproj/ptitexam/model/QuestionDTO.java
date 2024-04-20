@@ -5,41 +5,28 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="question")
-public class Question {
+public class QuestionDTO {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int id;
-
-
-
-    @Column(name = "content")
+    public Integer id;
     private String content;
-
-    @Column(name = "option1")
     private String option1;
-    @Column(name = "option2")
     private String option2;
-    @Column(name = "option3")
     private String option3;
-    @Column(name = "option4")
     private String option4;
-    @Column(name = "right_answer")
     private String answer;
+    private Integer exam_id;
 
 
-    @ManyToOne
-    @JoinColumn(name="exam_id", nullable = false, referencedColumnName = "id")
-    @JsonBackReference
-    private Exam exam;
+
+//    public int getExam_id() {
+//        return exam_id;
+//    }
+//
+//    public void setExam_id(int exam_id) {
+//        this.exam_id = exam_id;
+//    }
 
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getContent() {
         return content;
@@ -89,25 +76,11 @@ public class Question {
         this.answer = answer;
     }
 
-    public Exam getExam() {
-        return exam;
+    public Integer getExamId(){
+        return exam_id;
+    }
+    public  void setExamId(Integer examId){
+        this.exam_id=examId;
     }
 
-    public void setExam(Exam exam) {
-        this.exam = exam;
-    }
-
-    @Override
-    public String toString() {
-        return "Question{" +
-                "id=" + id +
-                ", content='" + content + '\'' +
-                ", option1='" + option1 + '\'' +
-                ", option2='" + option2 + '\'' +
-                ", option3='" + option3 + '\'' +
-                ", option4='" + option4 + '\'' +
-                ", answer='" + answer + '\'' +
-                ", exam=" + exam +
-                '}';
-    }
 }
