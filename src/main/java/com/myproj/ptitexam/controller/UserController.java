@@ -1,5 +1,6 @@
 package com.myproj.ptitexam.controller;
 
+import com.myproj.ptitexam.DTO.ExamResultDTO;
 import com.myproj.ptitexam.model.ExamResult;
 import com.myproj.ptitexam.model.User;
 import com.myproj.ptitexam.service.UserService;
@@ -55,7 +56,9 @@ public class UserController {
     }
 
     @GetMapping("getResult")
-    public ResponseEntity<List<ExamResult>> getUserResult(){
+    public ResponseEntity<List<ExamResultDTO>> getUserResult(){
         return userService.getUserResult();
     }
+
+
 }

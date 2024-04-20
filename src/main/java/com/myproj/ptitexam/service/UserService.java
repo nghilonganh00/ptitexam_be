@@ -1,9 +1,11 @@
 package com.myproj.ptitexam.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.myproj.ptitexam.DTO.ExamResultDTO;
 import com.myproj.ptitexam.dao.ExamResultDao;
 import com.myproj.ptitexam.model.ExamResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +25,15 @@ public class UserService {
     @Autowired
     ExamResultDao examResultDao;
 
-    public ResponseEntity<List<ExamResult>> getUserResult() {
+    public ResponseEntity<List<ExamResultDTO>> getUserResult() {
         try{
             List<ExamResult> listResult= examResultDao.findAll();
-            return new ResponseEntity<>(listResult,HttpStatus.OK);
+            List<ExamResultDTO> returnList = new ArrayList<>();
+            for(ExamResult ex:listResult){
+                ExamResultDTO temp = new ExamResultDTO(ex.getId(),ex.getUser().getUsername(),ex.getExam().getExamTitle(),ex.getScore());
+                returnList.add(temp);
+            }
+            return new ResponseEntity<>(returnList,HttpStatus.OK);
         } catch (Exception e){
             return  new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

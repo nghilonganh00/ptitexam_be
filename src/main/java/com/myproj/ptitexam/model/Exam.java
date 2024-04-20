@@ -22,10 +22,6 @@ public class Exam {
     @JsonBackReference
     private List<Question> listQuestion;
 
-    @OneToMany(mappedBy = "exam", cascade = CascadeType.ALL)
-    @JsonBackReference
-    private List<ExamResult> listExamResult;
-
 
     public Integer getId() {
         return id;

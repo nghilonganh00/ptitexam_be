@@ -9,6 +9,15 @@ public class ExamResult {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
+
+    @Column(name = "score")
+    private double score;
+
+    @Column(name="start_time")
+    private String startTime;
+    @Column(name="end_time")
+    private String endTime;
+
     @ManyToOne
     @JoinColumn(name="exam_id", nullable = false, referencedColumnName = "id")
     @JsonBackReference
@@ -40,5 +49,29 @@ public class ExamResult {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public double getScore() {
+        return score;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 }

@@ -1,18 +1,20 @@
-package com.myproj.ptitexam.model;
+package com.myproj.ptitexam.DTO;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
-@Entity
-@Table(name="question")
+
 public class QuestionDTO {
-    @Id
     public Integer id;
     private String content;
+
     private String option1;
+
     private String option2;
+
     private String option3;
+
     private String option4;
+
     private String answer;
     private Integer exam_id;
 

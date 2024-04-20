@@ -1,6 +1,8 @@
 package com.myproj.ptitexam.controller;
 
 
+import com.myproj.ptitexam.DTO.ResultDetailDTO;
+import com.myproj.ptitexam.DTO.UserAnswerReponse;
 import com.myproj.ptitexam.model.Exam;
 import com.myproj.ptitexam.model.Question;
 
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -28,9 +31,10 @@ import java.util.List;
 public class ExamController {
     @Autowired
     ExamService examService;
-
+    @Autowired
+    QuestionService questionService;
     // Hiển thị bài thi
-    @GetMapping("/getAllexams")
+    @GetMapping("/getAllExams")
     public ResponseEntity<List<Exam>> getAllexams() {
         return examService.getAllexams();
     }
@@ -54,7 +58,7 @@ public class ExamController {
 
     // lấy ra bài thi trong list
     @GetMapping("getByExamTitleContaining")
-    public ResponseEntity<java.util.List<Exam>> getByExamTitleContaining(@RequestParam String examTitle) {
+    public ResponseEntity<java.util.List<Exam>> getByExamTitleContaining(@RequestBody String examTitle) {
         return examService.getByExamTitleContaining(examTitle);
     }
     @GetMapping("/{exam_id}/questions")
@@ -67,4 +71,13 @@ public class ExamController {
         return examService.createExam(exam);
     }
 
+    @PostMapping("{id}/submit")
+    public ResponseEntity<?> test(@RequestParam int user_id,@RequestParam int exam_id, @RequestBody List<UserAnswerReponse> reponses){
+        return examService.caculateScore(user_id,exam_id,reponses);
+    }
+
+    @GetMapping("review")
+    public ResponseEntity<?> getAnswerInExam(@RequestParam int resultId){
+        return examService.getAnswerInExam(resultId);
+    }
 }
