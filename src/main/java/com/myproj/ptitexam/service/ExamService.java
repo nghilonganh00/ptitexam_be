@@ -66,7 +66,7 @@ public class ExamService {
         }
     }
 
-    /*public ResponseEntity<List<Exam>> getByExamTitleContaining(String examTitle) {
+    public ResponseEntity<List<Exam>> getByExamTitleContaining(String examTitle) {
         try {
             List<Exam> list_exam = examDao.findByExamTitleContaining(examTitle);
             if(list_exam == null) {
@@ -76,7 +76,7 @@ public class ExamService {
         } catch(Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }*/
+    }
 
     public ResponseEntity<String> addExam(Exam exam) {
         try {
