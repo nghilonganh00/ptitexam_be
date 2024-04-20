@@ -1,5 +1,6 @@
 package com.myproj.ptitexam.controller;
 
+import com.myproj.ptitexam.model.ExamResult;
 import com.myproj.ptitexam.model.User;
 import com.myproj.ptitexam.service.UserService;
 
@@ -39,7 +40,7 @@ public class UserController {
     }
 
     @GetMapping("/getByUsernameContaining")
-    public ResponseEntity<java.util.List<User>> getByUsernameContaining(@RequestParam String username) {
+    public ResponseEntity<java.util.List<User>> getByUsernameContaining(@RequestBody String username) {
        return userService.getByUsernameContaining(username);
     }
 
@@ -53,4 +54,8 @@ public class UserController {
         return userService.deleteUser(userId);
     }
 
+    @GetMapping("getResult")
+    public ResponseEntity<List<ExamResult>> getUserResult(){
+        return userService.getUserResult();
+    }
 }

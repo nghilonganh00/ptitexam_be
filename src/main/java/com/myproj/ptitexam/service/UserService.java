@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.myproj.ptitexam.dao.ExamResultDao;
+import com.myproj.ptitexam.model.ExamResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -17,7 +19,19 @@ import com.myproj.ptitexam.model.User;
 public class UserService {
     @Autowired
     UserDao userDao;
-    
+
+    @Autowired
+    ExamResultDao examResultDao;
+
+    public ResponseEntity<List<ExamResult>> getUserResult() {
+        try{
+            List<ExamResult> listResult= examResultDao.findAll();
+            return new ResponseEntity<>(listResult,HttpStatus.OK);
+        } catch (Exception e){
+            return  new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     public ResponseEntity<String> signupUser(User user) {
       try {
         if(userDao.existsByEmail(user.getEmail())) {
