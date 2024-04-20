@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface ExamDao extends JpaRepository<Exam, Integer> {
     List<Exam> findByExamTitleContaining(String examTitle);
-    //Exam findByexamTitle(String examTitle);
+    Exam findByExamTitle(String examTitle);
     boolean existsById(Integer Id);
 }

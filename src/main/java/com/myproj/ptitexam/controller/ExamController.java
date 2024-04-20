@@ -53,10 +53,10 @@ public class ExamController {
     }
 
     // lấy ra bài thi trong list
-    /*@GetMapping("getByExamTitleContaining/{examTitle}")
+    @GetMapping("getByExamTitleContaining")
     public ResponseEntity<java.util.List<Exam>> getByExamTitleContaining(@RequestParam String examTitle) {
         return examService.getByExamTitleContaining(examTitle);
-    }*/
+    }
     @GetMapping("/{exam_id}/questions")
     public ResponseEntity<List<Question>> getAllQuestions(@PathVariable Integer exam_id){
         return questionService.getAllQuestions(exam_id);
