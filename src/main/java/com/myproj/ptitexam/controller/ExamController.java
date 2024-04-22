@@ -1,6 +1,7 @@
 package com.myproj.ptitexam.controller;
 
 
+import com.myproj.ptitexam.DTO.ExamDto;
 import com.myproj.ptitexam.DTO.ResultDetailDTO;
 import com.myproj.ptitexam.DTO.UserAnswerReponse;
 import com.myproj.ptitexam.model.Exam;
@@ -48,19 +49,15 @@ public class ExamController {
     }
 
     // Sửa bài thi
-    @PutMapping("edit/{examId}")
-    public ResponseEntity<String> editExam(@PathVariable Integer examId, @RequestBody Exam updatedExam) {
+    @PutMapping("edit")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<String> editExam(@RequestParam Integer examId, @RequestBody ExamDto updatedExam) {
         return examService.editExam(examId, updatedExam);
-    }
-    // Thêm bài thi
-    @PostMapping("/addExam")
-    public ResponseEntity<String> addExam(@RequestBody Exam exam) {
-        return examService.addExam(exam);
     }
 
     // Xóa bài thi
-    @DeleteMapping("delete/{examId}")
-    public ResponseEntity<String> deleteExam(@PathVariable Integer examId) {
+    @DeleteMapping("delete")
+    public ResponseEntity<String> deleteExam(@RequestParam Integer examId) {
         return examService.deleteExam(examId);
     }
 
@@ -77,9 +74,17 @@ public class ExamController {
         return questionService.getAllQuestions(exam_id);
 
     }
+
+    @GetMapping("")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> getAllQuestionsAdmin(@RequestParam Integer exam_id){
+        return questionService.getAllQuestionsAdmin(exam_id);
+
+    }
+
     @PostMapping("createExam")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<String> createExam(@RequestBody Exam exam){
+    public ResponseEntity<String> createExam(@RequestBody ExamDto exam){
         return examService.createExam(exam);
     }
 

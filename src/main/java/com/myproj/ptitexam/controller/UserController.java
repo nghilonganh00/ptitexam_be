@@ -1,6 +1,7 @@
 package com.myproj.ptitexam.controller;
 
 import com.myproj.ptitexam.DTO.ExamResultDTO;
+import com.myproj.ptitexam.DTO.addUserRequest;
 import com.myproj.ptitexam.model.ExamResult;
 import com.myproj.ptitexam.model.User;
 import com.myproj.ptitexam.service.UserService;
@@ -26,9 +27,10 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/signup")
-    public ResponseEntity<String> signupUser(@RequestBody User user) {
-        return userService.signupUser(user);
+    @PostMapping("/add")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<String> addUser(@RequestBody addUserRequest user) {
+        return userService.addUser(user);
     }
 
     @GetMapping("/login")
@@ -37,28 +39,32 @@ public class UserController {
     }
 
     @GetMapping("/getAll")
-     public ResponseEntity<List<User>> getAllUser() {
+    @PreAuthorize("hasRole('ADMIN')")
+     public ResponseEntity<?> getAllUser() {
        return userService.getAllUser();
     }
 
     @GetMapping("/getByUsernameContaining")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<java.util.List<User>> getByUsernameContaining(@RequestBody String username) {
        return userService.getByUsernameContaining(username);
     }
 
-    @PutMapping("edit/{userId}")
-    public ResponseEntity<String> editUser(@PathVariable Integer userId, @RequestBody User updatedUser) {
+    @PutMapping("edit")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<String> editUser(@RequestParam Integer userId, @RequestBody addUserRequest updatedUser) {
         return userService.editUser(userId, updatedUser);
     }
     
-    @DeleteMapping("delete/{userId}")
-    public ResponseEntity<String> deleteUser(@PathVariable Integer userId) {
+    @DeleteMapping("delete")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<String> deleteUser(@RequestParam Integer userId) {
         return userService.deleteUser(userId);
     }
 
     @GetMapping("getResult")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<List<ExamResultDTO>> getUserResult(@RequestParam int user_id){
+    public ResponseEntity<?> getUserResult(@RequestParam int user_id){
         return userService.getUserResult(user_id);
     }
 

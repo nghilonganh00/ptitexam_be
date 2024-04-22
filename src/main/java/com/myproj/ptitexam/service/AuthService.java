@@ -60,6 +60,7 @@ public class AuthService {
         newUser.setPassword(passwordEncoder.encode(registerDTO.getPassword()));
         newUser.setEmail(registerDTO.getEmail());
         newUser.setRoles(set);
+        System.out.println(newUser);
         userDao.save(newUser);
 
         return new ResponseEntity<String> ("Signup success!",HttpStatus.OK);

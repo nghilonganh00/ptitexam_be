@@ -3,6 +3,7 @@ package com.myproj.ptitexam.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
@@ -15,10 +16,10 @@ public class Exam {
     private Integer id;
     private String examTitle;
     private String examDescription;
-    private String startTime;
-    private String endTime;
+    private Timestamp startTime;
+    private Timestamp endTime;
 
-    @OneToMany(mappedBy = "exam", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "exam", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonBackReference
     private List<Question> listQuestion;
 
@@ -47,19 +48,19 @@ public class Exam {
         this.examDescription = examDescription;
     }
 
-    public String getStartTime() {
+    public Timestamp getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) {
+    public void setStartTime(Timestamp startTime) {
         this.startTime = startTime;
     }
 
-    public String getEndTime() {
+    public Timestamp getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(String endTime) {
+    public void setEndTime(Timestamp endTime) {
         this.endTime = endTime;
     }
 
@@ -74,11 +75,12 @@ public class Exam {
     @Override
     public String toString() {
         return "Exam{" +
-                "endTime='" + endTime + '\'' +
-                ", startTime='" + startTime + '\'' +
-                ", examDescription='" + examDescription + '\'' +
+                "id=" + id +
                 ", examTitle='" + examTitle + '\'' +
-                ", id=" + id +
+                ", examDescription='" + examDescription + '\'' +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", listQuestion=" + listQuestion +
                 '}';
     }
 }

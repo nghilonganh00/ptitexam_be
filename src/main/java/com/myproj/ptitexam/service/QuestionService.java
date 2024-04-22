@@ -1,5 +1,6 @@
 package com.myproj.ptitexam.service;
 
+import com.myproj.ptitexam.DTO.ExamDto;
 import com.myproj.ptitexam.DTO.QuestionInExam;
 import com.myproj.ptitexam.dao.ExamDao;
 import com.myproj.ptitexam.dao.QuestionDao;
@@ -104,4 +105,25 @@ public class QuestionService {
     }
 
 
+    public ResponseEntity<?> getAllQuestionsAdmin(Integer examId) {
+        try{
+            Exam exam = examDao.findById(examId).orElseThrow(()->new Exception());
+            ExamDto result = new ExamDto();
+            result.setExamTitle(exam.getExamTitle());
+            if(exam.getStartTime()!=null)
+                result.setStartTime(exam.getStartTime().toString());
+
+            if(exam.getEndTime()!= null)
+                result.setEndTime(exam.getEndTime().toString());
+            if (exam.getExamDescription()!=null)
+                result.setExamDescription(result.getExamDescription());
+
+            result.setQuestionList(questionDao.findByExamId(examId));
+
+//            System.out.println(result);
+            return new ResponseEntity<>(result,HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>("Exam not found!",HttpStatus.NOT_FOUND);
+        }
+    }
 }

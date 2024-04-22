@@ -27,7 +27,7 @@ public class User {
     @NotBlank
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     @JoinTable(  name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName = "id"))
@@ -82,9 +82,11 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", Username='" + username + '\'' +
-                ", Email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", roles=" + roles +
+                ", listExamResult=" + listExamResult +
                 '}';
     }
 }

@@ -1,5 +1,6 @@
 package com.myproj.ptitexam.service;
 
+import com.myproj.ptitexam.DTO.ExamDto;
 import com.myproj.ptitexam.DTO.ResultDetailDTO;
 import com.myproj.ptitexam.DTO.UserAnswerReponse;
 import com.myproj.ptitexam.dao.*;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -32,16 +34,24 @@ public class ExamService {
 
 
 
-    public ResponseEntity<String> editExam(Integer examId, Exam updatedExam) {
+    public ResponseEntity<String> editExam(Integer examId, ExamDto updatedExam) {
         try {
             Exam existingExam = examDao.findById(examId)
                     .orElseThrow(() -> new IllegalArgumentException("Exam not found"));
 
             existingExam.setExamTitle(updatedExam.getExamTitle());
             existingExam.setExamDescription(updatedExam.getExamDescription());
-            existingExam.setStartTime(updatedExam.getStartTime());
-            existingExam.setEndTime(updatedExam.getEndTime());
-            existingExam.setListQuestion(updatedExam.getListQuestion());
+
+            if(updatedExam.getStartTime()!=null){
+                existingExam.setStartTime(Timestamp.valueOf(updatedExam.getStartTime()));
+            }
+            if(updatedExam.getEndTime()!=null){
+                existingExam.setEndTime(Timestamp.valueOf(updatedExam.getEndTime()));
+            }
+            List<Question> listQ = updatedExam.getQuestionList();
+            for(Question question: listQ )
+                question.setExam(existingExam);
+            existingExam.setListQuestion(listQ);
             ResponseEntity<?> a= deleteAllQuestionsInExam(examId);
             examDao.save(existingExam);
             return new ResponseEntity<>("Update successfully", HttpStatus.OK);
@@ -88,14 +98,27 @@ public class ExamService {
     }
 
 
-    public ResponseEntity<String> createExam(Exam exam) {
+    public ResponseEntity<String> createExam(ExamDto exam) {
         try {
-            examDao.save(exam);
-            return new ResponseEntity<>("Sign up success", HttpStatus.CREATED);
+            Exam newExam = new Exam();
+            newExam.setExamTitle(exam.getExamTitle());
+            newExam.setExamDescription(exam.getExamDescription());
+            if(exam.getStartTime()!=null){
+                newExam.setStartTime(Timestamp.valueOf(exam.getStartTime()));
+            }
+            if(exam.getEndTime()!=null){
+                newExam.setEndTime(Timestamp.valueOf(exam.getEndTime()));
+            }
+            List<Question> listQ = exam.getQuestionList();
+            for(Question question: listQ )
+                question.setExam(newExam);
+            newExam.setListQuestion(listQ);
+            examDao.save(newExam);
+            return new ResponseEntity<>("Create success", HttpStatus.CREATED);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Failed", HttpStatus.BAD_REQUEST);
     }
 
     public ResponseEntity<?> getAllExams() {
@@ -158,18 +181,19 @@ public class ExamService {
     }
 
     public ResponseEntity<?> getAnswerInExam(int resultId) {
-        Optional<ExamResult> er = examResultDao.findById(resultId);
-        List<ExamResultDetail> examResultDetail= resultDetailDao.findByExamResult(er.get());
-        if(examResultDetail==null){
-            return new ResponseEntity<String>("Not found", HttpStatus.NOT_FOUND);
-        }
-        List<ResultDetailDTO> list =new ArrayList<>();
-        for(ExamResultDetail detail:examResultDetail){
-            ResultDetailDTO temp  = new ResultDetailDTO(detail.getQuestion().getContent(),detail.getQuestion().getOption1(),detail.getQuestion().getOption2(),detail.getQuestion().getOption3(),detail.getQuestion().getOption4(),detail.getAnswer(),detail.getQuestion().getAnswer());
-            list.add(temp);
-        }
+        try {
+            ExamResult er = examResultDao.findById(resultId).orElseThrow(()-> new Exception(""));
+            List<ExamResultDetail> examResultDetail = resultDetailDao.findByExamResult(er);
+            List<ResultDetailDTO> list = new ArrayList<>();
+            for (ExamResultDetail detail : examResultDetail) {
+                ResultDetailDTO temp = new ResultDetailDTO(detail.getQuestion().getContent(), detail.getQuestion().getOption1(), detail.getQuestion().getOption2(), detail.getQuestion().getOption3(), detail.getQuestion().getOption4(), detail.getAnswer(), detail.getQuestion().getAnswer());
+                list.add(temp);
+            }
 
-        return new ResponseEntity<List<ResultDetailDTO>>(list,HttpStatus.OK);
+            return new ResponseEntity<List<ResultDetailDTO>>(list, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>("Not found!", HttpStatus.NOT_FOUND);
+        }
     }
 
     public ResponseEntity<?> getExams(int type) {
