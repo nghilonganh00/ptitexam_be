@@ -11,6 +11,7 @@ import com.myproj.ptitexam.model.User;
 import com.myproj.ptitexam.service.ExamService;
 import com.myproj.ptitexam.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.http.ResponseEntity;
@@ -35,8 +36,15 @@ public class ExamController {
     QuestionService questionService;
     // Hiển thị bài thi
     @GetMapping("/getAllExams")
-    public ResponseEntity<List<Exam>> getAllexams() {
-        return examService.getAllexams();
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public ResponseEntity<?> getAllExams(){
+        return examService.getAllExams();
+    }
+
+    @GetMapping("/getExams")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public ResponseEntity<?> getExams(@RequestParam int type){
+        return examService.getExams(type);
     }
 
     // Sửa bài thi
@@ -58,25 +66,32 @@ public class ExamController {
 
     // lấy ra bài thi trong list
     @GetMapping("getByExamTitleContaining")
-    public ResponseEntity<java.util.List<Exam>> getByExamTitleContaining(@RequestBody String examTitle) {
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public ResponseEntity<?> getByExamTitleContaining(@RequestBody String examTitle) {
         return examService.getByExamTitleContaining(examTitle);
     }
-    @GetMapping("/{exam_id}/questions")
-    public ResponseEntity<List<Question>> getAllQuestions(@PathVariable Integer exam_id){
+
+    @GetMapping("/getExam")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public ResponseEntity<?> getAllQuestions(@RequestParam Integer exam_id){
         return questionService.getAllQuestions(exam_id);
 
     }
     @PostMapping("createExam")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> createExam(@RequestBody Exam exam){
         return examService.createExam(exam);
     }
 
-    @PostMapping("{id}/submit")
-    public ResponseEntity<?> test(@RequestParam int user_id,@RequestParam int exam_id, @RequestBody List<UserAnswerReponse> reponses){
+
+    @PostMapping("/submit")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<?> caculateScore(@RequestParam int user_id,@RequestParam int exam_id, @RequestBody List<UserAnswerReponse> reponses){
         return examService.caculateScore(user_id,exam_id,reponses);
     }
 
     @GetMapping("review")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<?> getAnswerInExam(@RequestParam int resultId){
         return examService.getAnswerInExam(resultId);
     }

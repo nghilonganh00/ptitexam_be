@@ -1,5 +1,6 @@
 package com.myproj.ptitexam.service;
 
+import com.myproj.ptitexam.DTO.QuestionInExam;
 import com.myproj.ptitexam.dao.ExamDao;
 import com.myproj.ptitexam.dao.QuestionDao;
 import com.myproj.ptitexam.model.Exam;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -46,13 +48,17 @@ public class QuestionService {
     }
 
 
-    public ResponseEntity<List<Question>> getAllQuestions(Integer examId) {
+    public ResponseEntity<?> getAllQuestions(Integer examId) {
         try {
             List<Question> list_question = questionDao.findByExamId(examId);
-            if(list_question == null) {
-                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            List<QuestionInExam> responses = new ArrayList<>();
+            for(Question question:list_question){
+                responses.add(new QuestionInExam(question.getId(),question.getContent(),question.getOption1(),question.getOption2(),question.getOption3(),question.getOption4()));
             }
-            return new ResponseEntity<>(list_question, HttpStatus.OK);
+            if(list_question.isEmpty()) {
+                return new ResponseEntity<>("No question", HttpStatus.OK);
+            }
+            return new ResponseEntity<>(responses, HttpStatus.OK);
         } catch(Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

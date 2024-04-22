@@ -28,17 +28,7 @@ public class ExamService {
     @Autowired
     ResultDetailDao resultDetailDao;
 
-    public ResponseEntity<List<Exam>> getAllexams() {
-        try {
-            List<Exam> list_exam = examDao.findAll();
-            if(list_exam == null) {
-                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-            }
-            return new ResponseEntity<>(list_exam, HttpStatus.OK);
-        } catch(Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+
 
 
 
@@ -75,11 +65,11 @@ public class ExamService {
         }
     }
 
-    public ResponseEntity<List<Exam>> getByExamTitleContaining(String examTitle) {
+    public ResponseEntity<?> getByExamTitleContaining(String examTitle) {
         try {
             List<Exam> list_exam = examDao.findByExamTitleContaining(examTitle);
-            if(list_exam == null) {
-                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            if(list_exam.isEmpty()) {
+                return new ResponseEntity<>("No Exam", HttpStatus.OK);
             }
             return new ResponseEntity<>(list_exam, HttpStatus.OK);
         } catch(Exception e) {
@@ -89,8 +79,6 @@ public class ExamService {
 
     public ResponseEntity<String> addExam(Exam exam) {
         try {
-
-
             examDao.save(exam);
             return new ResponseEntity<>("Add success", HttpStatus.CREATED);
         } catch (Exception e) {
@@ -110,13 +98,18 @@ public class ExamService {
         return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
     }
 
-    public List<Exam> getAllExams() {
-        return examDao.findAll();
+    public ResponseEntity<?> getAllExams() {
+        try {
+            List<Exam> list_exam = examDao.findAll();
+            if(list_exam.isEmpty()) {
+                return new ResponseEntity<>("There are no exams", HttpStatus.OK);
+            }
+            return new ResponseEntity<>(list_exam, HttpStatus.OK);
+        } catch(Exception e) {
+            return new ResponseEntity<>("Error", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-    public List<Question> getAllQuestion(int exam_id){
-        return questionDao.findAll();
-    }
 
     public ResponseEntity<?> deleteAllQuestionsInExam( Integer id) {
         List<Question> questions = questionDao.findByExamId(id);
@@ -132,32 +125,36 @@ public class ExamService {
     }
 
     public ResponseEntity<?> caculateScore(int user_id,int exam_id, List<UserAnswerReponse> reponses) {
-        Optional<Exam> exam = examDao.findById(exam_id);
-        Optional<User> user = userDao.findById(user_id);
-        if (exam==null ){
-            return new ResponseEntity<String>("Submit failed, exam not found", HttpStatus.NOT_FOUND);
-        }
-        if (user==null ){
-            return new ResponseEntity<String>("Submit failed, user not found", HttpStatus.NOT_FOUND);
-        }
-        ExamResult examResult = new ExamResult();
-        examResult.setExam(exam.get());
-        examResult.setUser(user.get());
-        examResultDao.save(examResult);
-        List<Question> questions = exam.get().getListQuestion();
-        int num=0;
-        for(UserAnswerReponse reponse:reponses){
-            Optional<Question> question = questionDao.findById(reponse.getId());
-            ExamResultDetail erd = new ExamResultDetail(examResult,question.get(), reponse.getAnswer());
-            resultDetailDao.save(erd);
-            if( reponse.getAnswer().equals(question.get().getAnswer()))
-                num++;
-        }
-        double score = (double)num/questions.size()*10.0;
+        try {
+            Exam exam = examDao.findById(exam_id).orElseThrow(() -> new Exception("Not found"));
+            User user = userDao.findById(user_id).orElseThrow(() -> new Exception("Not Found"));
+            if (exam == null) {
+                return new ResponseEntity<String>("Submit failed, exam not found", HttpStatus.NOT_FOUND);
+            }
+            if (user == null) {
+                return new ResponseEntity<String>("Submit failed, user not found", HttpStatus.NOT_FOUND);
+            }
+            ExamResult examResult = new ExamResult();
+            examResult.setExam(exam);
+            examResult.setUser(user);
+            examResultDao.save(examResult);
+            List<Question> questions = exam.getListQuestion();
+            int num = 0;
+            for (UserAnswerReponse reponse : reponses) {
+                Optional<Question> question = questionDao.findById(reponse.getId());
+                ExamResultDetail erd = new ExamResultDetail(examResult, question.get(), reponse.getAnswer());
+                resultDetailDao.save(erd);
+                if (reponse.getAnswer().equals(question.get().getAnswer()))
+                    num++;
+            }
+            double score = (double) num / questions.size() * 10.0;
 
-        examResult.setScore(score);
-        examResultDao.save(examResult);
-        return new ResponseEntity<Double>(score,HttpStatus.OK);
+            examResult.setScore(score);
+            examResultDao.save(examResult);
+            return new ResponseEntity<Double>(score, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>("Submit failed",HttpStatus.BAD_REQUEST);
+        }
     }
 
     public ResponseEntity<?> getAnswerInExam(int resultId) {
@@ -173,5 +170,27 @@ public class ExamService {
         }
 
         return new ResponseEntity<List<ResultDetailDTO>>(list,HttpStatus.OK);
+    }
+
+    public ResponseEntity<?> getExams(int type) {
+        List<Exam> listExam= examDao.findAll();
+        List<Exam> unlimited = new ArrayList<>();
+        List<Exam> limited = new ArrayList<>();
+        for(Exam exam:listExam){
+            if(exam.getStartTime()==null){
+                unlimited.add(exam);
+            }else {
+                limited.add(exam);
+            }
+        }
+        if(type==0){
+            if(unlimited.isEmpty())
+                return new ResponseEntity<>("There are no exam!",HttpStatus.OK);
+            return new ResponseEntity<>(unlimited,HttpStatus.OK);
+        }else {
+            if(limited.isEmpty())
+                return new ResponseEntity<>("There are no exam!",HttpStatus.OK);
+            return new ResponseEntity<>(limited,HttpStatus.OK);
+        }
     }
 }

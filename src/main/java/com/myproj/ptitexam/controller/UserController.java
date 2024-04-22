@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -56,8 +57,9 @@ public class UserController {
     }
 
     @GetMapping("getResult")
-    public ResponseEntity<List<ExamResultDTO>> getUserResult(){
-        return userService.getUserResult();
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public ResponseEntity<List<ExamResultDTO>> getUserResult(@RequestParam int user_id){
+        return userService.getUserResult(user_id);
     }
 
 

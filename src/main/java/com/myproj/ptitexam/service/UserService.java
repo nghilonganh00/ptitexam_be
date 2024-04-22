@@ -25,9 +25,10 @@ public class UserService {
     @Autowired
     ExamResultDao examResultDao;
 
-    public ResponseEntity<List<ExamResultDTO>> getUserResult() {
+    public ResponseEntity<List<ExamResultDTO>> getUserResult(int user_id) {
         try{
-            List<ExamResult> listResult= examResultDao.findAll();
+            User user = userDao.findById(user_id).orElseThrow(()-> new Exception("User not found"));
+            List<ExamResult> listResult= examResultDao.findByUser(user);
             List<ExamResultDTO> returnList = new ArrayList<>();
             for(ExamResult ex:listResult){
                 ExamResultDTO temp = new ExamResultDTO(ex.getId(),ex.getUser().getUsername(),ex.getExam().getExamTitle(),ex.getScore());
