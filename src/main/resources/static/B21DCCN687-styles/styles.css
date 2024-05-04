@@ -1,0 +1,422 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  background-color: #f0f2f5;
+  font-size: 16px;
+}
+
+input {
+  box-sizing: border-box;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid #cc0d00;
+}
+
+textarea:focus {
+  outline: none;
+  border: 1px solid #cc0d00;
+}
+
+.page {
+  display: grid;
+  position: relative;
+}
+
+header {
+  height: 48px;
+  background-color: #001529;
+  z-index: 99;
+}
+
+.header-container {
+  height: 100%;
+  margin: 0 16px;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.header-container > h1 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  margin-left: 12px;
+}
+
+.logo {
+  width: 28px;
+  height: 28px;
+}
+
+.body {
+  display: flex;
+}
+
+.menu {
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  background-color: #001529;
+  padding-top: 48px;
+  z-index: 9;
+  box-sizing: border-box;
+}
+
+.menu-item {
+  width: 180px;
+  padding: 8px 0 8px 20px;
+  color: #ffffffa6;
+}
+
+.menu > .active {
+  background-color: red;
+  color: #fff;
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  color: #fff;
+  cursor: pointer;
+}
+
+.menu-item > span {
+  font-size: 16px;
+}
+
+main {
+  width: 100vw;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  background: #f0f2f5;
+  overflow-y: scroll;
+  box-sizing: border-box;
+}
+
+main::-webkit-scrollbar {
+  width: 0px; /* Độ rộng của thanh trượt */
+}
+
+.main-container {
+  margin: 0 auto;
+  /* text-align: center; */
+}
+
+textarea {
+  resize: none;
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+  /* border-collapse: collapse; */
+  box-shadow: 0 10px 15px -3px #0000001a;
+  background-color: #fff;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  /* border: 1px solid #ddd; */
+  color: #090909;
+}
+
+tbody > tr:hover {
+  cursor: pointer;
+  background-color: #d9d9d9;
+}
+
+textaream,
+input {
+  font-size: 16px;
+}
+
+.required-mark::after {
+  display: inline-block;
+  margin-left: 4px;
+  color: #ff4d4f;
+  font-size: 14px;
+  line-height: 1;
+  content: "*";
+}
+
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 16px;
+  background-color: #cc0d00;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 2px;
+}
+
+.button > svg {
+  width: 16px;
+  height: 16px;
+  fill: #fff;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.line-button {
+  display: inline-block;
+  padding: 10px 26px;
+  border: 2px solid #cc0d00;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #cc0d00;
+  border-radius: 2px;
+}
+
+.line-button:hover {
+  cursor: pointer;
+  background-color: #cc0d00;
+  color: #fff;
+}
+
+.line-button:hover > svg {
+  fill: #fff;
+}
+
+.large-normal-font {
+  font-size: 18px;
+}
+
+.large-bold-font {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.larger-normal-font {
+  font-size: 20px;
+}
+
+.larger-bold-font {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.popup {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.popup-container {
+  position: relative;
+  width: 800px;
+  padding: 10px 20px;
+  margin: auto;
+  margin-top: 20px;
+  border-radius: 4px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.popup-close-btn {
+  position: absolute;
+  top: 0;
+  right: 8px;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+.popup-close-btn:hover {
+  cursor: pointer;
+}
+
+.popup-actions {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.exam-area > span {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.exam-list-card {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.exam-card {
+  width: 20vw;
+  height: 170px;
+  padding: 20px;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.exam-card-content {
+  margin-top: 10px;
+}
+
+.student-area {
+  width: 80vw;
+  padding: 20px;
+  margin-top: 40px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+select:focus {
+  outline: none;
+}
+
+.statistic-area {
+  width: 80vw;
+  height: 500px;
+  padding: 20px;
+  margin-top: 40px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+
+.header-container-mobile{
+  display: none;
+}
+.header-container {
+  width: 100%;
+  height: 50px;
+  background-color: #bb2019;
+  margin: 0 0;
+  display: flex;
+  align-items: center;
+}
+.left-menu{
+  width: 70%;
+  height: 100%;
+  display: flex;
+  box-sizing: border-box;
+  padding-left: 5%;
+}
+.menu-logo{
+  width: 180px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  font-size: 17px;
+  gap: 10px;
+}
+.menu-logo img{
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+.menu-item{
+  text-decoration: none;
+  padding: 0;
+  display: flex;
+  color: #fff;
+  width: 100px;
+  text-align: center;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+}
+.menu-item:hover{
+  background-color: #b45a55;
+  font-weight: bold;
+  cursor: pointer;
+}
+.right-menu{
+  display: flex;
+  justify-content: right;
+  width: 30%;
+  height: 100%;
+  background-color: #bb2019;
+}
+.mobile-menu{
+  display: none;
+}
+@media screen and (max-width:740px) {
+  .header-container{
+    display: none;
+  }
+  .header-container-mobile{
+    width: 100%;
+  height: 50px;
+  background-color: #bb2019;
+  margin: 0 0;
+  display: flex;
+  align-items: center;
+  }
+  .menu-item{
+    justify-content: right;
+    padding-right: 10%;
+  }
+  .menu-item:hover{
+    background-color: #bb2019;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .menu-item i{
+    color: #fff;
+    font-size: large;
+    font-size: 20px;
+    
+  }
+
+  .mobile-menu{
+    position: fixed;
+    background-color: #fff;
+    top:40px;
+    left:65%;
+    width: 34%;
+    height: auto;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+      0 10px 10px rgba(0, 0, 0, 0.22);
+    border-radius: 5px;
+  }
+  .mobile-menu a{
+    display: block;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    padding:10px 0;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818080;
+    font-weight:500;
+
+  }
+  .mobile-menu a:hover{
+    border-radius: 5px;
+    background-color: #fff3f3;
+    cursor: pointer;
+  }
+  #menu-btn{
+    background-color: #bb2019;
+    border: none;
+  }
+}

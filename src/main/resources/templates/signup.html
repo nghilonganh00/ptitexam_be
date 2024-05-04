@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Đăng kí</title>
+        <link rel="stylesheet" href="./b21dccn747/stylesheets.css">
+        <script src="./b21dccn747/signup-validate.js"></script>
+    </head>
+    <body style="background-repeat: no-repeat; background-size: cover;background-image:url(b21dccn747/signup_background.png);">    
+        <div class="container" style="width: 564px; height: 488px; padding:24px" >
+            <div style="display: flex; align-items: center; justify-content: center;width: auto;height: auto;">
+                <img style="height:10%;width:10%; margin: 20 20 0 0" src="./b21dccn747/Logo_PTIT_University (1).png">
+                <div style="padding: 0px;">
+                    <h1 style="color:rgb( 204 13 0 ); font-size: 14px; text-align: center;padding-bottom: 4px;">HỌC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG</h1>
+                    <h1 style="font-size: 14px; text-align: center;">Posts and Telecommunications Institude of Technology</h1>
+                </div>
+            </div>
+            <div >
+            <form id="signup-form" style="position: relative; width: 100%; height: auto;">
+                <h2 style="color: red;">Đăng kí tài khoản</h2>
+                <div class="input-field">
+                    <input  type = text id="signup-email" placeholder="Email" />
+                    <div class="error"></div>
+                </div>
+                <div class="input-field">
+                    <input  type = text id="signup-uname" placeholder="Tên đăng nhập" />
+                    <div class="error"></div>
+                </div>   
+                <div class="input-field">
+                    <input  type = "password" id="signup-pass" placeholder="Mật khẩu" />
+                    <div class="error"></div>
+                </div>   
+                <div class="input-field">
+                    <input  type = "password" id="signup-pass2" placeholder="Xác nhận mật khẩu" />
+                    <div class="error"></div>
+                </div>                     
+                <button class="btn" onclick="validateInputs()" type="submit">Đăng kí</button>
+                <a href="./index.html" class="alink-design" style="text-align: center; margin-top: .5rem;">Đã có tài khoản</a>
+            </form>
+            </div>    
+        </div>
+        
+    </body>
+</html>
+
+

@@ -1,0 +1,352 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.page {
+  display: grid;
+  position: relative;
+}
+
+header {
+  height: 48px;
+  background-color: #001529;
+  z-index: 99;
+}
+
+.header-container {
+  height: 100%;
+  margin: 0 16px;
+  display: flex;
+  align-items: center;
+}
+
+.header-container > h1 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  margin-left: 10px;
+  height: 110vh;
+}
+
+.logo {
+  width: 28px;
+  height: 28px;
+}
+
+.body {
+  display: flex;
+}
+
+.menu {
+  position: fixed;
+  
+  top: 0;
+  height: 150vh;
+  background-color: #001529;
+  padding-top: 48px;
+  z-index: 9;
+  box-sizing: border-box;
+}
+
+.menu-item {
+  width: 180px;
+  padding: 10px 0 10px 20px;
+  color: #ffffffa6;
+}
+
+.menu > .active {
+  background-color: red;
+  color: #fff;
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  color: #fff;
+  cursor: pointer;
+}
+
+.menu-item > span {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 16px;
+  height: 110vh;
+}
+
+main {
+  width: 100%;
+  align-items: center;
+}
+button {
+  background-color: #bd2019; 
+  color: white; 
+  padding: 10px 20px; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-size: 16px; 
+}
+
+button:hover {
+  background-color: #b15752; 
+}
+.button {
+  margin-left: 880px;
+}
+.Name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+}
+
+.Name h2 {
+  margin: 0 auto;
+}
+.Name #timer {
+  margin: 0; 
+}
+.quiz {
+  margin-left: 50px;
+}
+#resultBtn {
+  margin-left: 50px ;
+}
+.question-container {
+  border: 2px solid #ccc;
+  margin-bottom: 20px;
+  width: 60%;
+  padding: 10px; /* Thêm padding để tạo khoảng cách giữa nội dung và viền */
+  margin: 5px auto;
+}
+
+.question-container p {
+  margin-bottom: 10px;
+}
+
+.question-container label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.question-container input[type="radio"] {
+  margin-right: 5px;
+}
+.Result h2 {
+  width: 100%;
+  text-align: center; /* Căn giữa tiêu đề */
+}
+
+.Result #score {
+  text-align: center; /* Căn giữa điểm */
+}
+
+.Result #result {
+  text-align: center;
+  padding: 5px; /* Căn giữa kết quả */
+}
+
+.Result button {
+  display: block; /* Hiển thị nút ở giữa */
+  margin: 20px auto; /* Canh giữa nút */
+}
+/* Thêm phần CSS mới để tạo khung cho phần kết quả */
+.Result {
+  padding: 5px;
+  width: 80%;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  max-width: 100%;
+  margin: 0 auto;
+  margin-top: 20px;
+
+  
+}
+
+.Result h2 {
+  text-align: center; /* Căn giữa tiêu đề */
+}
+
+.Result #score {
+  text-align: center; /* Căn giữa điểm */
+}
+
+.Result #result {
+  text-align: center; /* Căn giữa kết quả */
+}
+
+.Result button {
+  display: block; /* Hiển thị nút ở giữa */
+  margin: 20px auto; /* Canh giữa nút */
+}
+.review-btn{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.review-button {
+  background-color: #bd2019; 
+  color: white; 
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-size: 16px; 
+
+}
+.correct-answer {
+  color: green; /* Màu xanh cho đáp án đúng */
+  font-weight: bold; /* Đậm */
+  margin-right: 5px; 
+}
+
+.selected-answer {
+  color: green; /* Màu xanh cho phương án đã chọn */
+}
+.check-mark {
+  color: green;
+  margin-right: 5px;
+}
+.incorrect-answer .cross-mark {
+  color: red;
+  margin-left: 5px;
+}
+#answers{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+
+
+/* Menu */
+}
+.header-container-mobile{
+  display: none;
+}
+.header-container {
+  width: 100%;
+  height: 50px;
+  background-color: #bb2019;
+  margin: 0 0;
+  display: flex;
+  align-items: center;
+}
+.left-menu{
+  width: 70%;
+  height: 100%;
+  display: flex;
+  box-sizing: border-box;
+  padding-left: 5%;
+}
+.menu-logo{
+  width: 180px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  font-size: 17px;
+  gap: 10px;
+}
+.menu-logo img{
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+.menu-item{
+  text-decoration: none;
+  padding: 0;
+  display: flex;
+  color: #fff;
+  width: 100px;
+  text-align: center;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+}
+.menu-item:hover{
+  background-color: #b45a55;
+  font-weight: bold;
+  cursor: pointer;
+}
+.right-menu{
+  display: flex;
+  justify-content: right;
+  width: 30%;
+  height: 100%;
+  background-color: #bb2019;
+}
+.mobile-menu{
+  display: none;
+}
+@media screen and (max-width:740px) {
+  .header-container{
+    display: none;
+  }
+  .header-container-mobile{
+    width: 100%;
+  height: 50px;
+  background-color: #bb2019;
+  margin: 0 0;
+  display: flex;
+  align-items: center;
+  }
+  .menu-item{
+    justify-content: right;
+    padding-right: 10%;
+  }
+  .menu-item:hover{
+    background-color: #bb2019;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .menu-item i{
+    color: #fff;
+    font-size: large;
+    font-size: 20px;
+    
+  }
+
+  .mobile-menu{
+    position: fixed;
+    background-color: #fff;
+    top:40px;
+    left:65%;
+    width: 34%;
+    height: auto;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+      0 10px 10px rgba(0, 0, 0, 0.22);
+    border-radius: 5px;
+  }
+  .mobile-menu a{
+    display: block;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    padding:10px 0;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818080;
+    font-weight:500;
+
+  }
+  .mobile-menu a:hover{
+    border-radius: 5px;
+    background-color: #fff3f3;
+    cursor: pointer;
+  }
+  #menu-btn{
+    background-color: #bb2019;
+    border: none;
+  }
+}

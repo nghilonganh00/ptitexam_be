@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/B21DCCN687-styles/styles.css" />
+    <link rel="stylesheet" href="../static/B21DCCN687-styles/exam.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+    <script src="../static/B21DCCN687-js/main.js"></script>
+    <title>Hệ thống quản lý</title>
+  </head>
+  <body>
+    <div class="page create-exam">
+      <header class="header-container">
+        <div class="left-menu">
+            <a href="exam.html" class="menu-logo">
+                <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
+                <h3>PTIT EXAM</h3>
+            </a>
+            <a href="exam.html" class="menu-item">Bài thi</a>
+            <a href="acc_manager.html" class="menu-item">Sinh viên</a>
+            <a href="statistic.html" class="menu-item">Thống kê</a>
+        </div>
+        <div class="right-menu">
+            <a href="index.html" class="menu-item">Đăng xuất</a>
+        </div>
+    </header>
+    <header class="header-container-mobile">
+        <div class="left-menu">
+            <a href="manage-exam.html" class="menu-logo">
+                <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
+                <h3>PTIT EXAM</h3>
+            </a>
+        </div>
+        <div class="right-menu">
+            <button  class="menu-item" id="menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </header>
+
+
+
+      <div class="body">
+        <main>
+          <div class="mobile-menu" id="mobile-menu">
+            <a href="exam.html">Bài thi</a>
+            <a href="acc_manager.html">Sinh viên</a>
+            <a href="statistic.html">Thống kê</a>
+            <a href="index.html">Đăng xuất</a>
+        </div>
+          <div class="main-container">
+            <div class="main-label">
+              <span class="prev-page" onclick="redirectToNewPage('exam.html')"
+                >Quản lý kì thi</span
+              >
+              <span style="font-size: 26px; font-weight: 600; color: #cc0d00">
+                /
+              </span>
+              <span style="font-size: 20px; font-weight: 600">Thêm mới</span>
+            </div>
+
+            <div class="main-content">
+              <div class="create-exam-area">
+                <div class="create-exam-form">
+                  <form action="">
+                    <div class="input-row general-inputs">
+                      <div class="create-name-input">
+                        <div class="input-label">
+                          <label for="examName" class="required-mark"
+                            >Tên kì thi</label
+                          >
+                        </div>
+                        <input
+                          type="text"
+                          id="exam-name"
+                          class="create-exam-input"
+                          placeholder="Tên kì thi"
+                          style="width: 100%"
+                        />
+                      </div>
+                      <div class="time-inputs">
+                        <div>
+                          <div class="input-label">
+                            <label for="examName" class="required-mark"
+                              >Loại</label
+                            >
+                          </div>
+                          <select
+                            name="selectType"
+                            id="exam-type"
+                            class="edit-select-type"
+                          >
+                            <option value="Tự do">Tự do</option>
+                            <option value="Thời gian cụ thể">
+                              Thời gian cụ thể
+                            </option>
+                          </select>
+                        </div>
+                        <div id="create-exam-time">
+                          <div>
+                            <div class="input-label">
+                              <label for="examName" class="required-mark"
+                                >Ngày bắt đầu</label
+                              >
+                            </div>
+                            <input
+                              type="date"
+                              id="exam-start-time"
+                              class="create-exam-input"
+                              style="width: 100%"
+                            />
+                          </div>
+                          <div>
+                            <div class="input-label">
+                              <label for="examName" class="required-mark"
+                                >Ngày kết thúc</label
+                              >
+                            </div>
+                            <input
+                              type="date"
+                              id="exam-end-time"
+                              class="create-exam-input"
+                              style="width: 100%"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="input-row">
+                      <div class="input-label">
+                        <label for="examName" class="create-exam-label"
+                          >Mô tả</label
+                        >
+                      </div>
+                      <textarea
+                        class="description-input"
+                        id="exam-description"
+                        name=""
+                        spellcheck="false"
+                      ></textarea>
+                    </div>
+                    <div class="input-row">
+                      <div class="input-label">
+                        <label for="examName" class="create-exam-label"
+                          >Danh sách câu hỏi</label
+                        >
+                      </div>
+                      <label class="create-file">
+                        <input
+                          id="create-file-input"
+                          type="file"
+                          accept=".xlsx, .xls"
+                        />
+                        <span class="create-file-button"></span>
+                      </label>
+                      <div
+                        class="list-question-box"
+                        id="list-question-box"
+                      ></div>
+                      <div class="create-question-input">
+                        <textarea
+                          type="text"
+                          class="create-exam-input topic-input"
+                          placeholder="Câu hỏi"
+                          id="topic-input"
+                          spellcheck="false"
+                        ></textarea>
+                        <div class="list-answer-input">
+                          <textarea
+                            type="text"
+                            class="create-exam-input"
+                            id="answer-a-input"
+                            placeholder="Đáp án A"
+                            spellcheck="false"
+                          ></textarea>
+                          <input
+                            type="text"
+                            class="create-exam-input"
+                            id="answer-b-input"
+                            placeholder="Đáp án B"
+                          />
+                          <input
+                            type="text"
+                            class="create-exam-input"
+                            id="answer-c-input"
+                            placeholder="Đáp án C"
+                          />
+                          <input
+                            type="text"
+                            class="create-exam-input"
+                            id="answer-d-input"
+                            placeholder="Đáp án D"
+                          />
+                        </div>
+                      </div>
+
+                      <div
+                        class="button"
+                        id="create-question"
+                        onclick="addQuestionByManual()"
+                        style="margin-top: 20px"
+                      >
+                        Thêm câu hỏi
+                      </div>
+                    </div>
+
+                    <div style="display: flex; justify-content: center">
+                      <div
+                        class="button"
+                        style="width: 52px"
+                        onclick="saveNewExam()"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 448 512"
+                        >
+                          <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                          <path
+                            d="M48 96V416c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V170.5c0-4.2-1.7-8.3-4.7-11.3l33.9-33.9c12 12 18.7 28.3 18.7 45.3V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32H309.5c17 0 33.3 6.7 45.3 18.7l74.5 74.5-33.9 33.9L320.8 84.7c-.3-.3-.5-.5-.8-.8V184c0 13.3-10.7 24-24 24H104c-13.3 0-24-10.7-24-24V80H64c-8.8 0-16 7.2-16 16zm80-16v80H272V80H128zm32 240a64 64 0 1 1 128 0 64 64 0 1 1 -128 0z"
+                          />
+                        </svg>
+                        <span>Lưu</span>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+  <script>
+    document
+      .getElementById("create-file-input")
+      .addEventListener("change", function () {
+        addQuestionByFile();
+      });
+
+    document
+      .getElementById("exam-type")
+      .addEventListener("change", function () {
+        onChangeExamType();
+      });
+  </script>
+  <script src="https://kit.fontawesome.com/983c1d6e7e.js" crossorigin="anonymous"></script>
+  <script>document.getElementById("menu-btn").addEventListener('click', ()=>{
+      if(document.getElementById('mobile-menu').style.display=='none'){
+          document.getElementById('mobile-menu').style.display='block';
+      }
+      else{
+          document.getElementById('mobile-menu').style.display='none';
+      }
+  }) 
+  </script>
+</html>

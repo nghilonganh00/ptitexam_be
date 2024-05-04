@@ -1,0 +1,530 @@
+*{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  background-color: #f0f2f5;
+}
+
+.page {
+  display: grid;
+  position: relative;
+}
+
+
+
+
+
+
+.logo {
+  width: 28px;
+  height: 28px;
+}
+
+.body {
+  display: block;
+  height: 600px;
+}
+
+
+.header-container-mobile{
+  display: none;
+}
+.header-container {
+  width: 100%;
+  height: 50px;
+  background-color: #bb2019;
+  margin: 0 0;
+  display: flex;
+  align-items: center;
+}
+.left-menu{
+  width: 70%;
+  height: 100%;
+  display: flex;
+  box-sizing: border-box;
+  padding-left: 5%;
+}
+.menu-logo{
+  width: 180px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  gap: 10px;
+  font-size: 17px !important;
+}
+.menu-logo img{
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+.menu-item{
+  text-decoration: none;
+  display: flex;
+  color: #fff;
+  width: 100px;
+  text-align: center;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+}
+.menu-item:hover{
+  background-color: #b45a55;
+  font-weight: bold;
+  cursor: pointer;
+}
+.right-menu{
+  display: flex;
+  justify-content: right;
+  width: 30%;
+  height: 100%;
+}
+.mobile-menu{
+  display: none;
+}
+
+main {
+  height: 90vh;
+  width:100%;
+  position: absolute;
+  display: block;
+  justify-content: center;
+  background: #f0f2f5;
+  overflow-y: scroll;
+}
+.tke-main{
+  height: 90vh;
+  width:100;
+  position: absolute;
+  display: block;
+  justify-content: center;
+  background: #f0f2f5;
+  overflow-y: scroll;
+}
+
+main::-webkit-scrollbar {
+  width: 0px;
+}
+
+.searchbox{
+  align-items: center;
+  width: 35rem;
+  max-width: 90%;
+  background: #fff;
+  border-radius: 5px;
+  margin: 1.2rem auto auto auto ;
+}
+.row{
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  padding: .5rem 1rem;
+}
+input{
+  flex: 1;
+  height: 2rem;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  font-size: 18px;
+  color: #333;
+ 
+}
+button{
+  background: transparent;
+  border: 0;
+  outline: 0;
+}
+button .fa-solid{
+  width: 1.2rem;
+  font-size: 1rem;
+  color:#cc0d00;
+  cursor: pointer;
+}
+.TieuDe{
+  display: flex;
+  margin: 2rem 1rem auto 1rem;
+  align-items: center;
+  padding: 1rem 0;
+  padding-bottom: .5rem;
+  border-bottom: 2px solid rgba(0,0,0,.2);
+  font-size: 1.5rem;  
+}
+.box-container{
+  display: grid;
+  padding-top: 0.5rem;
+  grid-template-columns: repeat(auto-fill,minmax(20rem,2fr));
+
+  gap: 0.8rem;
+  margin: 1rem;
+}
+.box{
+  background-color:  #fff;
+  padding: .5em;
+  border-radius: .3rem;
+}
+.box > .TenBaiThi{
+  margin-bottom: 0.75rem;
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+.box > .Content{
+  font-size: 1rem;
+  margin-left: 1rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+.table-container{
+  background-color: #fff;
+  height: auto;
+  width: 90%;
+  margin: 0 auto;
+  padding:0;
+  display: block;
+  border-radius: 5px;
+}
+.table-container-header{
+  margin: 2rem 0rem auto 0rem;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(0,0,0,.2);
+  font-size: 1.5rem;  
+}
+.table-container-body{
+  margin: .5rem 1rem 1rem 1rem;
+  padding: 1rem .5rem;
+}
+.pdf-btn{
+  font-size: 14px;
+  background-color: rgb(193, 41, 41);
+  color: #fff;
+  padding: .6rem 1rem;
+  border-radius: .1rem;
+}
+.pdf-btn:active {
+  transform: scale(0.95);
+}
+.pdf-btn:hover {
+  background-color: rgb(193, 95, 95);
+  cursor: pointer;
+}
+table{
+  width:  100%;
+  margin: .5rem auto;
+}
+.cot-1{
+  width: 10%;
+  padding: 1rem 0;
+  box-sizing: border-box;
+}
+.cot-2{
+  width: 20%;
+  padding: 1rem 0;
+  box-sizing: border-box;
+}
+table th{
+  background-color: #fafafa;
+  border-right:  1px solid #f0f0f0;
+  border-width: 1px;
+  box-sizing: border-box;
+}
+
+table td{
+  text-align: center;
+  background-color: #fff;
+  border-bottom: 1px solid #f0f0f0;
+  box-sizing: border-box;
+}
+
+.test {
+  background-color: black;
+}
+select{
+  padding: .3rem .4rem;
+  text-align: center;
+  font-size: .9rem;
+  color: #555;
+  border-radius: 2px;
+  border: .5px solid #818080;
+}
+
+select:hover{
+  border-color: #cc0d00;
+}
+option{
+  padding: .5rem;
+}
+
+option:active{
+  background-color: red;
+}
+
+
+
+.close-button{
+  margin-top: 30px;
+  border-radius: 20px;
+  border: 1px solid #FF4B2B;
+  background-color: red;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+  box-shadow: 0 10px 25px rgba(229, 29, 32, 0.6);
+  position: absolute;
+  bottom: 2rem;
+  float: right;
+}
+.close-button:hover{
+  cursor: pointer;
+  background-color: rgb(255, 78, 78);
+}
+.chart{
+  margin: 0 auto;
+}
+
+.box-container a{
+  text-decoration: none;
+  color: #001529;
+}
+
+
+.excel-btn{
+  background-color: #008000;
+}
+ .excel-btn:hover{
+  background-color: #53b653; 
+}
+
+.chart-container{
+  display: none;
+  position: fixed;
+  width: 80%;
+  top: 15%;
+  left: 10%;
+  height: 70%;
+  background-color: #fff;
+  margin: 0 auto 0 auto;
+  border-radius: 10px;
+  display: block;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+      0 10px 10px rgba(0, 0, 0, 0.22);
+
+}
+.chart-header{
+  width: 100%;
+  height: 15%;
+  display: flex;
+  border-bottom: 1px solid #818080;
+  padding: 6px 10px 0 10px;
+  align-items: center;
+}
+.header-left{
+  display: flex;
+  width: 90%;
+  align-items: center;
+  gap:10px
+}
+.header-item{
+  width: 10%;
+  gap:10px;
+  text-align: right;
+}
+.open-chart:hover{
+  scale: 1.5;
+}
+.print-btn{
+  width: 30px;
+  height: 30px;
+  background-color: #bb2019;
+  text-align: center;
+  align-items: center;
+  border-radius: 3px;
+}
+.print-btn i{
+  color: #fff;
+}
+.print-btn:hover{
+  background-color: #b44a44;
+  cursor: pointer;
+}
+#close-chart-btn{
+  width: 50px;
+  height: 30px;
+  background-color: #bb2019;
+  text-align: center;
+  align-items: center;
+  border-radius: 3px;
+  color: #fff;
+}
+#close-chart-btn:hover{
+  background-color: #b44a44;
+  cursor: pointer;
+}
+.chart-body{
+  display: flex;
+  width: 100%;
+  height: 85%;
+  align-items: center;
+  justify-content: center;
+  
+}
+.chart-row{
+  width: 33.3333%;
+  justify-self: center;
+  align-self: center;
+  max-height: 100%;
+}
+
+.chart-row h5{
+  text-align: center;
+  font-size: 16px;
+}
+.chart-row-2 h5{
+  text-align: center;
+  font-size: 16px;
+}
+.chart-row-2{
+  width: 65%;
+  max-height: 100%;
+  max-width: 100%;
+}
+.overlay{
+  width: 100%;
+  height: 100%;
+  background: rgb(192,192,192,.7);
+  position: fixed;
+  top:0;
+  left: 0;
+  display: none;
+  
+}
+
+.do-exam{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+#do-exam-btn{
+  width: 25%;
+  height: 30px;
+  color: #edecec;
+  background-color: #c24e48;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+#do-exam-btn:hover{
+  background-color: #b66b68;
+  scale: 1.1;
+  cursor: pointer;
+}
+#not-do-exam-btn{
+  width: 25%;
+  height: 30px;
+  color: #edecec;
+  background-color: #c24e48;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+
+@media screen and (max-width:740px) {
+  .header-container{
+    display: none;
+  }
+  .header-container-mobile{
+    width: 100%;
+  height: 50px;
+  background-color: #bb2019;
+  margin: 0 0;
+  display: flex;
+  align-items: center;
+  }
+  .menu-item{
+    justify-content: right;
+    background-color: #bb2019;
+    padding-right: 10%;
+  }
+  .menu-item:hover{
+    background-color: #bb2019;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .menu-item i{
+    color: #fff;
+    font-size: large;
+    font-size: 20px;
+    
+  }
+
+  .mobile-menu{
+    position: fixed;
+    background-color: #fff;
+    top:40px;
+    left:65%;
+    width: 34%;
+    height: auto;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+      0 10px 10px rgba(0, 0, 0, 0.22);
+    border-radius: 5px;
+  }
+  .mobile-menu a{
+    display: block;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    padding:10px 0;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818080;
+    font-weight:500;
+
+  }
+  .mobile-menu a:hover{
+    border-radius: 5px;
+    background-color: #fff3f3;
+    cursor: pointer;
+  }
+  
+  .chart-container{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 0;
+  }
+  .chart-body{
+    display: block;
+  }
+  .chart-row{
+    width: auto;
+    height: 45%;
+    padding: 1rem;
+  }
+  .chart-row-2{
+    width: 100%;
+    height: 45%;
+    margin-top: 30px;
+  }
+  canvas{
+    margin: 0 auto;
+  }
+}

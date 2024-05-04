@@ -1,0 +1,263 @@
+.prev-page {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.prev-page:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #cc0d00;
+}
+
+.manage-exam-area {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 20px;
+  width: 80vw;
+  height: 100%;
+  margin: auto;
+  margin-top: 20px;
+  /* background-color: #fff; */
+  box-sizing: border-box;
+}
+
+.manage-general {
+  padding: 20px;
+  border: 2px solid rgba(229, 229, 229, 1);
+  box-sizing: border-box;
+}
+
+.manage-general-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.manage-general-box {
+  width: 100%;
+  /* height: 170px; */
+  margin-top: 20px;
+  box-sizing: border-box;
+}
+
+.manage-general-row {
+  margin-bottom: 4px;
+}
+
+.manage-general-row > span:first-child {
+  width: 130px;
+}
+
+.manage-general-box:hover {
+  cursor: pointer;
+}
+
+.manage-general-row {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+}
+
+.manage-questions {
+  width: 80%;
+  height: 70vh;
+  padding: 20px;
+  padding-bottom: 100px;
+  background-color: #fff;
+  overflow-y: scroll;
+}
+
+.manage-questions::-webkit-scrollbar {
+  width: 0;
+}
+
+.question-box:hover {
+  cursor: pointer;
+  background-color: #f0f2f5;
+}
+
+.manage-list-answer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.edit-answer {
+  width: 92%;
+  height: 100px;
+}
+
+.edit-popup-button {
+  padding: 8px 20px;
+}
+
+.answer {
+  display: flex;
+}
+
+.popup-general-content {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.popup-general-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.popup-general-input {
+  width: 100%;
+  margin: 0;
+  padding: 8px 11px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+.popup-general-type {
+  height: 35px;
+  border: 1px solid #d9d9d9;
+}
+
+@media only screen and (max-width: 1279px) {
+  .manage-exam-area {
+    display: inline-flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .manage-questions {
+    height: auto;
+    overflow: hidden;
+  }
+}
+
+
+.header-container-mobile{
+  display: none;
+}
+.header-container {
+  width: 100%;
+  height: 50px;
+  background-color: #bb2019;
+  margin: 0 0;
+  display: flex;
+  align-items: center;
+}
+.left-menu{
+  width: 70%;
+  height: 100%;
+  display: flex;
+  box-sizing: border-box;
+  padding-left: 5%;
+}
+.menu-logo{
+  width: 180px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  font-size: 17px;
+  gap: 10px;
+}
+.menu-logo img{
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+.menu-item{
+  text-decoration: none;
+  padding: 0;
+  display: flex;
+  color: #fff;
+  width: 100px;
+  text-align: center;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+}
+.menu-item:hover{
+  background-color: #b45a55;
+  font-weight: bold;
+  cursor: pointer;
+}
+.right-menu{
+  display: flex;
+  justify-content: right;
+  width: 30%;
+  height: 100%;
+  background-color: #bb2019;
+}
+.mobile-menu{
+  display: none;
+}
+@media screen and (max-width:740px) {
+  .header-container{
+    display: none;
+  }
+  .header-container-mobile{
+    width: 100%;
+  height: 50px;
+  background-color: #bb2019;
+  margin: 0 0;
+  display: flex;
+  align-items: center;
+  }
+  .menu-item{
+    justify-content: right;
+    padding-right: 10%;
+  }
+  .menu-item:hover{
+    background-color: #bb2019;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .menu-item i{
+    color: #fff;
+    font-size: large;
+    font-size: 20px;
+    
+  }
+
+  .mobile-menu{
+    position: fixed;
+    background-color: #fff;
+    top:40px;
+    left:65%;
+    width: 34%;
+    height: auto;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+      0 10px 10px rgba(0, 0, 0, 0.22);
+    border-radius: 5px;
+  }
+  .mobile-menu a{
+    display: block;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    padding:10px 0;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818080;
+    font-weight:500;
+
+  }
+  .mobile-menu a:hover{
+    border-radius: 5px;
+    background-color: #fff3f3;
+    cursor: pointer;
+  }
+  #menu-btn{
+    background-color: #bb2019;
+    border: none;
+  }
+}

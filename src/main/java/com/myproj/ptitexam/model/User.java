@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
+import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,11 +22,17 @@ public class User {
 
     @NotBlank
     @Email
-    @Column(unique = true)
+    @Column(unique = true, name="email")
     private String email;
 
     @NotBlank
+    @Column(name="password")
     private String password;
+
+    @Column(name="full-name")
+    private String fullName;
+    @Column(name = "dob")
+    private Timestamp dob;
 
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     @JoinTable(  name = "user_roles",
@@ -76,6 +83,30 @@ public class User {
 
     public void setRoles(Set<Roles> roles) {
         this.roles = roles;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public Timestamp getDob() {
+        return dob;
+    }
+
+    public void setDob(Timestamp dob) {
+        this.dob = dob;
+    }
+
+    public List<ExamResult> getListExamResult() {
+        return listExamResult;
+    }
+
+    public void setListExamResult(List<ExamResult> listExamResult) {
+        this.listExamResult = listExamResult;
     }
 
     @Override

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://kit.fontawesome.com/983c1d6e7e.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="./b21dccn747/styles.css" />
+        <title>Trang chủ</title>
+    </head>
+    <body>
+        <div class="page">
+            <header class="header-container">
+                <div class="left-menu">
+                    <a href="user-main.html" class="menu-logo">
+                        <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
+                        <h3>PTIT EXAM</h3>
+                    </a>
+                    <a href="user-main.html" class="menu-item">Trang chủ</a>
+                </div>
+                <div class="right-menu">
+                    <a href="index.html" class="menu-item">Đăng xuất</a>
+                </div>
+            </header>
+            <header class="header-container-mobile">
+                <div class="left-menu">
+                    <a href="user-main.html" class="menu-logo">
+                        <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
+                        <h3>PTIT EXAM</h3>
+                    </a>
+                </div>
+                <div class="right-menu">
+                    <button  class="menu-item" id="menu-btn"><i class="fa-solid fa-bars"></i></button>
+                </div>
+            </header>
+
+
+            <div class="body">
+                <main>
+                    <div class="mobile-menu" id="mobile-menu">
+                        <a href="user-main.html">Trang chủ</a>
+                        <a href="index.html">Đăng xuất</a>
+                    </div>
+
+                    <div class ="searchbox">
+                        <div class="row">
+                            <input type="text" name="search-box" id="search-box" placeholder="Tìm kiếm bài thi" data-search>
+                            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                    </div>
+                    <div class="TieuDe">
+                        <h2 style="width: 50rem; padding-left: 1rem;">Danh sách bài thi</h2>
+                        <div style="width: 50rem; text-align: right;">
+                            <label  style="font-size: 18px; font-weight: 500;">Hiển thị</label>
+                            <select id="filter-op" name="Trang-Thai">
+                                <option value="all">Tất cả bài thi</option>
+                                <option value="tudo">Tự do</option>
+                                <option value="gh">Giới hạn thời gian</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="box-container" id="user-exam-output">
+                    </div>
+                </main>
+            </div>
+        </div>
+        <script src="./b21dccn747/user-exam.js"></script>
+  <script>document.getElementById("menu-btn").addEventListener('click', ()=>{
+      if(document.getElementById('mobile-menu').style.display=='none'){
+          document.getElementById('mobile-menu').style.display='block';
+      }
+      else{
+          document.getElementById('mobile-menu').style.display='none';
+      }
+  }) 
+  </script>
+  </body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/B21DCCN687-styles/styles.css" />
+    <link rel="stylesheet" href="../static/B21DCCN687-styles/exam.css" />
+    <script src="../static/B21DCCN687-js/main.js"></script>
+    <title>Hệ thống quản lý</title>
+  </head>
+  <body>
+    <div class="page">
+      <header class="header-container">
+        <div class="left-menu">
+            <a href="exam.html" class="menu-logo">
+                <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
+                <h3>PTIT EXAM</h3>
+            </a>
+            <a href="exam.html" class="menu-item">Bài thi</a>
+            <a href="acc_manager.html" class="menu-item">Sinh viên</a>
+            <a href="statistic.html" class="menu-item">Thống kê</a>
+        </div>
+        <div class="right-menu">
+            <a href="index.html" class="menu-item">Đăng xuất</a>
+        </div>
+    </header>
+    <header class="header-container-mobile">
+        <div class="left-menu">
+            <a href="manage-exam.html" class="menu-logo">
+                <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
+                <h3>PTIT EXAM</h3>
+            </a>
+        </div>
+        <div class="right-menu">
+            <button  class="menu-item" id="menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </header>
+      <div class="body">
+        <main>
+          <div class="mobile-menu" id="mobile-menu">
+            <a href="exam.html">Bài thi</a>
+            <a href="acc_manager.html">Sinh viên</a>
+            <a href="statistic.html">Thống kê</a>
+            <a href="index.html">Đăng xuất</a>
+        </div>
+          <div class="main-container">
+            <div class="exam-area">
+              <div class="exam-container">
+                <div>
+                  <span style="font-size: 16px; font-weight: 600"
+                    >Quản lý kì thi</span
+                  >
+                </div>
+                <div class="create-exam-top">
+                  <div
+                    class="button"
+                    id="create-exam-button"
+                    onclick="redirectToNewPage('create-exam.html')"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512"
+                    >
+                      <path
+                        d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
+                      />
+                    </svg>
+                    Thêm mới
+                  </div>
+                  <div class="exam-searchbar">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 512 512"
+                      style="width: 16px; height: 16px; fill: #cc0d00"
+                    >
+                      <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                      <path
+                        d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
+                      />
+                    </svg>
+                    <input type="text" id="exam-search-input" />
+                    <!-- <select class="exam-searchbar-filter">
+                      <option value="1">1</option>
+                      <option value="1">1</option>
+                      <option value="1">1</option>
+                      <option value="1">1</option>
+                    </select> -->
+                  </div>
+                </div>
+                <table class="exam-table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Tên kì thi</th>
+                      <th>Loại</th>
+                      <th>Số câu</th>
+                      <th>Ngày bắt đầu</th>
+                      <th>Ngày kết thúc</th>
+                      <th>Mô tả</th>
+                    </tr>
+                  </thead>
+                  <tbody id="exam-list"></tbody>
+                </table>
+
+                <div class="exam-boxs" id="exam-boxs"></div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", loadExamPage());
+    document
+      .getElementById("exam-search-input")
+      .addEventListener("input", function () {
+        const searchKey = document.getElementById("exam-search-input").value;
+        searchExam(searchKey);
+      });
+  </script>
+  <script src="https://kit.fontawesome.com/983c1d6e7e.js" crossorigin="anonymous"></script>
+  <script>document.getElementById("menu-btn").addEventListener('click', ()=>{
+      if(document.getElementById('mobile-menu').style.display=='none'){
+          document.getElementById('mobile-menu').style.display='block';
+      }
+      else{
+          document.getElementById('mobile-menu').style.display='none';
+      }
+  }) 
+  </script>
+</html>
