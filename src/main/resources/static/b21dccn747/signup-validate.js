@@ -38,8 +38,8 @@ const validateInputs = () => {
     if(passwordValue === '') {
         setError(pass1, 'Nhập mật khẩu');
         check=false;
-    } else if (passwordValue.length < 8 ) {
-        setError(pass1, 'Mật khẩu ít nhất 8 kí tự')
+    } else if (passwordValue.length < 6 ) {
+        setError(pass1, 'Mật khẩu ít nhất 6 kí tự')
         check=false;
     } 
 
@@ -52,24 +52,54 @@ const validateInputs = () => {
     } 
     if(check){
         const user = {
-            mail: emailValue,
+            email: emailValue,
             username: usernameValue,
             password: passwordValue
         }
         let json = JSON.stringify(user);
-        localStorage.setItem(usernameValue,json);
-        alert("Đăng kí thành công");
-        window.location.href="index.html";
+        const apiUrl = 'http://localhost:8080/auth/register';
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+            },
+            body: json
+         };
+        fetch(apiUrl, requestOptions)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                if(!data.status){
+                    setError(pass2, data.message);
+                }
+                else{
+                    alert("Đăng kí thành công");
+                    window.location.href= "login";
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+
+
     }
     
 };
+
 
 const validateInputsLogin = () => {
     event.preventDefault();
     const uname = document.getElementById("login-username");
     const pass = document.getElementById("login-pass");
     const usernameValue = uname.value.trim();
-    const passwordValue = pass.value.trim();
+    const passwordValue = pass.value;
     var check = true;
     if(usernameValue === '') {
         setError(uname, 'Nhập tên đăng nhập');
@@ -82,17 +112,34 @@ const validateInputsLogin = () => {
         check=false;
     } 
     if(check){
-        const user= JSON.parse(localStorage.getItem(usernameValue));
-        if(user == null){
-            setError(pass,"Tài khoản không tồn tại")
+        login = {
+                            username: usernameValue,
+                            password: passwordValue
         }
-        else if(user.username == usernameValue && user.password == passwordValue){
-            alert("Đăng nhập thành công")           
-            window.location.href = "user-main.html";
-            
-        } else{
-            setError(pass,"Mật khẩu không đúng")
-        }
+        let json = JSON.stringify(login);
+                const apiUrl1 = 'http://localhost:8080/auth/login';
+                const requestOptions1 = {
+                    method: 'POST',
+                    headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                    },
+                    body: json
+                 };
+                fetch(apiUrl1, requestOptions1)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Sai tài khoản hoặc mật khẩu');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        window.location.href="student"
+                        localStorage.setItem("jwt", data.message);
+                    })
+                    .catch(error => {
+                        document.getElementById('login-err').innerText = "Sai tài khoản hoặc mật khẩu"
+                    });
 
     }
     

@@ -3,14 +3,18 @@ package com.myproj.ptitexam.service;
 import com.myproj.ptitexam.DTO.LoginDTO;
 import com.myproj.ptitexam.DTO.LoginResponse;
 import com.myproj.ptitexam.DTO.RegisterDTO;
+import com.myproj.ptitexam.DTO.Response;
 import com.myproj.ptitexam.Security.JWTGenerator;
 import com.myproj.ptitexam.Security.UserDetailAuth;
 import com.myproj.ptitexam.dao.RoleDao;
 import com.myproj.ptitexam.dao.UserDao;
 import com.myproj.ptitexam.model.Roles;
 import com.myproj.ptitexam.model.User;
+import jakarta.servlet.http.Cookie;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -43,14 +47,19 @@ public class AuthService {
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
     public ResponseEntity<?> register(RegisterDTO registerDTO) {
+        if(!VALID_EMAIL_ADDRESS_REGEX.matcher(registerDTO.getEmail()).matches()){
+            Response response = new Response(false,"Email is not valid");
+            return new ResponseEntity<>(response,HttpStatus.OK);
+        }
         if(userDao.existsByUsername(registerDTO.getUsername())){
-            return new ResponseEntity<String>("Username is taken!",HttpStatus.BAD_REQUEST);
+            Response response = new Response(false,"Username is taken!");
+            return new ResponseEntity<>(response,HttpStatus.OK);
         }
         if(userDao.existsByEmail(registerDTO.getEmail())){
-            return new ResponseEntity<String>("Email is taken!",HttpStatus.BAD_REQUEST);
+            Response response = new Response(false,"Email is taken!");
+            return new ResponseEntity<>(response,HttpStatus.OK);
         }
-        if(!VALID_EMAIL_ADDRESS_REGEX.matcher(registerDTO.getEmail()).matches())
-            return new ResponseEntity<String>("Email is not valid",HttpStatus.BAD_REQUEST);
+
         Roles roles = roleDao.findByName("USER").orElseThrow(()->new RuntimeException("Role not found"));
         Set<Roles> set = new HashSet<>();
 
@@ -63,7 +72,7 @@ public class AuthService {
         System.out.println(newUser);
         userDao.save(newUser);
 
-        return new ResponseEntity<String> ("Signup success!",HttpStatus.OK);
+        return new ResponseEntity<> (new Response(true,"Your registration has been successful"),HttpStatus.OK);
     }
 
     public ResponseEntity<?> login(LoginDTO loginDTO){
@@ -75,11 +84,15 @@ public class AuthService {
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
-        return ResponseEntity.ok(new LoginResponse(jwt,
-                userDetails.getId(),
-                userDetails.getUsername(),
-                userDetails.getEmail(),
-                roles));
+        ResponseCookie springCookie = ResponseCookie.from("jwt", jwt)
+                .httpOnly(true)
+        //        .secure(true)
+                .path("/")
+
+                .maxAge(24 * 60 * 60 * 1000)
+                .build();
+        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, springCookie.toString()).body(new Response(true,jwt));
+
        // return new ResponseEntity<>("String",HttpStatus.OK);
     }
 }

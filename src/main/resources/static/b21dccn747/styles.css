@@ -427,7 +427,9 @@ option:active{
   color: #edecec;
   background-color: #c24e48;
   border-radius: 5px;
-  font-size: 1em;
+  font-size: 18px;
+  text-align:center;
+  line-height: 150%;
 }
 
 #do-exam-btn:hover{
@@ -443,6 +445,7 @@ option:active{
   border-radius: 5px;
   font-size: 1em;
 }
+
 
 
 @media screen and (max-width:740px) {

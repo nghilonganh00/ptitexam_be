@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("auth")
@@ -27,5 +24,11 @@ public class AuthController {
     @PostMapping("login")
     public ResponseEntity<?> login(@RequestBody LoginDTO loginDTO){
         return authService.login(loginDTO);
+    }
+
+    @GetMapping("/read-spring-cookie")
+    public String readCookie(
+            @CookieValue(name = "jwt", defaultValue = "") String jwt) {
+        return jwt;
     }
 }
