@@ -1,71 +1,45 @@
+console.log('2')
+var acc=[]
+var userId = 0
+$(document).ready(function() {
+
+//    $('#getDataButton').click(function() {
+        $.ajax({
+            url: '/user/getAll',
+            type: 'GET',
+
+            success: function(data) {
+                // Xử lý dữ liệu ở đây
+                console.log(typeof data);
+                console.log(data)
+                data.map(e=>{
+                acc.push({
+                uid:e.id,
+                    id:e.username,
+                    name:e.fullName,
+                    email:e.email,
+                    password: e.password,
+                    birthday: e.dob.slice(0,10)
+                })
+                })
+                loadTableAcc(acc)
+                capnhapbangtim()
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+//    });
+});
+
+console.log('1')
+console.log(acc1)
+
 document.addEventListener("DOMContentLoaded", function () {
     loadTableAcc(acc);
 });
-var acc = [
-    {
-        id: "B21DCCN123",
-        name: "Nguyễn Văn An",
-        email: "annv@gmail.com",
-        password: "nam123@",
-        birthday: "15/09/2003"
-    },
-    {
-        id: "B21DCCN345",
-        name: "Đào Văn Bình",
-        email: "binhdv@gmail.com",
-        password: "binhdidj",
-        birthday: "13/08/2003"
 
-    },
-    {
-        id: "B21DCCN676",
-        name: "Đào Mai Anh",
-        email: "anhdm@gmail.com",
-        password: "fdksafk",
-        birthday: "25/10/2003"
-
-    },
-    {
-        id: "B21DCCN444",
-        name: "Dương Sỹ Long",
-        email: "longds@gmail.com",
-        password: "fh4567",
-        birthday: "09/10/2003"
-
-    },
-    {
-        id: "B21DCCN023",
-        name: "Nguyễn Xuân Tuấn",
-        email: "tuannx@gmail.com",
-        password: "tuanghita",
-        birthday: "15/05/2003"
-
-    },
-    {
-        id: "B21DCCN356",
-        name: "Đào Dương Huy",
-        email: "huydd@gmail.com",
-        password: "huy1234",
-        birthday: "05/01/2003"
-
-    },
-    {
-        id: "B21DCCN666",
-        name: "Nguyễn Thế Duy",
-        email: "duynt@gmail.com",
-        password: "duythe1212",
-        birthday: "14/03/2003"
-
-    },
-    {
-        id: "B21DCCN464",
-        name: "Dương Tuấn Hiệp",
-        email: "hiepdt@gmail.com",
-        password: "ghgh123gh",
-        birthday: "31/08/2003"
-
-    },
-]
+console.log(acc)
 loadTableAcc(acc)
 
 // Chuc nang tim kiem
@@ -150,7 +124,28 @@ document.getElementById("btnThem").addEventListener("click", function () {
         password: password,
         birthday: birthday
     })
+    var formData = {
+            username: id,
+            fullName: name,
+            email: email,
+            password: password,
+            dob: birthday,
+           roles:[]
+    }
+    $.ajax({
+        url: 'user/add',
+        type: 'POST',
+        contentType:'application/json',
+        data: JSON.stringify(formData),
+        success: function(response){
+            console.log('add user successfully')
+        },
+        error: function(error){
+        console.log(error)
+        }
 
+
+    })
     capnhapbangtim()
     loadTableAcc(acc)
     document.querySelector(".container").style.display = "none"
@@ -189,11 +184,9 @@ function loadTableAcc(acc) {
         emailCell.textContent = rowAcc.email;
         row.appendChild(emailCell);
 
-
         var passwordCell = document.createElement("td");
         passwordCell.textContent = rowAcc.password;
         row.appendChild(passwordCell);
-
 
         // Tạo một div chứa cả hai nút Xóa và Sửa
         var buttonContainer = document.createElement("div");
@@ -212,6 +205,7 @@ function loadTableAcc(acc) {
         editButton.addEventListener("click", function () {
             var x = Number.parseInt(this.id)
             rowNumber1 = Number.parseInt(this.id)
+            userId = acc[rowNumber1].uid
             document.querySelector('.container-edit').style.display = "flex"
             var roww = acc[x]
 
@@ -233,7 +227,21 @@ function loadTableAcc(acc) {
         deleteButton.id = i.toString()
         deleteButton.addEventListener("click", function () {
             var rowindex = this.id
+            var userId = acc[rowindex].uid;
+            console.log(userId)
             acc.splice(Number.parseInt(rowindex), 1)
+            $.ajax({
+                url:'/user/delete',
+                type: 'DELETE',
+                data: {userId : userId},
+                success: function(response){
+                    console.log('xoa thanh cong')
+                },
+                error:  function(error){
+                     console.log(error)
+                }
+
+            })
 
             console.log(acc)
             capnhapbangtim()
@@ -295,8 +303,12 @@ document.getElementById("btnSua").addEventListener("click", function () {
         name: name.toString(),
         email: email.toString(),
         password: password.toString(),
-        birthday: birthday.toString()
+        birthday: birthday.toString(),
+
     }
+
+
+
     capnhapbangtim()
     loadTableAcc(acc)
 
@@ -316,6 +328,27 @@ function Xacnhansua() {
         email: email.toString(),
         password: password.toString()
     }
+
+        var updatedUser = {
+            username: id.toString(),
+                    fullName: name.toString(),
+                    email: email.toString(),
+                    password: password.toString(),
+                    dob: birthday.toString(),
+                        roles:[]
+        }
+
+        console.log(userId)
+        $.ajax({
+            url: '/user/edit?userId='+userId,
+            type:'PUT',
+            contentType: 'application/json',
+            data:JSON.stringify(updatedUser),
+            success: function(response){
+            console.log("sua thanh cong")},
+            error: function(error){
+                    console.log(error)}
+        })
     capnhapbangtim()
     loadTableAcc(acc)
     document.querySelector('.container-edit').style.display = "none"

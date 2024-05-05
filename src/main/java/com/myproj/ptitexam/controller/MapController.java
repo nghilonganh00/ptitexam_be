@@ -15,4 +15,26 @@ public class MapController {
     public String signupPage(){
         return "signup";
     }
+
+    @RequestMapping("/admin-login.html")
+    public String adminLoginPage(){
+        return "admin-login";
+    }
+
+    @RequestMapping("/user-main.html")
+    public String usermain(){
+        return "user-main";
+    }
+
+    @RequestMapping("/exam.html")
+    public String exam(){
+        return "exam";
+    }
+
+    @RequestMapping("/acc_manager.html")
+    public String acc_manager(){
+        return "acc_manager";
+    }
+
+
 }

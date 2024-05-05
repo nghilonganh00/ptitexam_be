@@ -1,5 +1,8 @@
 package com.myproj.ptitexam.service;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import com.myproj.ptitexam.DTO.ExamResultDTO;
@@ -55,6 +58,18 @@ public class UserService {
           newUser.setEmail(user.getEmail());
           newUser.setUsername(user.getUsername());
           newUser.setPassword(passwordEncoder.encode(user.getPassword()));
+          newUser.setFullName(user.getFullName());
+          String pattern = "yyyy-MM-dd";
+          SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+          try {
+              Date date  = sdf.parse(user.getDob());
+              long time = date.getTime();
+              newUser.setDob(new Timestamp(time));
+          }
+          catch (ParseException e){
+              System.out.println("error");
+          }
+
           Set<Roles> set = new HashSet<>(user.getRoles());
 
           newUser.setRoles(set);
@@ -116,6 +131,17 @@ public class UserService {
         existingUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
         existingUser.setUsername(updatedUser.getUsername());
         existingUser.setRoles(new HashSet<Roles>(updatedUser.getRoles()));
+          existingUser.setFullName(updatedUser.getFullName());
+          String pattern = "yyyy-MM-dd";
+          SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+          try {
+              Date date  = sdf.parse(updatedUser.getDob());
+              long time = date.getTime();
+              existingUser.setDob(new Timestamp(time));
+          }
+          catch (ParseException e){
+              System.out.println("error");
+          }
         
         userDao.save(existingUser);
         return new ResponseEntity<>("Update successfully", HttpStatus.OK);
