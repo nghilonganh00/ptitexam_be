@@ -1,0 +1,286 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.page {
+  display: grid;
+  position: relative;
+}
+
+
+.logo {
+  width: 28px;
+  height: 28px;
+}
+
+.body {
+  display: flex;
+}
+
+
+main {
+  padding: 20px;
+  border: 2px solid #ccc; 
+  border-radius: 10px; 
+  width: 80%;
+  margin:20px auto;
+  
+}
+button {
+  background-color: #bb2019; 
+  color: white; 
+  padding: 10px 20px; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-size: 16px; 
+}
+
+button:hover {
+  background-color: #c25a54; 
+}
+.button {
+  display: flex;
+  justify-content: center;
+}
+.Name {
+  display: flex;
+  align-items: center; 
+}
+
+.Name h2 {
+  margin: 0 auto;
+}
+.Name #timer {
+  margin: 0; 
+}
+.quiz {
+  margin-left: 10%;
+}
+#resultBtn {
+  margin-left: 10% ;
+}
+.question-container {
+  border: 2px solid #ccc;
+  margin-bottom: 20px;
+  padding: 10px; /* Thêm padding để tạo khoảng cách giữa nội dung và viền */
+}
+
+.question-container p {
+  margin-bottom: 10px;
+}
+
+.question-container label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.question-container input[type="radio"] {
+  margin-right: 5px;
+}
+.Result h2 {
+  text-align: center; /* Căn giữa tiêu đề */
+}
+
+.Result #score {
+  text-align: center; /* Căn giữa điểm */
+}
+
+.Result #result {
+  text-align: center;
+  padding: 5px; /* Căn giữa kết quả */
+}
+
+.Result button {
+  display: block; /* Hiển thị nút ở giữa */
+  margin: 20px auto; /* Canh giữa nút */
+}
+/* Thêm phần CSS mới để tạo khung cho phần kết quả */
+.Result {
+  padding: 5px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: 20px auto; /* Căn giữa theo chiều ngang */
+  padding-left: 350px;
+  padding-right: 350px;
+  
+}
+
+.Result h2 {
+  text-align: center; /* Căn giữa tiêu đề */
+}
+
+.Result #score {
+  text-align: center; /* Căn giữa điểm */
+}
+
+.Result #result {
+  text-align: center; /* Căn giữa kết quả */
+}
+
+.Result button {
+  display: block; /* Hiển thị nút ở giữa */
+  margin: 20px auto; /* Canh giữa nút */
+}
+.review-button {
+  background-color: #4CAF50; 
+  color: white; 
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-size: 16px; 
+  margin-left: 372px;
+}
+.correct-answer {
+  color: green; /* Màu xanh cho đáp án đúng */
+  font-weight: bold; /* Đậm */
+  margin-right: 5px; 
+}
+
+.selected-answer {
+  color: green; /* Màu xanh cho phương án đã chọn */
+}
+.check-mark {
+  color: green;
+  margin-right: 5px;
+}
+.incorrect-answer .cross-mark {
+  color: red;
+  margin-left: 5px;
+}
+
+
+/* Menu */
+
+.header-container-mobile{
+  display: none;
+}
+.header-container {
+  width: 100%;
+  height: 50px;
+  background-color: #bb2019;
+  margin: 0 0;
+  display: flex;
+  align-items: center;
+}
+.left-menu{
+  width: 70%;
+  height: 100%;
+  display: flex;
+  box-sizing: border-box;
+  padding-left: 5%;
+}
+.menu-logo{
+  width: 180px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  font-size: 17px;
+  gap: 10px;
+}
+.menu-logo img{
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+.menu-item{
+  text-decoration: none;
+  padding: 0;
+  display: flex;
+  color: #fff;
+  width: 100px;
+  text-align: center;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+}
+.menu-item:hover{
+  background-color: #b45a55;
+  font-weight: bold;
+  cursor: pointer;
+}
+.right-menu{
+  display: flex;
+  justify-content: right;
+  width: 30%;
+  height: 100%;
+  background-color: #bb2019;
+}
+.mobile-menu{
+  display: none;
+}
+@media screen and (max-width:740px) {
+  .header-container{
+    display: none;
+  }
+  .header-container-mobile{
+    width: 100%;
+  height: 50px;
+  background-color: #bb2019;
+  margin: 0 0;
+  display: flex;
+  align-items: center;
+  }
+  .menu-item{
+    justify-content: right;
+    padding-right: 10%;
+  }
+  .menu-item:hover{
+    background-color: #bb2019;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .menu-item i{
+    color: #fff;
+    font-size: large;
+    font-size: 20px;
+    
+  }
+
+  .mobile-menu{
+    position: fixed;
+    background-color: #fff;
+    top:40px;
+    left:65%;
+    width: 34%;
+    height: auto;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+      0 10px 10px rgba(0, 0, 0, 0.22);
+    border-radius: 5px;
+  }
+  .mobile-menu a{
+    display: block;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    padding:10px 0;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818080;
+    font-weight:500;
+
+  }
+  .mobile-menu a:hover{
+    border-radius: 5px;
+    background-color: #fff3f3;
+    cursor: pointer;
+  }
+  #menu-btn{
+    background-color: #bb2019;
+    border: none;
+  }
+}
+
+h3{
+  max-width: 100%;
+  font-size: 1em;
+}

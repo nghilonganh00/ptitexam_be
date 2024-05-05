@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Đăng nhập</title>
+        <link rel="stylesheet" href="./b21dccn747/stylesheets.css">
+        <script src="./b21dccn747/signup-validate.js"></script>
+    </head>
+    <body style="background-size: cover;background-image: url(/b21dccn747/tp244-bg1-02.jpg);">    
+        <div class="container" id="container">
+            <div class="form-container sign-in-container">
+                <form action="#">
+                <img  src="./b21dccn747/Logo_PTIT_University (1).png" alt="">
+                <h2 style="padding:.1rem .1rem 0 .1rem">Đăng nhập</h2>
+                <div  class="login-field">
+                    <input type="text" id="login-username" placeholder="Tên đăng nhập" />
+                    <div class="error"></div>
+                </div>
+                <div style="margin-top:.5rem ;" class="login-field">
+                    <input type="password" id="login-pass" placeholder="Mật khẩu" />
+                    <div class="error"></div>
+                </div>
+                <a class="alink-design" href="admin-login.html">Bạn là quản trị viên?</a>
+                <button class="btn" style="margin-top: 1.5rem;" onclick="validateInputsLogin()" type="submit">Đăng nhập</button>
+                <a href="#" class="alink-design" style="text-align: center; margin-top: .6rem;">Quên mật khẩu</a>
+                </form>
+            </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Xin chào mừng</h1>
+                    <p>Hệ thống thi trực tuyến</p>
+                    <a href="./signup" class="button ghost" >Đăng kí</a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </body>
+</html>
+
+

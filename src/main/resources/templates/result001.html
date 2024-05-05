@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết Quả Bài Thi</title>
+    <link rel="stylesheet" href="../static/styles001.css">
+    <script src="../static/script001.js" defer></script>
+</head>
+<body>
+    <div class="page">
+        <header class="header-container">
+            <div class="left-menu">
+                <a href="user-main.html" class="menu-logo">
+                    <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
+                    <h3>PTIT EXAM</h3>
+                </a>
+                <a href="user-main.html" class="menu-item">Trang chủ</a>
+            </div>
+            <div class="right-menu">
+                <a href="index.html" class="menu-item">Đăng xuất</a>
+            </div>
+        </header>
+        <header class="header-container-mobile">
+            <div class="left-menu">
+                <a href="user-main.html" class="menu-logo">
+                    <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
+                    <h3>PTIT EXAM</h3>
+                </a>
+            </div>
+            <div class="right-menu">
+                <button  class="menu-item" id="menu-btn"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </header>
+
+
+        <div class="body">
+            <main>
+
+                <div class="mobile-menu" id="mobile-menu">
+                    <a href="user-main.html">Trang chủ</a>
+                    <a href="index.html">Đăng xuất</a>
+                </div>
+
+                <div class="Result">
+                <h2>Kết Quả Bài Thi</h2>
+                <div id="score"></div>
+                <div id="result"></div> 
+                </div>
+                <div class="review-btn">
+                    <button class="review-button" onclick="reviewAnswers()">Xem Đáp Án</button>
+                </div>
+                <!-- Thêm phần hiển thị câu trả lời -->
+                <div id="answers" class="answers-container" style="display:none;"></div>
+            </main>
+        </div>
+        <script>
+            var score = sessionStorage.getItem('score');
+            var totalQuestions = 10; // Tổng số câu hỏi
+            let result = score * 10/10
+            document.getElementById('score').innerText = "Số câu đúng: " + score + "/" + totalQuestions; // Hiển thị điểm / tổng
+            document.getElementById('result').innerText = "Điểm: " + result; // Hiển thị điểm
+        </script>
+    </div>
+    <script src="https://kit.fontawesome.com/983c1d6e7e.js" crossorigin="anonymous"></script>
+  <script>document.getElementById("menu-btn").addEventListener('click', ()=>{
+      if(document.getElementById('mobile-menu').style.display=='none'){
+          document.getElementById('mobile-menu').style.display='block';
+      }
+      else{
+          document.getElementById('mobile-menu').style.display='none';
+      }
+  }) 
+  </script>
+</body>
+</html>

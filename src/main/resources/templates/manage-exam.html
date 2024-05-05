@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/B21DCCN687-styles/styles.css" />
+    <link rel="stylesheet" href="../static/B21DCCN687-styles/exam.css" />
+    <link rel="stylesheet" href="../static/B21DCCN687-styles/manage-exam.css" />
+    <script src="../static/B21DCCN687-js/main.js"></script>
+    <title>Hệ thống quản lý</title>
+  </head>
+  <body>
+    <div class="page create-exam">
+      <header class="header-container">
+        <div class="left-menu">
+            <a href="exam.html" class="menu-logo">
+                <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
+                <h3>PTIT EXAM</h3>
+            </a>
+            <a href="exam.html" class="menu-item">Bài thi</a>
+            <a href="acc_manager.html" class="menu-item">Sinh viên</a>
+            <a href="statistic.html" class="menu-item">Thống kê</a>
+        </div>
+        <div class="right-menu">
+            <a href="index.html" class="menu-item">Đăng xuất</a>
+        </div>
+    </header>
+    <header class="header-container-mobile">
+        <div class="left-menu">
+            <a href="manage-exam.html" class="menu-logo">
+                <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
+                <h3>PTIT EXAM</h3>
+            </a>
+        </div>
+        <div class="right-menu">
+            <button  class="menu-item" id="menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </header>
+
+
+      <div class="body">
+        <main>
+          <div class="mobile-menu" id="mobile-menu">
+            <a href="exam.html">Bài thi</a>
+            <a href="acc_manager.html">Sinh viên</a>
+            <a href="statistic.html">Thống kê</a>
+            <a href="index.html">Đăng xuất</a>
+        </div>
+
+          <div class="main-container">
+            <div class="main-label">
+              <span class="prev-page" onclick="redirectToNewPage('exam.html')"
+                >Quản lý kì thi</span
+              >
+              <span style="font-size: 26px; font-weight: 600; color: #cc0d00">
+                /
+              </span>
+              <span
+                style="font-size: 20px; font-weight: 600"
+                id="manage-exam-name"
+                >Giữa kì môn Lập trình web</span
+              >
+            </div>
+            <div class="manage-exam-area">
+              <div class="manage-general">
+                <div class="manage-general-title">
+                  <span class="larger-bold-font">Thông tin chung</span>
+                  <div style="cursor: pointer">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 512 512"
+                      style="width: 14px; height: 14px; fill: #cc0d00"
+                    >
+                      <path
+                        d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div class="manage-general-box" onclick="openGeneralPopup()">
+                  <div class="manage-general-row">
+                    <span>Tên kì thi: </span
+                    ><span id="manage-general-exam-name"></span>
+                  </div>
+                  <div class="manage-general-row">
+                    <span>Loại kì thi: </span
+                    ><span id="manage-exam-type"></span>
+                  </div>
+                  <div class="manage-general-row">
+                    <span>Ngày bắt đầu: </span
+                    ><span id="manage-exam-start-time"></span>
+                  </div>
+                  <div class="manage-general-row">
+                    <span>Ngày kết thúc: </span
+                    ><span id="manage-exam-end-time"></span>
+                  </div>
+                  <div class="manage-general-row">
+                    <span>Số câu hỏi: </span
+                    ><span id="manage-exam-question-total"></span>
+                  </div>
+                  <div class="manage-general-row">
+                    <span>Mô tả: </span
+                    ><span id="manage-exam-description"></span>
+                  </div>
+                </div>
+                <div
+                  class="line-button"
+                  onclick="delExam()"
+                  style="margin-top: 30px"
+                >
+                  Xóa kì thi
+                </div>
+              </div>
+
+              <div class="manage-questions">
+                <h3>Danh sách câu hỏi</h3>
+                <div
+                  class="manage-quetion-content"
+                  id="manage-quetion-content"
+                ></div>
+
+                <div class="create-question-input">
+                  <textarea
+                    type="text"
+                    class="create-exam-input topic-input"
+                    placeholder="Câu hỏi"
+                    id="topic-input"
+                    spellcheck="false"
+                  ></textarea>
+                  <div class="list-answer-input">
+                    <div>
+                      <input
+                        type="radio"
+                        name="manage-new-answer"
+                        value="A"
+                        checked
+                      />
+                      <textarea
+                        type="text"
+                        class="create-exam-input"
+                        id="answer-a-input"
+                        placeholder="Đáp án A"
+                        spellcheck="false"
+                      ></textarea>
+                    </div>
+                    <div>
+                      <input type="radio" name="manage-new-answer" value="B" />
+                      <textarea
+                        type="text"
+                        class="create-exam-input"
+                        id="answer-b-input"
+                        placeholder="Đáp án B"
+                      ></textarea>
+                    </div>
+                    <div>
+                      <input type="radio" name="manage-new-answer" value="C" />
+                      <textarea
+                        type="text"
+                        class="create-exam-input"
+                        id="answer-c-input"
+                        placeholder="Đáp án C"
+                      ></textarea>
+                    </div>
+                    <div>
+                      <input type="radio" name="manage-new-answer" value="D" />
+                      <textarea
+                        type="text"
+                        class="create-exam-input"
+                        id="answer-d-input"
+                        placeholder="Đáp án D"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="button"
+                  id="create-question"
+                  onclick="addQuestionOnManage()"
+                  style="margin-top: 20px"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path
+                      d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
+                    />
+                  </svg>
+                  Thêm câu hỏi
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+      <div class="popup" id="popup">
+        <div class="popup-container">
+          <div class="popup-close-btn" onclick="closePopUp()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 384 512"
+              style="width: 20px; height: 20px"
+            >
+              <path
+                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+              />
+            </svg>
+          </div>
+          <div class="create-question-input" style="margin-top: 30px">
+            <div>
+              <label for="questionTopic"
+                >Câu hỏi <span id="edit-id-question"></span>:
+              </label>
+              <textarea
+                type="text"
+                class="popup-general-input topic-input"
+                placeholder="Câu hỏi"
+                id="edit-topic-input"
+                spellcheck="false"
+              ></textarea>
+            </div>
+            <div class="list-answer-input">
+              <label class="answer">
+                <input type="radio" name="edit-answer" value="A" />
+                <textarea
+                  type="text"
+                  class="popup-general-input edit-answer"
+                  id="edit-answer-a-input"
+                  placeholder="Đáp án A"
+                  spellcheck="false"
+                ></textarea>
+              </label>
+              <label class="answer">
+                <input type="radio" name="edit-answer" value="B" />
+                <textarea
+                  type="text"
+                  class="popup-general-input edit-answer"
+                  id="edit-answer-b-input"
+                  placeholder="Đáp án B"
+                  spellcheck="false"
+                ></textarea>
+              </label>
+
+              <label class="answer">
+                <input type="radio" name="edit-answer" value="C" />
+                <textarea
+                  type="text"
+                  class="popup-general-input edit-answer"
+                  id="edit-answer-c-input"
+                  placeholder="Đáp án C"
+                  spellcheck="false"
+                ></textarea>
+              </label>
+              <label class="answer">
+                <input type="radio" name="edit-answer" value="D" />
+                <textarea
+                  type="text"
+                  class="popup-general-input edit-answer"
+                  id="edit-answer-d-input"
+                  placeholder="Đáp án D"
+                  spellcheck="false"
+                ></textarea>
+              </label>
+            </div>
+          </div>
+          <div class="popup-actions">
+            <div class="line-button" id="popup-del-question">Xóa</div>
+            <div
+              class="button"
+              id="popup-save-question"
+              style="padding: 12px 24px"
+            >
+              Lưu
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="popup" id="general-popup">
+        <div class="popup-container">
+          <div class="popup-close-btn" onclick="closeGeneralPopUp()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 384 512"
+              style="width: 20px; height: 20px"
+            >
+              <path
+                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+              />
+            </svg>
+          </div>
+          <div class="popup-general-content">
+            <div class="popup-general-row">
+              <div style="width: 100%">
+                <div class="input-label">
+                  <label for="examName" class="required-mark">Tên kì thi</label>
+                </div>
+                <input
+                  type="text"
+                  id="popup-general-name"
+                  class="popup-general-input"
+                />
+              </div>
+            </div>
+            <div class="popup-general-row">
+              <div style="width: 30%">
+                <div class="input-label">
+                  <label for="examType" class="required-mark">Loại</label>
+                </div>
+                <select
+                  name="selectType"
+                  id="popup-general-type"
+                  class="popup-general-input popup-general-type"
+                >
+                  <option value="Tự do">Tự do</option>
+                  <option value="Thời gian cụ thể">Thời gian cụ thể</option>
+                </select>
+              </div>
+              <div style="width: 30%">
+                <div class="input-label">
+                  <label for="examType" class="required-mark"
+                    >Ngày bắt đầu</label
+                  >
+                </div>
+                <input
+                  type="date"
+                  id="popup-general-start-time"
+                  class="popup-general-input"
+                />
+              </div>
+              <div style="width: 30%">
+                <label for="examType" class="required-mark"
+                  >Ngày kết thúc</label
+                >
+                <input
+                  type="date"
+                  id="popup-general-end-time"
+                  class="popup-general-input"
+                />
+              </div>
+            </div>
+            <div class="popup-general-row">
+              <div style="width: 100%">
+                <div class="input-label">
+                  <label for="examDescription">Mô tả</label>
+                </div>
+                <textarea
+                  type="text"
+                  id="popup-general-description"
+                  class="popup-general-input"
+                  style="height: 100px"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="popup-actions">
+            <div
+              class="button"
+              id="popup-save-general"
+              style="padding: 10px 30px"
+              onclick="saveGeneralPopup()"
+            >
+              Lưu
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const examId = new URLSearchParams(window.location.search).get("id");
+      document.addEventListener("DOMContentLoaded", loadManageExamPage());
+    </script>
+    <script src="https://kit.fontawesome.com/983c1d6e7e.js" crossorigin="anonymous"></script>
+    <script>document.getElementById("menu-btn").addEventListener('click', ()=>{
+        if(document.getElementById('mobile-menu').style.display=='none'){
+            document.getElementById('mobile-menu').style.display='block';
+        }
+        else{
+            document.getElementById('mobile-menu').style.display='none';
+        }
+    }) 
+    </script>
+  </body>
+</html>
