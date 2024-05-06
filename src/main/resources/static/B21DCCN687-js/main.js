@@ -272,6 +272,99 @@ let initListExam = {
 let questionIndex = 0;
 let listQuestion = {};
 
+let listExams = [];
+
+const timestampToDate = (timestamp) => {
+  let date = new Date(timestamp);
+
+  let year = date.getUTCFullYear();
+  let month = String(date.getUTCMonth() + 1).padStart(2, "0");
+  let day = String(date.getUTCDate()).padStart(2, "0");
+
+  let formattedDateString = `${day}-${month}-${year}`;
+
+  return formattedDateString;
+};
+
+const getToken = async () => {
+  try {
+    const response = await fetch(
+      "http://localhost:8080/auth/read-spring-cookie",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const token = await response.text();
+    return token;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const ExamAPI = {
+  getAll: async () => {
+    // const jwt = await getToken();
+    // console.log("jwt: ", jwt);
+    try {
+      const requestOptions = {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          // Authorization: `Bearer ${jwt}`,
+        },
+        // body: JSON.stringify(newExam),
+      };
+      const response = await fetch(
+        "http://localhost:8080/exam/getAllExams",
+        requestOptions
+      );
+      const exam = await response.json();
+      console.log("exam: ", exam);
+      return exam;
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  add: async (newExam) => {
+    const {
+      examName,
+      examType,
+      examStartTime,
+      examEndTime,
+      examDescription,
+      examCreatedAt,
+      examlistQuestion,
+    } = newExam;
+
+    const jwt = await getToken();
+    console.log("jwt: ", jwt);
+    // try {
+    //   const requestOptions = {
+    //     method: "POST",
+    //     headers: {
+    //       Accept: "application/json",
+    //       "Content-Type": "application/json",
+    //       Authorization: `Bearer ${jwt}`,
+    //     },
+    //     body: JSON.stringify(newExam),
+    //   };
+    //   const response = await fetch(
+    //     "http://localhost:8080/exam/createExam",
+    //     requestOptions
+    //   );
+    //   const exam = await response.json();
+    //   console.log("exam: ", exam);
+    //   return exam;
+    // } catch (error) {
+    //   console.error(error);
+    // }
+  },
+};
+
 const normalizeString = (inputString) => {
   let normalizedString = inputString;
   normalizedString = normalizedString.trim();
@@ -765,26 +858,31 @@ const saveNewExam = () => {
     examlistQuestion: listQuestion,
   };
   listExam[dateNow] = newExam;
+  // console.log("new exam: ", newExam);
   setListExam(listExam);
+  ExamAPI.add(newExam);
 
-  redirectToNewPage("exam.html");
+  // redirectToNewPage("exam.html");
 };
 
-const loadExamPage = (inputExam) => {
+const loadExamPage = async (inputExam) => {
+  listExams = await ExamAPI.getAll();
+
   document.getElementById("exam-list").innerHTML = "";
   document.getElementById("exam-boxs").innerHTML = "";
 
   const listLoadedExam = inputExam || listExam;
   let examId = 1;
-  Object.keys(listLoadedExam).forEach((examKey) => {
+  listExams.forEach((exam) => {
     const {
-      examName,
-      examType,
+      examTitle,
       examDescription,
       examStartTime,
       examEndTime,
-      examlistQuestion,
-    } = listLoadedExam[examKey];
+      // examlistQuestion,
+      startTime,
+      endTime,
+    } = exam;
 
     const examRow = document.createElement("tr");
     examRow.onclick = function () {
@@ -793,18 +891,12 @@ const loadExamPage = (inputExam) => {
 
     examRow.innerHTML = `
       <td>${examId++}</td>
-      <td>${examName}</td>
-      <td>${examType}</td>
-      <td>${Object.keys(examlistQuestion).length}</td>
-      <td>${
-        examType === "Thời gian cụ thể" ? reverseDateFormat(examStartTime) : ""
-      }</td>
-      <td>${
-        examType === "Thời gian cụ thể" ? reverseDateFormat(examEndTime) : ""
-      }</td>
-      <td class="exam-actions>
-        ${examDescription}
-      </td>
+      <td>${examTitle}</td>
+      <td></td>
+      <td></td>
+      <td>${timestampToDate(startTime)}</td>
+      <td>${timestampToDate(endTime)}</td>
+      <td>${examDescription}</td>
   `;
 
     const examBox = document.createElement("div");
@@ -814,8 +906,6 @@ const loadExamPage = (inputExam) => {
     };
 
     examBox.innerHTML = `
-      <h3>${examName}</h3>
-      <p>Loại: ${examType}</p>
       <p>Ngày bắt đầu: ${examStartTime}</p>
       <p>Ngày kết thúc: ${examEndTime}</p>
       <div style="display: flex; align-items: center; gap: 4px">

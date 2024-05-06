@@ -3,38 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../static/B21DCCN687-styles/styles.css" />
-    <link rel="stylesheet" href="../static/B21DCCN687-styles/exam.css" />
-    <script src="../static/B21DCCN687-js/main.js"></script>
+    <link rel="stylesheet" href="./B21DCCN687-styles/styles.css" />
+    <link rel="stylesheet" href="./B21DCCN687-styles/exam.css" />
+    <link rel="stylesheet" href="./B21DCCN687-styles/manage-exam.css" />
+    <script src="./B21DCCN687-js/main.js"></script>
     <title>Hệ thống quản lý</title>
   </head>
   <body>
     <div class="page">
       <header class="header-container">
         <div class="left-menu">
-            <a href="exam.html" class="menu-logo">
-                <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
-                <h3>PTIT EXAM</h3>
-            </a>
-            <a href="exam.html" class="menu-item">Bài thi</a>
-            <a href="acc_manager.html" class="menu-item">Sinh viên</a>
-            <a href="statistic.html" class="menu-item">Thống kê</a>
+          <a href="exam.html" class="menu-logo">
+            <img
+              src="https://code.ptit.edu.vn/2020/images/logo_ptit.png"
+              alt=""
+            />
+            <h3>PTIT EXAM</h3>
+          </a>
+          <a href="exam.html" class="menu-item">Bài thi</a>
+          <a href="acc_manager.html" class="menu-item">Sinh viên</a>
+          <a href="statistic.html" class="menu-item">Thống kê</a>
         </div>
         <div class="right-menu">
-            <a href="index.html" class="menu-item">Đăng xuất</a>
+          <a href="index.html" class="menu-item">Đăng xuất</a>
         </div>
-    </header>
-    <header class="header-container-mobile">
+      </header>
+      <header class="header-container-mobile">
         <div class="left-menu">
-            <a href="manage-exam.html" class="menu-logo">
-                <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
-                <h3>PTIT EXAM</h3>
-            </a>
+          <a href="manage-exam.html" class="menu-logo">
+            <img
+              src="https://code.ptit.edu.vn/2020/images/logo_ptit.png"
+              alt=""
+            />
+            <h3>PTIT EXAM</h3>
+          </a>
         </div>
         <div class="right-menu">
-            <button  class="menu-item" id="menu-btn"><i class="fa-solid fa-bars"></i></button>
+          <button class="menu-item" id="menu-btn">
+            <i class="fa-solid fa-bars"></i>
+          </button>
         </div>
-    </header>
+      </header>
       <div class="body">
         <main>
           <div class="mobile-menu" id="mobile-menu">
@@ -42,7 +51,7 @@
             <a href="acc_manager.html">Sinh viên</a>
             <a href="statistic.html">Thống kê</a>
             <a href="index.html">Đăng xuất</a>
-        </div>
+          </div>
           <div class="main-container">
             <div class="exam-area">
               <div class="exam-container">
@@ -119,14 +128,17 @@
         searchExam(searchKey);
       });
   </script>
-  <script src="https://kit.fontawesome.com/983c1d6e7e.js" crossorigin="anonymous"></script>
-  <script>document.getElementById("menu-btn").addEventListener('click', ()=>{
-      if(document.getElementById('mobile-menu').style.display=='none'){
-          document.getElementById('mobile-menu').style.display='block';
+  <script
+    src="https://kit.fontawesome.com/983c1d6e7e.js"
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    document.getElementById("menu-btn").addEventListener("click", () => {
+      if (document.getElementById("mobile-menu").style.display == "none") {
+        document.getElementById("mobile-menu").style.display = "block";
+      } else {
+        document.getElementById("mobile-menu").style.display = "none";
       }
-      else{
-          document.getElementById('mobile-menu').style.display='none';
-      }
-  }) 
+    });
   </script>
 </html>
