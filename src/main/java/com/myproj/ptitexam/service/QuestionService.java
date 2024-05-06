@@ -3,15 +3,20 @@ package com.myproj.ptitexam.service;
 import com.myproj.ptitexam.DTO.ExamDto;
 import com.myproj.ptitexam.DTO.QuestionInExam;
 import com.myproj.ptitexam.dao.ExamDao;
+import com.myproj.ptitexam.dao.ExamResultDao;
 import com.myproj.ptitexam.dao.QuestionDao;
+import com.myproj.ptitexam.dao.UserDao;
 import com.myproj.ptitexam.model.Exam;
+import com.myproj.ptitexam.model.ExamResult;
 import com.myproj.ptitexam.model.Question;
 import com.myproj.ptitexam.DTO.QuestionDTO;
+import com.myproj.ptitexam.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import java.sql.Timestamp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +29,12 @@ public class QuestionService {
 
     @Autowired
     ExamDao examDao;
+
+    @Autowired
+    UserDao userDao;
+
+    @Autowired
+    ExamResultDao examResultDao;
 
     public ResponseEntity<String> createQuestion(QuestionDTO questionDTO) {
         try {
@@ -49,7 +60,7 @@ public class QuestionService {
     }
 
 
-    public ResponseEntity<?> getAllQuestions(Integer examId) {
+    public ResponseEntity<?> getAllQuestions(Integer examId, Integer userId) {
         try {
             List<Question> list_question = questionDao.findByExamId(examId);
             List<QuestionInExam> responses = new ArrayList<>();
@@ -59,6 +70,13 @@ public class QuestionService {
             if(list_question.isEmpty()) {
                 return new ResponseEntity<>("No question", HttpStatus.OK);
             }
+            ExamResult examResult = new ExamResult();
+            Exam exam = examDao.findById(examId).orElseThrow(() -> new Exception("Loi"));
+            User user = userDao.findById(userId).orElseThrow(()->new Exception("user not found"));
+            examResult.setStartTime(new Timestamp(System.currentTimeMillis()));
+            examResult.setExam(exam);
+            examResult.setUser(user);
+            examResultDao.save(examResult);
             return new ResponseEntity<>(responses, HttpStatus.OK);
         } catch(Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

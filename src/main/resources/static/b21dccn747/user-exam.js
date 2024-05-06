@@ -9,7 +9,7 @@ async function getToken() {
 }
 async function fetchExam() {
         try {
-            const jwt = await getToken();
+            const jwt = localStorage.getItem("jwt");
             const requestOptions = {
                 method: 'GET',
                 headers: {

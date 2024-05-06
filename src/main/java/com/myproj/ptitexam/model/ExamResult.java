@@ -3,6 +3,8 @@ package com.myproj.ptitexam.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
+
 @Entity
 @Table(name = "take_exam")
 public class ExamResult {
@@ -14,9 +16,9 @@ public class ExamResult {
     private double score;
 
     @Column(name="start_time")
-    private String startTime;
+    private Timestamp startTime;
     @Column(name="end_time")
-    private String endTime;
+    private Timestamp endTime;
 
     @ManyToOne
     @JoinColumn(name="exam_id", nullable = false, referencedColumnName = "id")
@@ -59,19 +61,19 @@ public class ExamResult {
         this.score = score;
     }
 
-    public String getStartTime() {
+    public Timestamp getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) {
+    public void setStartTime(Timestamp startTime) {
         this.startTime = startTime;
     }
 
-    public String getEndTime() {
+    public Timestamp getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(String endTime) {
+    public void setEndTime(Timestamp endTime) {
         this.endTime = endTime;
     }
 }

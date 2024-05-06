@@ -147,35 +147,29 @@ public class ExamService {
         return new ResponseEntity<>("All questions in the exam have been deleted", HttpStatus.OK);
     }
 
-    public ResponseEntity<?> caculateScore(int user_id,int exam_id, List<UserAnswerReponse> reponses) {
+    public ResponseEntity<?> caculateScore(int take_id, List<UserAnswerReponse> reponses) {
         try {
-            Exam exam = examDao.findById(exam_id).orElseThrow(() -> new Exception("Not found"));
-            User user = userDao.findById(user_id).orElseThrow(() -> new Exception("Not Found"));
-            if (exam == null) {
-                return new ResponseEntity<String>("Submit failed, exam not found", HttpStatus.NOT_FOUND);
-            }
-            if (user == null) {
-                return new ResponseEntity<String>("Submit failed, user not found", HttpStatus.NOT_FOUND);
-            }
-            ExamResult examResult = new ExamResult();
-            examResult.setExam(exam);
-            examResult.setUser(user);
-            examResultDao.save(examResult);
-            List<Question> questions = exam.getListQuestion();
+
+            ExamResult examResult= examResultDao.findById(take_id).orElseThrow(() -> new Exception("Not found"));
+            System.out.println("hi");
+            List<Question> questions = examResult.getExam().getListQuestion();
+
             int num = 0;
             for (UserAnswerReponse reponse : reponses) {
-                Optional<Question> question = questionDao.findById(reponse.getId());
-                ExamResultDetail erd = new ExamResultDetail(examResult, question.get(), reponse.getAnswer());
+                Question question = questionDao.findById(reponse.getId()).orElseThrow(()-> new Exception("Loi cau hoi"));
+                ExamResultDetail erd = new ExamResultDetail(examResult, question, reponse.getAnswer());
                 resultDetailDao.save(erd);
-                if (reponse.getAnswer().equals(question.get().getAnswer()))
+                if (reponse.getAnswer().equals(question.getAnswer()))
                     num++;
+                System.out.println("hi");
             }
             double score = (double) num / questions.size() * 10.0;
-
+            examResult.setEndTime(new Timestamp(System.currentTimeMillis()));
             examResult.setScore(score);
             examResultDao.save(examResult);
             return new ResponseEntity<Double>(score, HttpStatus.OK);
         } catch (Exception e){
+            System.out.println(e);
             return new ResponseEntity<>("Submit failed",HttpStatus.BAD_REQUEST);
         }
     }
@@ -211,10 +205,11 @@ public class ExamService {
             if(unlimited.isEmpty())
                 return new ResponseEntity<>("There are no exam!",HttpStatus.OK);
             return new ResponseEntity<>(unlimited,HttpStatus.OK);
-        }else {
+        }else if(type==1) {
             if(limited.isEmpty())
                 return new ResponseEntity<>("There are no exam!",HttpStatus.OK);
             return new ResponseEntity<>(limited,HttpStatus.OK);
         }
+        return new ResponseEntity<>("khong hop le",HttpStatus.BAD_REQUEST);
     }
 }
