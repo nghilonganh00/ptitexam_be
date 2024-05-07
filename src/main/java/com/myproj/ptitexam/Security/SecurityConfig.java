@@ -44,13 +44,13 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**","/login","/register","/student/**",
-                                "/favicon.ico","export.png", "/",
+                                "/favicon.ico","export.png", "/", "/admin", "/startExam","/statistic",
                                 "/b21dccn747/**","b21dccn541/**","/B21DCCN687-styles/**",
                                 "/B21DCCN687-js/**","/script001.js","styles001.css","styles002.css").permitAll()
                                 .requestMatchers("/exam/getAllExams",
                                         "/exam/getExams","/exam/getByExamTitleContaining",
                                         "/exam/getExam","/exam/submit","/user/getResult","/exam/review").hasAnyAuthority("USER","ADMIN")
-                                .requestMatchers("/user/**","/exam/**","/statistic/**").hasAuthority("ADMIN")
+                                .requestMatchers("/user/**","/exam/**","/statisticApi/**").hasAuthority("ADMIN")
 
                         .anyRequest().authenticated()
                 )

@@ -84,15 +84,27 @@ public class AuthService {
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
-        ResponseCookie springCookie = ResponseCookie.from("jwt", jwt)
-                .httpOnly(true)
-        //        .secure(true)
-                .path("/")
-
-                .maxAge(24 * 60 * 60 * 1000)
-                .build();
-        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, springCookie.toString()).body(new Response(true,jwt));
-
+        System.out.println();
+        if(roles.contains("USER")) {
+            return new ResponseEntity<>(new LoginResponse(true, jwt, userDetails.getId()), HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Not user",HttpStatus.UNAUTHORIZED);
        // return new ResponseEntity<>("String",HttpStatus.OK);
+    }
+    public ResponseEntity<?> loginAdmin(LoginDTO loginDTO){
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginDTO.getUsername(), loginDTO.getPassword()));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String jwt = jwtGenerator.generateToken(authentication);
+        UserDetailAuth userDetails = (UserDetailAuth) authentication.getPrincipal();
+        List<String> roles = userDetails.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList());
+        System.out.println();
+        if(roles.contains("ADMIN")) {
+            return new ResponseEntity<>(new LoginResponse(true, jwt, userDetails.getId()), HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Not admin",HttpStatus.UNAUTHORIZED);
+        // return new ResponseEntity<>("String",HttpStatus.OK);
     }
 }

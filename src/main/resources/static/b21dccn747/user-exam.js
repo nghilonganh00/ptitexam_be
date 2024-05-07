@@ -1,12 +1,4 @@
-async function getToken() {
-        try {
-            const response = await fetch("http://localhost:8080/auth/read-spring-cookie");
-            const token = await response.text();
-            return token;
-        } catch (error) {
-            console.error(error);
-        }
-}
+
 async function fetchExam() {
         try {
             const jwt = localStorage.getItem("jwt");
@@ -81,8 +73,8 @@ loadExam()
 function display(baiThi){
         let placeholder = document.querySelector("#user-exam-output");
         let out = "";
+        var user_id = localStorage.getItem("user_id");
         for (let baithi of baiThi){
-            console.log(baithi.start);
             if(!baithi.startTime){
                         out+=
                     `
@@ -94,7 +86,7 @@ function display(baiThi){
                                 <span>&nbsp</span>
                             </div>
                             <div class="do-exam">
-                                <a href="#" id="do-exam-btn">Bắt đầu</a>
+                                <a href="startExam?exam_id=${baithi.id}&user_id=${user_id}" id="do-exam-btn">Bắt đầu</a>
                             </div>
                         </div>
                     `;
@@ -111,7 +103,7 @@ function display(baiThi){
                         <span>- Thời gian kết thúc: ${end}</span>
                     </div>
                     <div class="do-exam">
-                        <button id="not-do-exam-btn">Bắt đầu</button>
+                        <a href="startExam?exam_id=${baithi.id}&user_id=${user_id}" id="do-exam-btn">Bắt đầu</a>
                     </div>
 
                 </div>
@@ -123,7 +115,23 @@ function display(baiThi){
         placeholder.innerHTML=out;
 }
 
+const ctx2 = document.getElementById('doughnut');
 
+  new Chart(ctx2, {
+    type: 'doughnut',
+    data: {
+      labels: ['Hoàn thành', 'Chưa hoàn thành'],
+      datasets: [{
+        label: 'Tỷ lệ hoàn thành',
+        data: [12, 19],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+
+    }
+  });
 
 
 

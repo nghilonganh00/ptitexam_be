@@ -27,6 +27,12 @@ public class AuthController {
         return authService.login(loginDTO);
     }
 
+    @PostMapping("admin")
+    public ResponseEntity<?> adminLogin(@RequestBody LoginDTO loginDTO){
+        return authService.loginAdmin(loginDTO);
+    }
+
+
     @GetMapping("/read-spring-cookie")
     public String readCookie(
             @CookieValue(name = "jwt", defaultValue = "") String jwt) {

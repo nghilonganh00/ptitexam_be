@@ -21,8 +21,21 @@ public class MapController {
     public String userPage(){
         return "user-main";
     }
+
+    @GetMapping("/admin")
+    public String adminLogin(){
+        return "admin-login";
+    }
+    @GetMapping("/startExam")
+    public String doExamPage(){
+        return "index001";
+    }
     @GetMapping("/testxx")
     public String test(){
         return "create-exam";
+    }
+    @GetMapping("/statistic")
+    public String statisticPage(){
+        return "statistic";
     }
 }
