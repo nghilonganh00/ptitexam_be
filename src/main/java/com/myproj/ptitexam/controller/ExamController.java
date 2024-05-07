@@ -103,9 +103,9 @@ public class ExamController {
         return examService.getAnswerInExam(resultId);
     }
 
-    @GetMapping("")
-    public String getMethodName(@RequestParam String param) {
-        return new String();
-    }
+    // @GetMapping("")
+    // public String getMethodName(@RequestParam String param) {
+    //     return new String();
+    // }
     
 }

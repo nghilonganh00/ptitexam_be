@@ -43,8 +43,8 @@ public class SecurityConfig {
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(authEntryPoint))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/**").permitAll()
-                        .anyRequest().permitAll()
+                        .requestMatchers("/auth/**","/", "/b21dccn747/**", "/b21dccn687/**").permitAll()
+                        .anyRequest().hasAnyAuthority("ADMIN", "USER")
                 )
                 .httpBasic(Customizer.withDefaults());
         http.authenticationProvider(authenticationProvider());
