@@ -72,8 +72,8 @@ public class ExamController {
 
     @GetMapping("/getExam")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<?> getAllQuestions(@RequestParam Integer exam_id){
-        return questionService.getAllQuestions(exam_id);
+    public ResponseEntity<?> getAllQuestions(@RequestParam Integer exam_id, @RequestParam Integer user_id){
+        return questionService.getAllQuestions(exam_id,user_id);
 
     }
 
@@ -93,8 +93,8 @@ public class ExamController {
 
     @PostMapping("/submit")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> caculateScore(@RequestParam int user_id,@RequestParam int exam_id, @RequestBody List<UserAnswerReponse> reponses){
-        return examService.caculateScore(user_id,exam_id,reponses);
+    public ResponseEntity<?> caculateScore(@RequestParam int take_id, @RequestBody List<UserAnswerReponse> reponses){
+        return examService.caculateScore(take_id,reponses);
     }
 
     @GetMapping("review")

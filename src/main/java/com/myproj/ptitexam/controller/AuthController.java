@@ -6,7 +6,9 @@ import com.myproj.ptitexam.dao.RoleDao;
 import com.myproj.ptitexam.dao.UserDao;
 import com.myproj.ptitexam.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +32,21 @@ public class AuthController {
     public String readCookie(
             @CookieValue(name = "jwt", defaultValue = "") String jwt) {
         return jwt;
+    }
+
+    @GetMapping("forgot-password")
+    public ResponseEntity<String> forgetPassword(@RequestParam String email) {
+        return authService.forgetPassword(email);
+    }
+
+    // @GetMapping("set-password")
+    // public ResponseEntity<String> setPassword(@RequestParam String email, @RequestParam String token, @RequestParam String newPassword) {
+    //     return authService.setPassword(email, token, newPassword);
+    // }
+
+    @PutMapping("/set-password")
+    public ResponseEntity<String> setPassword(@RequestParam String email, @RequestParam String token, @RequestParam String newPassword) {
+        return authService.setPassword(email, token, newPassword);
     }
 }
 
