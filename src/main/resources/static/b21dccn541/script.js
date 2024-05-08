@@ -1,39 +1,42 @@
 console.log('2')
 var acc=[]
 var userId = 0
-$(document).ready(function() {
 
-//    $('#getDataButton').click(function() {
-        $.ajax({
-            url: '/user/getAll',
-            type: 'GET',
+async function fetchUser(){
+    const jwt  = localStorage.getItem('jwt')
+    const requestOptions = {
+        method: 'GET',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${jwt}`
+                        },
+    }
+    const response = await fetch("http://localhost:8080/user/getAll",requestOptions)
+                const users = await response.json();
+                return users;
+}
+async function load(){
+    var data  = await fetchUser()
+    data.map(e=>{
+                    acc.push({
+                    uid:e.id,
+                        id:e.username,
+                        name:e.fullName===null ? "null": e.fullName ,
+                        email:e.email,
+                        password: e.password,
+                        birthday: e.dob===null ?   "null": e.dob.slice(0,10)
+                    })
+                    })
+                    loadTableAcc(acc)
+                    capnhapbangtim()
+}
+load()
+ loadTableAcc(acc)
 
-            success: function(data) {
-                // Xử lý dữ liệu ở đây
-                console.log(typeof data);
-                console.log(data)
-                data.map(e=>{
-                acc.push({
-                uid:e.id,
-                    id:e.username,
-                    name:e.fullName,
-                    email:e.email,
-                    password: e.password,
-                    birthday: e.dob.slice(0,10)
-                })
-                })
-                loadTableAcc(acc)
-                capnhapbangtim()
-            },
-            error: function(error) {
-                console.log(error);
-            }
-        });
-//    });
-});
 
 console.log('1')
-console.log(acc1)
+//console.log(acc1)
 
 document.addEventListener("DOMContentLoaded", function () {
     loadTableAcc(acc);
@@ -74,7 +77,7 @@ function searchTable() {
             droprow.push(i)
         }
     }
-    
+
     var acccopy = [].concat(acc)
     console.log(droprow)
     for (var i = droprow.length - 1; i >= 0; i--) {
@@ -117,37 +120,39 @@ document.getElementById("btnThem").addEventListener("click", function () {
     var birthday = document.getElementById('birthday').value
     var email = document.getElementById('email').value
     var password = document.getElementById('password').value
-    acc.push({
-        id: id,
-        name: name,
-        email: email,
-        password: password,
-        birthday: birthday
-    })
-    var formData = {
-            username: id,
-            fullName: name,
-            email: email,
-            password: password,
-            dob: birthday,
-           roles:[]
-    }
-    $.ajax({
-        url: 'user/add',
-        type: 'POST',
-        contentType:'application/json',
-        data: JSON.stringify(formData),
-        success: function(response){
-            console.log('add user successfully')
-        },
-        error: function(error){
-        console.log(error)
-        }
+
+            var formData = {
+                    username: id,
+                    fullName: name,
+                    email: email,
+                    password: password,
+                    dob: birthday,
+                   roles:[]
+            }
+            const jwt  = localStorage.getItem('jwt')
+            $.ajax({
+                url: 'user/add',
+                type: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${jwt}`
+                },
+                contentType:'application/json',
+                data: JSON.stringify(formData),
+                success: function(response){
+                            load()
+                    console.log('add user successfully')
+                    capnhapbangtim()
+                                loadTableAcc(acc)
+                },
+                error: function(error){
+                alert("Loi trung username hoac email")
+                console.log(error)
+                }
+            })
+            capnhapbangtim()
+            loadTableAcc(acc)
 
 
-    })
-    capnhapbangtim()
-    loadTableAcc(acc)
     document.querySelector(".container").style.display = "none"
 
 })
@@ -179,7 +184,7 @@ function loadTableAcc(acc) {
         birthdayCell.textContent = rowAcc.birthday;
         row.appendChild(birthdayCell);
 
-        
+
         var emailCell = document.createElement("td");
         emailCell.textContent = rowAcc.email;
         row.appendChild(emailCell);
@@ -229,11 +234,15 @@ function loadTableAcc(acc) {
             var rowindex = this.id
             var userId = acc[rowindex].uid;
             console.log(userId)
+
             acc.splice(Number.parseInt(rowindex), 1)
+            const jwt = localStorage.getItem('jwt')
             $.ajax({
-                url:'/user/delete',
+                url:'/user/delete?userId='+userId,
                 type: 'DELETE',
-                data: {userId : userId},
+                headers: {
+                    'Authorization': `Bearer ${jwt}`
+                },
                 success: function(response){
                     console.log('xoa thanh cong')
                 },
@@ -285,48 +294,56 @@ function loadTableAcc(acc) {
         // Gắn hàng vào tbody của bảng
         tableBody.appendChild(row);
     }
-    
+
 }
 
 
 // nut xac nhan sua
-document.getElementById("btnSua").addEventListener("click", function () {
-    var id = document.getElementById('id-edit').value
-    var name = document.getElementById('name-edit').value
-    var email = document.getElementById('email-edit').value
-    var birthday = document.getElementById('birthday-edit').value
-    var password = document.getElementById('password-edit').value
-    // console.log(rowIndex)
-    console.log(id + " " + name + " " + email + " " + password)
-    acc[rowNumber1] = {
-        id: id.toString(),
-        name: name.toString(),
-        email: email.toString(),
-        password: password.toString(),
-        birthday: birthday.toString(),
+//document.getElementById("btnSua").addEventListener("click", function () {
+//    var id = document.getElementById('id-edit').value
+//    var name = document.getElementById('name-edit').value
+//    var email = document.getElementById('email-edit').value
+//    var birthday = document.getElementById('birthday-edit').value
+//    var password = document.getElementById('password-edit').value
+//    // console.log(rowIndex)
+//    console.log(id + " " + name + " " + email + " " + password)
+//    acc[rowNumber1] = {
+//        id: id.toString(),
+//        name: name.toString(),
+//        email: email.toString(),
+//        password: password.toString(),
+//        birthday: birthday.toString(),
+//
+//    }
+//
+//
+//
+//    capnhapbangtim()
+//    loadTableAcc(acc)
 
-    }
-
-
-
-    capnhapbangtim()
-    loadTableAcc(acc)
-
-    document.querySelector('.container-edit').style.display = "none"
-})
+//    document.querySelector('.container-edit').style.display = "none"
+//})
 
 function Xacnhansua() {
     var id = document.getElementById('id-edit').value
     var name = document.getElementById('name-edit').value
     var email = document.getElementById('email-edit').value
     var password = document.getElementById('password-edit').value
+    var birthday = document.getElementById('birthday-edit').value
     // console.log(rowIndex)
     console.log(id + " " + name + " " + email + " " + password)
+    try{
+
+    }
+    catch(error){
+        alert("Loi trung username, email voi tai khoan khac")
+    }
     acc[rowNumber1] = {
         id: id.toString(),
         name: name.toString(),
         email: email.toString(),
-        password: password.toString()
+        password: password.toString(),
+        birthday: birthday.toString()
     }
 
         var updatedUser = {
@@ -337,11 +354,14 @@ function Xacnhansua() {
                     dob: birthday.toString(),
                         roles:[]
         }
-
+        const jwt = localStorage.getItem('jwt')
         console.log(userId)
         $.ajax({
             url: '/user/edit?userId='+userId,
             type:'PUT',
+            headers: {
+                        'Authorization': `Bearer ${jwt}`
+                    },
             contentType: 'application/json',
             data:JSON.stringify(updatedUser),
             success: function(response){
