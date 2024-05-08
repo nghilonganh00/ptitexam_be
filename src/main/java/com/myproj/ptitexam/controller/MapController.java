@@ -39,6 +39,10 @@ public class MapController {
         return "statistic";
     }
 
+    @GetMapping("/acc_manager")
+    public String acc_manager(){
+        return "acc_manager";
+    }
 }
 
 
