@@ -33,10 +33,7 @@ public class UserController {
         return userService.addUser(user);
     }
 
-    @GetMapping("/login")
-    public ResponseEntity<Object> loginUser(@RequestParam String email, @RequestParam String password) {
-       return userService.login(email, password);
-    }
+
 
     @GetMapping("/getAll")
     @PreAuthorize("hasRole('ADMIN')")

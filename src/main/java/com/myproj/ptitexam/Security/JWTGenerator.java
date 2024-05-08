@@ -50,6 +50,13 @@ public class JWTGenerator {
             throw new AuthenticationCredentialsNotFoundException("Error");
         }
     }
+    public boolean isExpiredToken(String token){
+        Claims claims =Jwts.parser()
+                .setSigningKey(jwtSecret)
+                .parseClaimsJws(token)
+                .getBody();
+        return claims.getExpiration().before(new Date());
+    }
 }
 
 

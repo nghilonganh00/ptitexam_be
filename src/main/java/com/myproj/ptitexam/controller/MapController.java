@@ -38,4 +38,8 @@ public class MapController {
     public String statisticPage(){
         return "statistic";
     }
+
 }
+
+
+

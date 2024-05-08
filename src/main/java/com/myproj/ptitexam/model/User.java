@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.List;
@@ -32,7 +33,7 @@ public class User {
     @Column(name="full-name")
     private String fullName;
     @Column(name = "dob")
-    private Timestamp dob;
+    private Date dob;
 
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     @JoinTable(  name = "user_roles",
@@ -93,11 +94,11 @@ public class User {
         this.fullName = fullName;
     }
 
-    public Timestamp getDob() {
+    public Date getDob() {
         return dob;
     }
 
-    public void setDob(Timestamp dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 

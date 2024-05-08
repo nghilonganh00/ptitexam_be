@@ -297,3 +297,9 @@ a.button.ghost:hover{
     text-align: right;
     width:85%;
 }
+.login-error{
+    font-size:14px;
+    color: red;
+    padding:0;
+    margin:0;
+}
