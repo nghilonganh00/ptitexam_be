@@ -2,6 +2,7 @@ package com.myproj.ptitexam.DTO;
 
 public class ExamResultDTO {
     private int id;
+    private int exam_id;
     private String user_name;
     private String exam_title;
     private double score;
@@ -10,11 +11,12 @@ public class ExamResultDTO {
 
     }
 
-    public ExamResultDTO(int id, String user_name, String exam_title, double score) {
+    public ExamResultDTO(int id,int exam_id, String user_name, String exam_title, double score) {
         this.id = id;
         this.user_name = user_name;
         this.exam_title = exam_title;
         this.score = score;
+        this.exam_id=exam_id;
     }
 
     public int getId() {
@@ -47,5 +49,13 @@ public class ExamResultDTO {
 
     public void setScore(double score) {
         this.score = score;
+    }
+
+    public int getExam_id() {
+        return exam_id;
+    }
+
+    public void setExam_id(int exam_id) {
+        this.exam_id = exam_id;
     }
 }

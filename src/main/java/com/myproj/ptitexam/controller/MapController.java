@@ -9,10 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MapController {
     @GetMapping("/login")
     public String loginPage(){
-        return "index";
+        return "acc_manager";
     }
 
-    @RequestMapping("/signup")
+    @GetMapping("/exam_result")
+    public String examResultPage(){
+        return "kqgiaitich";
+    }
+
+    @GetMapping("/signup")
     public String signupPage(){
         return "signup";
     }
@@ -28,7 +33,8 @@ public class MapController {
     }
     @GetMapping("/startExam")
     public String doExamPage(){
-        return "index001";
+//        return "index001";
+        return "kqgiaitich";
     }
     @GetMapping("/testxx")
     public String test(){
@@ -40,7 +46,7 @@ public class MapController {
     }
 
     @GetMapping("/acc_manager")
-    public String acc_manager(){
+    public String accManager(){
         return "acc_manager";
     }
 }

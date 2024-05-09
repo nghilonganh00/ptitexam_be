@@ -63,81 +63,7 @@
 
 
 
-            <div class="box kq">
-                <div style="margin: 20px;font-size: 30px;">Kết quả Giải tích</div>
-
-
-                <div class="box" id="question">
-                    <p style="margin: 5px;">Câu 1: Kết quả phép tính -5 +8 là</p>
-                    <div class="box answer"  >A. 11 </div>
-                    <div class="box answer"  >B. 22 </div>
-                    <div class="box answer"  id="true">C. 33 </div>
-                    <div class="box answer"  id="selected">D. 44 </div>
-                </div>    
-                <div class="box" id="question">
-                    <p style="margin: 5px;">Câu 2: Số nghịch đảo của 12/23 là:</p>
-                    <div class="box answer"  id="true">A. 10/11 </div>
-                    <div class="box answer"  >B. 2/3 </div>
-                    <div class="box answer"  id="selected">C. 4/5 </div>
-                    <div class="box answer"  >D. 9/8 </div>
-                </div> 
-                <div class="box" id="question">
-                    <p style="margin: 5px;">Câu 3: Khi rút gọn phân số -4 +3/2 ta được kết quả là:</p>
-                    <div class="box answer"  >A. -12/23 </div>
-                    <div class="box answer"  >B. -13/24 </div>
-                    <div class="box answer"  id="true">C. -12/7 </div>
-                    <div class="box answer"  id="selected">D. 1/7 </div>
-                </div>    
-                <div class="box" id="question">
-                    <p style="margin: 5px;">Câu 4: 1+2+3-12+12 =</p>
-                    <div class="box answer"  id="true">A. 1313 </div>
-                    <div class="box answer"  >B. 1414 </div>
-                    <div class="box answer"  id="selected">C. 1515 </div>
-                    <div class="box answer"  >D. 1616 </div>
-                </div>
-                <div class="box" id="question">
-                    <p style="margin: 5px;">Câu 5: Kết quả phép tính -5 +8 là</p>
-                    <div class="box answer"  >A. 11 </div>
-                    <div class="box answer"  >B. 22 </div>
-                    <div class="box answer"  id="true">C. 33 </div>
-                    <div class="box answer"  id="selected">D. 44 </div>
-                </div>    
-                <div class="box" id="question">
-                    <p style="margin: 5px;">Câu 6: Số nghịch đảo của 12/23 là:</p>
-                    <div class="box answer"  id="true">A. 10/11 </div>
-                    <div class="box answer"  >B. 2/3 </div>
-                    <div class="box answer"  id="selected">C. 4/5 </div>
-                    <div class="box answer"  >D. 9/8 </div>
-                </div> 
-                <div class="box" id="question">
-                    <p style="margin: 5px;">Câu 7: Khi rút gọn phân số -4 +3/2 ta được kết quả là:</p>
-                    <div class="box answer"  >A. -12/23 </div>
-                    <div class="box answer"  >B. -13/24 </div>
-                    <div class="box answer"  id="true">C. -12/7 </div>
-                    <div class="box answer"  id="selected">D. 1/7 </div>
-                </div>    
-                <div class="box" id="question">
-                    <p style="margin: 5px;">Câu 8: 1+2+3-12+12 =</p>
-                    <div class="box answer"  id="true">A. 1313 </div>
-                    <div class="box answer"  >B. 1414 </div>
-                    <div class="box answer"  id="selected">C. 1515 </div>
-                    <div class="box answer"  >D. 1616 </div>
-                </div>
-                <div class="box" id="question">
-                    <p style="margin: 5px;">Câu 9: Khi rút gọn phân số -4 +3/2 ta được kết quả là:</p>
-                    <div class="box answer"  >A. -12/23 </div>
-                    <div class="box answer"  >B. -13/24 </div>
-                    <div class="box answer"  id="true">C. -12/7 </div>
-                    <div class="box answer"  id="selected">D. 1/7 </div>
-                </div>    
-                <div class="box" id="question">
-                    <p style="margin: 5px;">Câu 10: 1+2+3-12+12 =</p>
-                    <div class="box answer"  id="true">A. 1313 </div>
-                    <div class="box answer"  >B. 1414 </div>
-                    <div class="box answer"  id="selected">C. 1515 </div>
-                    <div class="box answer"  >D. 1616 </div>
-                </div>
-                
+            <div class="box kq" id="answer_container">
             </div>
 
             
@@ -149,8 +75,8 @@
                 <img class="returnarrow" src="../static/b21dccn541/returnarrow.png" alt=""
                      onclick="trove()"
                 >
-                <p style="margin: 15px;">Điểm: 8.5</p>
-                <p>Số câu đúng: 8/10 </p>
+                <p style="margin: 15px;">Điểm: <div id="score"></div></p>
+
 
 
 
@@ -159,72 +85,8 @@
 
     </div>
 
-
-                <script >
-var acc = [
-    {
-        id: "B21DCCN123",
-        name: "Nguyễn Văn An",
-        
-    },
-    {
-        id: "B21DCCN345",
-        name: "Đào Văn Bình",
-
-
-    },
-    {
-        id: "B21DCCN676",
-        name: "Đào Mai Anh",
-
-    },
-    {
-        id: "B21DCCN414",
-        name: "Dương Sỹ Long",
-    },
-    {
-        id: "B21DCCN023",
-        name: "Nguyễn Xuân Tuấn",
-
-    },
-    {
-        id: "B21DCCN356",
-        name: "Đào Dương Huy",
-
-    },
-    {
-        id: "B21DCCN236",
-        name: "Nguyễn Thế Duy",
-
-    },
-    {
-        id: "B21DCCN464",
-        name: "Dương Tuấn Hiệp",
-
-
-    },
-]
-
-
-window.addEventListener("DOMContentLoaded", function(){
-    var index=Math.floor(Math.random()*(8))
-    var hotenkq = document.getElementById("hotenkq")
-    var msvkq = document.getElementById("msvkq")
-    var hoten=document.createElement('p')
-    hoten.textContent=acc[index].name
-var msv=document.createElement('p')
-    msv.textContent=acc[index].id
-
-    hotenkq.appendChild(hoten)
-    msvkq.appendChild(msv)
-
-})
-
-
-                  function trove(){
-                    window.location.href='../acc_manager.html'
-                  }
-                                  </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script src="./b21dccn541/examresult.js"></script>
     <script src="https://kit.fontawesome.com/983c1d6e7e.js" crossorigin="anonymous"></script>
     <script>document.getElementById("menu-btn").addEventListener('click', ()=>{
         if(document.getElementById('mobile-menu').style.display=='none'){
