@@ -9,12 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MapController {
     @GetMapping("/login")
     public String loginPage(){
-        return "acc_manager";
-    }
-
-    @GetMapping("/exam_result")
-    public String examResultPage(){
-        return "kqgiaitich";
+        return "index";
     }
 
     @GetMapping("/signup")
@@ -34,7 +29,7 @@ public class MapController {
     @GetMapping("/startExam")
     public String doExamPage(){
 //        return "index001";
-        return "kqgiaitich";
+        return "kqbaithi";
     }
     @GetMapping("/testxx")
     public String test(){
@@ -48,6 +43,11 @@ public class MapController {
     @GetMapping("/acc_manager")
     public String accManager(){
         return "acc_manager";
+    }
+
+    @GetMapping("/exam_result")
+    public String examResultPage(){
+        return "kqbaithi";
     }
 }
 

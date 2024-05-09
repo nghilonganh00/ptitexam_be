@@ -322,12 +322,12 @@ document.getElementById("close-buttonkq1").addEventListener("click", function ()
     document.getElementById("score-container2").style.display = 'none'
 //    document.getElementById("studentAcc_table").style.display = "flex"
 })
-document.getElementById("close-buttonkq2").addEventListener("click", function () {
-    document.getElementById("score-container2").style.display = 'none'
-    document.getElementById("score-container1").style.display = 'none'
-    document.getElementById("mainpanel").style.display = "flex"
-
-})
+//document.getElementById("close-buttonkq2").addEventListener("click", function () {
+//    document.getElementById("score-container2").style.display = 'none'
+//    document.getElementById("score-container1").style.display = 'none'
+//    document.getElementById("mainpanel").style.display = "flex"
+//
+//})
 
 
 
@@ -413,7 +413,7 @@ const students_table3 = document.querySelector('#studentAcc_table');
 const toPDF = function (score_table) {
     const html_code = `
     <!DOCTYPE html>
-    <link rel="stylesheet" type="text/css" href="b21dccn541/style.css">
+    <link rel="stylesheet" type="text/css" href="./b21dccn541/style.css">
     <main class="table" id=score-table">${score_table.innerHTML}</div>`;
 
     const new_window = window.open();
