@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./B21DCCN687-styles/styles.css" />
-    <link rel="stylesheet" href="./B21DCCN687-styles/exam.css" />
-    <link rel="stylesheet" href="./B21DCCN687-styles/manage-exam.css" />
-    <script src="../static/B21DCCN687-js/main.js"></script>
+    <link rel="stylesheet" href="/B21DCCN687-styles/styles.css" />
+    <link rel="stylesheet" href="/B21DCCN687-styles/exam.css" />
+    <link rel="stylesheet" href="/B21DCCN687-styles/manage-exam.css" />
+    <script src="/B21DCCN687-js/main.js"></script>
     <title>Hệ thống quản lý</title>
   </head>
   <body>
@@ -20,7 +20,7 @@
             />
             <h3>PTIT EXAM</h3>
           </a>
-          <a href="exam.html" class="menu-item">Bài thi</a>
+          <a href="/exam-admin" class="menu-item">Bài thi</a>
           <a href="acc_manager.html" class="menu-item">Sinh viên</a>
           <a href="statistic.html" class="menu-item">Thống kê</a>
         </div>
@@ -56,7 +56,7 @@
 
           <div class="main-container">
             <div class="main-label">
-              <span class="prev-page" onclick="redirectToNewPage('exam.html')"
+              <span class="prev-page" onclick="redirectToNewPage('/exam-admin')"
                 >Quản lý kì thi</span
               >
               <span style="font-size: 26px; font-weight: 600; color: #cc0d00">
@@ -68,6 +68,7 @@
                 >Giữa kì môn Lập trình web</span
               >
             </div>
+
             <div class="manage-exam-area">
               <div class="manage-general">
                 <div class="manage-general-title">
@@ -94,11 +95,11 @@
                     ><span id="manage-exam-type"></span>
                   </div>
                   <div class="manage-general-row">
-                    <span>Ngày bắt đầu: </span
+                    <span>Thời gian bắt đầu: </span
                     ><span id="manage-exam-start-time"></span>
                   </div>
                   <div class="manage-general-row">
-                    <span>Ngày kết thúc: </span
+                    <span>Thời gian kết thúc: </span
                     ><span id="manage-exam-end-time"></span>
                   </div>
                   <div class="manage-general-row">
@@ -120,7 +121,7 @@
               </div>
 
               <div class="manage-questions">
-                <h3>Danh sách câu hỏi</h3>
+                <span class="larger-bold-font">Danh sách câu hỏi</span>
                 <div
                   class="manage-quetion-content"
                   id="manage-quetion-content"
@@ -297,6 +298,7 @@
           <div class="popup-general-content">
             <div class="popup-general-row">
               <div style="width: 100%">
+                <!-- <h4>Sửa thông tin kì thi</h4> -->
                 <div class="input-label">
                   <label for="examName" class="required-mark">Tên kì thi</label>
                 </div>
@@ -308,7 +310,7 @@
               </div>
             </div>
             <div class="popup-general-row">
-              <div style="width: 30%">
+              <!-- <div style="width: 30%">
                 <div class="input-label">
                   <label for="examType" class="required-mark">Loại</label>
                 </div>
@@ -320,26 +322,47 @@
                   <option value="Tự do">Tự do</option>
                   <option value="Thời gian cụ thể">Thời gian cụ thể</option>
                 </select>
-              </div>
-              <div style="width: 30%">
+              </div> -->
+
+              <div style="width: 20%">
                 <div class="input-label">
                   <label for="examType" class="required-mark"
                     >Ngày bắt đầu</label
                   >
                 </div>
                 <input
-                  type="date"
+                  type="time"
                   id="popup-general-start-time"
                   class="popup-general-input"
                 />
               </div>
-              <div style="width: 30%">
-                <label for="examType" class="required-mark"
-                  >Ngày kết thúc</label
-                >
+              <div style="width: 20%">
+                <div class="input-label">
+                  <label for="examType" class="required-mark"> </label>
+                </div>
                 <input
                   type="date"
+                  id="popup-general-start-day"
+                  class="popup-general-input"
+                />
+              </div>
+              <div style="width: 20%">
+                <div class="input-label">
+                  <label for="examType" class="required-mark"
+                    >Ngày kết thúc</label
+                  >
+                </div>
+                <input
+                  type="time"
                   id="popup-general-end-time"
+                  class="popup-general-input"
+                />
+              </div>
+              <div style="width: 20%">
+                <label for="examType" class="required-mark"> </label>
+                <input
+                  type="date"
+                  id="popup-general-end-day"
                   class="popup-general-input"
                 />
               </div>

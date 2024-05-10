@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <link rel="stylesheet" href="./static/B21DCCN687-styles/styles.css" /> -->
-    <link rel="stylesheet" href="../static/B21DCCN687-styles/styles.css" />
-    <link rel="stylesheet" href="../static/B21DCCN687-styles/exam.css" />
-    <link rel="stylesheet" href="../static/B21DCCN687-styles/manage-exam.css" />
+    <link rel="stylesheet" href="/B21DCCN687-styles/styles.css" />
+    <link rel="stylesheet" href="/B21DCCN687-styles/exam.css" />
+    <link rel="stylesheet" href="/B21DCCN687-styles/manage-exam.css" />
+    <script src="/B21DCCN687-js/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
-    <script src="../static/B21DCCN687-js/main.js"></script>
     <title>Hệ thống quản lý</title>
   </head>
   <body>
@@ -22,7 +22,7 @@
             />
             <h3>PTIT EXAM</h3>
           </a>
-          <a href="exam.html" class="menu-item">Bài thi</a>
+          <a href="/exam-admin" class="menu-item">Bài thi</a>
           <a href="acc_manager.html" class="menu-item">Sinh viên</a>
           <a href="statistic.html" class="menu-item">Thống kê</a>
         </div>
@@ -57,7 +57,7 @@
           </div>
           <div class="main-container">
             <div class="main-label">
-              <a class="prev-page" onclick="redirectToNewPage('exam.html')"
+              <a class="prev-page" onclick="redirectToNewPage('/exam-admin')"
                 >Quản lý kì thi</a
               >
               <span style="font-size: 26px; font-weight: 600; color: #cc0d00">
@@ -97,18 +97,29 @@
                             id="exam-type"
                             class="edit-select-type"
                           >
+                          <option value="Thời gian cụ thể">
+                            Thời gian cụ thể
+                          </option>
                             <option value="Tự do">Tự do</option>
-                            <option value="Thời gian cụ thể">
-                              Thời gian cụ thể
-                            </option>
                           </select>
                         </div>
                         <div id="create-exam-time">
                           <div>
                             <div class="input-label">
                               <label for="examName" class="required-mark"
-                                >Ngày bắt đầu</label
+                                >Thời gian bắt đầu</label
                               >
+                            </div>
+                            <input
+                              type="time"
+                              id="exam-start-hour"
+                              class="popup-general-input"
+                            />
+                          </div>
+                          <div>
+                            <div class="input-label">
+                              <label for="examName" class="required-mark"></label>
+                              </label>
                             </div>
                             <input
                               type="date"
@@ -120,7 +131,20 @@
                           <div>
                             <div class="input-label">
                               <label for="examName" class="required-mark"
-                                >Ngày kết thúc</label
+                                >Thời gian kết thúc</label
+                              >
+                            </div>
+                            <input
+                              type="time"
+                              id="exam-end-hour"
+                              class="popup-general-input"
+                            />
+                          </div>
+
+                          <div>
+                            <div class="input-label">
+                              <label for="examName" class="required-mark"
+                                > </label
                               >
                             </div>
                             <input

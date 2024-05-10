@@ -24,14 +24,19 @@ public class MapController {
         return "user-main";
     }
 
-    @GetMapping("/exams")
+    @GetMapping("/exam-admin")
     public String examPage() {
         return "exam";
     }
 
-    @GetMapping("/exams/:id")
+    @GetMapping("/exam-admin/manage")
     public String examManagePage() {
         return "manage-exam";
+    }
+
+    @GetMapping("/exam-admin/create")
+    public String addExamPage() {
+        return "create-exam";
     }
     
     @GetMapping("/testxx")
