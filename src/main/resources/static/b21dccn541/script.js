@@ -376,6 +376,10 @@ const jwt  = localStorage.getItem("jwt")
                         scoreCell.textContent = e.score;
                         row.appendChild(scoreCell);
 
+                        let startTimeCell = document.createElement("td");
+                        startTimeCell.textContent = e.start_time;
+                        row.appendChild(startTimeCell);
+
                         let detailCell = document.createElement("td");
                        detailCell.textContent = "Xem chi tiết";
                        detailCell.addEventListener("click",()=>{
@@ -385,8 +389,8 @@ const jwt  = localStorage.getItem("jwt")
                             localStorage.setItem('ExamTitle',ExamTitle)
                             localStorage.setItem('score',score)
                             localStorage.setItem('ExamId',ExamId)
-//                            window.location.href="./exam_result"
-                                window.location.href="./startExam"
+                            window.location.href="./exam_result"
+//                                window.location.href="./startExam"
                        })
 
                         row.appendChild(detailCell);

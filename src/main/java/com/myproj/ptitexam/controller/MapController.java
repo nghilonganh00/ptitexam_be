@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MapController {
     @GetMapping("/login")
     public String loginPage(){
-        return "index";
+        return "acc_manager";
     }
 
     @GetMapping("/signup")
@@ -28,8 +28,7 @@ public class MapController {
     }
     @GetMapping("/startExam")
     public String doExamPage(){
-//        return "index001";
-        return "kqbaithi";
+        return "index001";
     }
     @GetMapping("/testxx")
     public String test(){

@@ -27,31 +27,31 @@ const jwt = localStorage.getItem('jwt')
 function question(e, i) {
     let sa = '', sb = '', sc = '', sd = ''
     let sa1 = '', sb1 = '', sc1 = '', sd1 = ''
-    switch (e.userAnswer) {
-        case 'A':
+    switch (e.rightAnswer) {
+        case e.option1:
             sa = 'id="true"'
             break
-        case 'B':
+        case e.option2:
             sb = 'id="true"'
             break
-        case 'C':
+        case e.option3:
             sc = 'id="true"'
             break
-        case 'D':
+        case e.option4:
             sd = 'id="true"'
             break
     }
-    switch (e.rightAnswer) {
-        case 'A':
+    switch (e.userAnswer) {
+        case e.option1:
             sa1 = 'id="selected"'
             break
-        case 'B':
+        case e.option2:
             sb1 = 'id="selected"'
             break
-        case 'C':
+        case e.option3:
             sc1 = 'id="selected"'
             break
-        case 'D':
+        case e.option4:
             sd1 = 'id="selected"'
             break
     }
