@@ -1,5 +1,10 @@
 package com.myproj.ptitexam.controller;
 
+import org.springframework.security.authentication.AuthenticationServiceException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MapController {
     @GetMapping("/login")
     public String loginPage(){
-        return "acc_manager";
+        return "login";
     }
 
     @GetMapping("/signup")
@@ -41,7 +46,11 @@ public class MapController {
 
     @GetMapping("/acc_manager")
     public String accManager(){
-        return "acc_manager";
+//        if(isLoggedIn()){
+//            return "acc_manager";
+//        }
+
+        return "login";
     }
 
     @GetMapping("/exam_result")

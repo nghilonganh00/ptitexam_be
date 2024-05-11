@@ -1,3 +1,7 @@
+if (httpStatusCode === 401) {
+
+  window.location.href = './login'; // Chuyển hướng đến trang đăng nhập
+}
 console.log('2')
 var acc = [], rowindex=0
 var userId = 0
@@ -167,9 +171,9 @@ function loadTableAcc(acc) {
         emailCell.textContent = rowAcc.email;
         row.appendChild(emailCell);
 
-        var passwordCell = document.createElement("td");
-        passwordCell.textContent = rowAcc.password;
-        row.appendChild(passwordCell);
+//        var passwordCell = document.createElement("td");
+//        passwordCell.textContent = rowAcc.password;
+//        row.appendChild(passwordCell);
 
         // Tạo một div chứa cả hai nút Xóa và Sửa
         var buttonContainer = document.createElement("div");
@@ -198,7 +202,7 @@ function loadTableAcc(acc) {
             document.getElementById('name-edit').value = roww.name;
             document.getElementById('birthday-edit').value = roww.birthday;
             document.getElementById('email-edit').value = roww.email;
-            document.getElementById('password-edit').value = roww.password;
+            document.getElementById('password-edit').value = "";
             console.log(rowNumber1)
             capnhapbangtim()
 
@@ -225,6 +229,8 @@ function loadTableAcc(acc) {
                 },
                 success: function (response) {
                     console.log('xoa thanh cong')
+                    capnhapbangtim()
+                    loadTableAcc(acc)
                 },
                 error: function (error) {
                     console.log(error)
@@ -277,6 +283,7 @@ function Xacnhansua() {
     var password = document.getElementById('password-edit').value
     var birthday = document.getElementById('birthday-edit').value
     console.log(id + " " + name + " " + email + " " + password)
+
     acc[rowNumber1] = {
         id: id.toString(),
         name: name.toString(),
@@ -305,13 +312,15 @@ function Xacnhansua() {
         data: JSON.stringify(updatedUser),
         success: function (response) {
             console.log("sua thanh cong")
+            load()
+                capnhapbangtim()
+                loadTableAcc(acc)
         },
         error: function (error) {
             console.log(error)
         }
     })
-    capnhapbangtim()
-    loadTableAcc(acc)
+
     document.querySelector('.container-edit').style.display = "none"
 
 }
