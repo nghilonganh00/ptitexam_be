@@ -1,5 +1,8 @@
 package com.myproj.ptitexam.service;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import com.myproj.ptitexam.DTO.ExamResultDTO;
@@ -40,7 +43,10 @@ public class UserService {
             List<ExamResult> listResult= examResultDao.findByUser(user);
             List<ExamResultDTO> returnList = new ArrayList<>();
             for(ExamResult ex:listResult){
-                ExamResultDTO temp = new ExamResultDTO(ex.getId(),ex.getUser().getUsername(),ex.getExam().getExamTitle(),ex.getScore());
+                Timestamp timestamp = ex.getStartTime();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                String dateString = dateFormat.format(timestamp);
+                ExamResultDTO temp = new ExamResultDTO(ex.getId(),ex.getExam().getId(),ex.getUser().getUsername(),ex.getExam().getExamTitle(),ex.getScore(),dateString);
                 returnList.add(temp);
             }
             return new ResponseEntity<>(returnList,HttpStatus.OK);
@@ -61,6 +67,18 @@ public class UserService {
           newUser.setEmail(user.getEmail());
           newUser.setUsername(user.getUsername());
           newUser.setPassword(passwordEncoder.encode(user.getPassword()));
+          newUser.setFullName(user.getFullName());
+          String pattern = "yyyy-MM-dd";
+          SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+          try {
+              Date date  = sdf.parse(user.getDob());
+              long time = date.getTime();
+              newUser.setDob(new Timestamp(time));
+          }
+          catch (ParseException e){
+              System.out.println("error");
+          }
+
           Set<Roles> set = new HashSet<>(user.getRoles());
 
           newUser.setRoles(set);
@@ -122,6 +140,17 @@ public class UserService {
         existingUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
         existingUser.setUsername(updatedUser.getUsername());
         existingUser.setRoles(new HashSet<Roles>(updatedUser.getRoles()));
+          existingUser.setFullName(updatedUser.getFullName());
+          String pattern = "yyyy-MM-dd";
+          SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+          try {
+              Date date  = sdf.parse(updatedUser.getDob());
+              long time = date.getTime();
+              existingUser.setDob(new Timestamp(time));
+          }
+          catch (ParseException e){
+              System.out.println("error");
+          }
         
         userDao.save(existingUser);
         return new ResponseEntity<>("Update successfully", HttpStatus.OK);

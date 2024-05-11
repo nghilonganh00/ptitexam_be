@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
    <title>Quản lý tài khoản sinh viên</title>
-    <link rel="stylesheet" type="text/css" href="../static/b21dccn541/style.css">
-    <link rel="icon" href="../static/b21dccn541/favicon.ico" type="image/x-icon">
+<!--   <link rel="stylesheet" type="text/css" href="../static/b21dccn541/style.css">-->
+   <link rel="stylesheet" type="text/css" href="./b21dccn541/style.css">
+    <link rel="icon" href="./b21dccn541/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -54,7 +55,7 @@
             <h1>Tài khoản sinh viên</h1>
              <div class="input-group">
                 <input type="search" placeholder="Tìm kiếm sinh viên...">
-                <img src="../static/b21dccn541/search.png" alt="&nbsp" >
+                <img src="./b21dccn541/search.png" alt="&nbsp" >
             </div>  
             <button class="plus-button" id="plus-button">+</button>  
         </section>
@@ -65,7 +66,7 @@
                <!-- Các cột -->
                 <thead>
                     <tr>
-                        <th> MSV </th>
+                        <th> Tên đăng nhập </th>
                         <th> Họ tên </th>
                         <th> Ngày sinh </th>
                         <th> Email </th>
@@ -89,7 +90,7 @@
        <button class="close-button" id="close-button">X</button>
        <div class="input-form"> 
         <h1>Thêm mới sinh viên</h1>  
-           <input id="id" type="text" placeholder="Mã sinh viên" />
+           <input id="id" type="text" placeholder="Tên đăng nhập" />
            <input id="name" type="text" placeholder="Họ tên" />
            <input id="email" type="email" placeholder="Email" />
            <input id="birthday" type="text" placeholder="Ngày sinh" />
@@ -104,7 +105,7 @@
        <button class="close-button" id="close-button1">X</button>
        <div class="input-form">
         <h1>Sửa thông tin sinh viên</h1>    
-           <input id="id-edit" type="text" placeholder="Mã sinh viên" />
+           <input id="id-edit" type="text" placeholder="Tên đăng nhập" />
            <input id="name-edit" type="text" placeholder="Họ tên" />
            <input id="email-edit" type="email" placeholder="Email" />
            <input id="birthday-edit" type="text" placeholder="Ngày sinh" />
@@ -114,7 +115,7 @@
     </div>
 
 
-        <!-- Bang diem tung sinh vien so 1 -->
+        <!-- Bang diem tung sinh vien-->
         
         <div class="score-container" id="score-container1">
           <main class="table" id="score_table">
@@ -127,145 +128,25 @@
                   <button class="close-button" id="close-buttonkq1">X</button>
               </section>
               <section class="table__body">
-                  <table>
+                  <table id="scoreTable">
                       <thead>
                           <tr>
-                              <th> Kỳ thi </th>
-                              <th> Trạng thái </th>
+                              <th> Tên bài thi </th>
+                              <th> Điểm </th>
                               <th> Thời gian tham gia </th>
-                              <th> Điểm số </th>
                               <th> </th>
-  
                           </tr>
                       </thead>
                       <tbody>
-                          <tr>
-                              <td> Kiểm tra Giải tích </td>
-                              <td> Hoàn thành </td>
-                              <td> 14:00 28/02/2024 </td>
-                              <td> 8.5 </td>
-                              <td onclick="xemgiaitich()" style="cursor: pointer;"> Xem chi tiết </td>
-                          </tr>
-  
-                          <tr>
-                              <td> Kiểm tra Triết học Mac Lenin </td>
-                              <td> Hoàn thành </td>
-                              <td> 08:00 29/02/2024 </td>
-                              <td> 7.5 </td>
-                              <td onclick="xemtriet()" style="cursor: pointer;"> Xem chi tiết </td>
-                          </tr>
-  <tr>
-                              <td> Kiểm tra Vật lý </td>
-                              <td> Hoàn thành </td>
-                              <td> 09:00 24/02/2024 </td>
-                              <td> 6.5 </td>
-                              <td onclick="xemvatly()" style="cursor: pointer;"> Xem chi tiết </td>
-                          </tr>
-  <tr>
-                              <td> Kiểm tra Thông tin di động </td>
-                              <td> Hoàn thành </td>
-                              <td> 09:00 24/02/2024 </td>
-                              <td> 6.5 </td>
-                              <td onclick="xemttdd()" style="cursor: pointer;"> Xem chi tiết </td>
-                          </tr>
-                          
                       </tbody>
                   </table>
               </section>
           </main>
       </div>
-    
 
-    
-      <!-- Bang diem tung sinh vien so 2 -->
-      
-      <div class="score-container" id="score-container2">
-          <main class="table" id="score_table2">
-              <section class="table__header">
-                  <h1>Kết quả sinh viên</h1>
-                  <div class="export__file">
-                      <label id="toPDF2" for="export-file" class="export__file-btn" title="Xuất ra PDF"></label>
-                      <input type="checkbox" id="export-file">                  
-                  </div>
-                  <button class="close-button" id="close-buttonkq2">X</button>
-              </section>
-              <section class="table__body">
-                  <table>
-                      <thead>
-                          <tr>
-                              <th> Kỳ thi </th>
-                              <th> Trạng thái </th>
-                              <th> Thời gian tham gia </th>
-                              <th> Điểm số </th>
-                              <th> </th>
-  
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <tr>
-                              <td> Kiểm tra Giải tích </td>
-                              <td> Hoàn thành </td>
-                              <td> 14:00 28/02/2024 </td>
-                              <td> 5.5 </td>
-                              <td onclick="xemgiaitich()" style="cursor: pointer;"> Xem chi tiết </td>
-                          </tr>
-  
-                          <tr>
-                              <td> Kiểm tra Triết học Mac Lenin </td>
-                              <td> Chưa hoàn thành </td>
-                              <td> ----- </td>
-                              <td> ----- </td>
-                              <td> ----- </td>
-                          </tr>
-  <tr>
-                              <td> Kiểm tra Vật lý </td>
-                              <td> Hoàn thành </td>
-                              <td> 15:00 21/02/2024 </td>
-                              <td> 8.5 </td>
-                              <td onclick="xemvatly()" style="cursor: pointer;"> Xem chi tiết </td>
-                          </tr>
-  <tr>
-                              <td> Kiểm tra Thông tin di động </td>
-                              <td> Chưa hoàn thành </td>
-                              <td> ----- </td>
-                              <td> ----- </td>
-                              <td> ----- </td>
-                          </tr>
-                          
-                      </tbody>
-                  </table>
-              </section>
-          </main>
-      </div>
-    
-  
-  
-      <!-- Hien ket qua chi tiet cua bai thi -->
-  <div class="anhdethi" id="degiaitich">
-      <button class="close-button" id="nutdonganh" onclick="donganh()">X</button>
-      <img src="../static/b21dccn541/giai tich 1.png" alt="">
-      <img src="../static/b21dccn541/giai tich 2.png" alt="">
-  </div>
-  <div class="anhdethi" id="detriet">
-      <button class="close-button" id="nutdonganh" onclick="donganh()">X</button>
-      <img src="../static/b21dccn541/triet 1.jpg" alt="">
-      <img src="../static/b21dccn541/triet 2.jpg" alt="">
-  </div>
-  <div class="anhdethi" id="devatly">
-      <button class="close-button" id="nutdonganh" onclick="donganh()">X</button>
-      <img src="../static/b21dccn541/vat ly 1.jpg" alt="">
-      <img src="../static/b21dccn541/vat ly 2.jpg" alt="">
-  </div>
-  <div class="anhdethi" id="dethongtindidong">
-      <button class="close-button" id="nutdonganh" onclick="donganh()">X</button>
-      <img src="../static/b21dccn541/de thong tin di dong 1.jpg" alt="">
-      <img src="../static/b21dccn541/de thong tin di dong 2.jpg" alt="">
-  </div>
-
-
-
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../static/b21dccn541/script.js"></script>
+    <script src="./b21dccn541/script.js"></script>
     <script src="https://kit.fontawesome.com/983c1d6e7e.js" crossorigin="anonymous"></script>
     <script>document.getElementById("menu-btn").addEventListener('click', ()=>{
         if(document.getElementById('mobile-menu').style.display=='none'){

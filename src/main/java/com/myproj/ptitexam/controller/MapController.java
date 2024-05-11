@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MapController {
     @GetMapping("/login")
     public String loginPage(){
-        return "index";
+        return "acc_manager";
     }
 
-    @RequestMapping("/signup")
+    @GetMapping("/signup")
     public String signupPage(){
         return "signup";
     }
@@ -57,4 +57,17 @@ public class MapController {
     public String statisticPage(){
         return "statistic";
     }
+
+    @GetMapping("/acc_manager")
+    public String accManager(){
+        return "acc_manager";
+    }
+
+    @GetMapping("/exam_result")
+    public String examResultPage(){
+        return "kqbaithi";
+    }
 }
+
+
+
