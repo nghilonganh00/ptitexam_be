@@ -25,7 +25,8 @@ public class QuestionController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable Integer id) {
+    public ResponseEntity<String> deleteQuestion(@PathVariable int id) {
+        System.out.println("id: " + id);
         return questionService.deleteQuestion(id);
     }
     
