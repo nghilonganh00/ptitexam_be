@@ -136,6 +136,7 @@ const validateInputsLogin = () => {
                     .then(data => {
                         window.location.href="student"
                         localStorage.setItem("jwt", data.message);
+                        localStorage.setItem("user_id",data.user_id);
                     })
                     .catch(error => {
                         document.getElementById('login-err').innerText = "Sai tài khoản hoặc mật khẩu"
@@ -147,33 +148,52 @@ const validateInputsLogin = () => {
 
 const validateAdminLogin = () => {
     event.preventDefault();
-    const uname = document.getElementById("login-username");
-    const pass = document.getElementById("login-pass");
-    const usernameValue = uname.value.trim();
-    const passwordValue = pass.value.trim();
-    var check = true;
-    if(usernameValue === '') {
-        setError(uname, 'Nhập tên đăng nhập');
-        check=false;
-    } 
-
-
-    if(passwordValue === '') {
-        setError(pass, 'Nhập mật khẩu');
-        check=false;
-    } 
-    if(check){
-        const user= JSON.parse(localStorage.getItem(usernameValue));
-        if(user == null){
-            setError(pass,"Tài khoản không tồn tại")
-        }
-        else if(user.username == usernameValue && user.password == passwordValue){
-            alert("Đăng nhập thành công")
-            window.location.href="exam.html"           
-        } else{
-            setError(pass,"Mật khẩu không đúng")
+        const uname = document.getElementById("login-username");
+        const pass = document.getElementById("login-pass");
+        const usernameValue = uname.value.trim();
+        const passwordValue = pass.value;
+        var check = true;
+        if(usernameValue === '') {
+            setError(uname, 'Nhập tên đăng nhập');
+            check=false;
         }
 
-    }
+
+        if(passwordValue === '') {
+            setError(pass, 'Nhập mật khẩu');
+            check=false;
+        }
+        if(check){
+            login = {
+                                username: usernameValue,
+                                password: passwordValue
+            }
+            let json = JSON.stringify(login);
+                    const apiUrl1 = 'http://localhost:8080/auth/admin';
+                    const requestOptions1 = {
+                        method: 'POST',
+                        headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                        },
+                        body: json
+                     };
+                    fetch(apiUrl1, requestOptions1)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Sai tài khoản hoặc mật khẩu');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            window.location.href="student"
+                            localStorage.setItem("jwt", data.message);
+                            localStorage.setItem("user_id",data.user_id);
+                        })
+                        .catch(error => {
+                            document.getElementById('login-err').innerText = "Sai tài khoản hoặc mật khẩu"
+                        });
+
+        }
     
 };

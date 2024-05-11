@@ -1,12 +1,4 @@
-async function getToken() {
-        try {
-            const response = await fetch("http://localhost:8080/auth/read-spring-cookie");
-            const token = await response.text();
-            return token;
-        } catch (error) {
-            console.error(error);
-        }
-}
+
 async function fetchExam() {
         try {
             const jwt = localStorage.getItem("jwt");
@@ -19,8 +11,13 @@ async function fetchExam() {
                 },
             };
             const response = await fetch("http://localhost:8080/exam/getAllExams",requestOptions)
+            if(!response.ok){
+                window.location.href="login";
+            }
+            else{
             const exam = await response.json();
             return exam;
+            }
         } catch (error) {
             console.error(error);
         }
@@ -81,37 +78,43 @@ loadExam()
 function display(baiThi){
         let placeholder = document.querySelector("#user-exam-output");
         let out = "";
+        var user_id = localStorage.getItem("user_id");
         for (let baithi of baiThi){
-            console.log(baithi.start);
             if(!baithi.startTime){
+                    var moTa="";
+                    if (baithi.examDescription)
+                        moTa=baithi.examDescription;
                         out+=
                     `
                         <div class="box">
                             <div class="TenBaiThi">${baithi.examTitle}</div>
                             <div class="Content">
-                                <span>- Số câu: </span> <br>
+                                <span>${moTa}</span> <br>
                                 <span>- Thời gian: Tự do</span><br>
                                 <span>&nbsp</span>
                             </div>
                             <div class="do-exam">
-                                <a href="#" id="do-exam-btn">Bắt đầu</a>
+                                <a href="startExam?exam_id=${baithi.id}&user_id=${user_id}" id="do-exam-btn">Bắt đầu</a>
                             </div>
                         </div>
                     `;
                     }
             else{
-                start = baithi.startTime.toString();
-                end = baithi.endTime.toString();
+            start = timeFormat(baithi.startTime);
+            end = timeFormat(baithi.endTime);
+            var moTa="";
+            if (baithi.examDescription)
+                moTa=baithi.examDescription;
             out+=
             `   <div class="box">
                     <div class="TenBaiThi">${baithi.examTitle}</div>
                     <div class="Content">
-                        <span>- Số câu: </span> <br>
+                        <span>${moTa}</span> <br>
                         <span>- Thời gian bắt đầu: ${start}</span><br>
                         <span>- Thời gian kết thúc: ${end}</span>
                     </div>
                     <div class="do-exam">
-                        <button id="not-do-exam-btn">Bắt đầu</button>
+                        <a href="startExam?exam_id=${baithi.id}&user_id=${user_id}" id="do-exam-btn">Bắt đầu</a>
                     </div>
 
                 </div>
@@ -123,7 +126,11 @@ function display(baiThi){
         placeholder.innerHTML=out;
 }
 
-
+function timeFormat(time){
+    var d = new Date(time);
+    let a = d.toTimeString().substring(0,8)+" " + d.getDate().toString()+ "/" +(d.getMonth()+1).toString()+"/" + d.getFullYear().toString();
+    return a;
+}
 
 
 

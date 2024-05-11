@@ -3,57 +3,37 @@ package com.myproj.ptitexam.DTO;
 import java.util.List;
 
 public class LoginResponse {
-    private String token;
-    private int id;
-    private String username;
-    private String email;
-    private List<String> roles;
+    private boolean status;
+    private String message;
+    private int user_id;
 
-    public LoginResponse(String token,int id, String username, String email, List<String> roles) {
-        this.token=token;
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.roles = roles;
+    public LoginResponse(boolean status, String message, int user_id) {
+        this.status = status;
+        this.message = message;
+        this.user_id = user_id;
     }
 
-    public String getToken() {
-        return token;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
-    public int getId() {
-        return id;
+    public String getMessage() {
+        return message;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public String getUsername() {
-        return username;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public List<String> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<String> roles) {
-        this.roles = roles;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 }

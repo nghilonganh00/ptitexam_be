@@ -24,6 +24,7 @@ public class MapController {
         return "user-main";
     }
 
+
     @GetMapping("/exam-admin")
     public String examPage() {
         return "exam";
@@ -39,8 +40,21 @@ public class MapController {
         return "create-exam";
     }
     
+    @GetMapping("/admin")
+    public String adminLogin(){
+        return "admin-login";
+    }
+    @GetMapping("/startExam")
+    public String doExamPage(){
+        return "index001";
+    }
+
     @GetMapping("/testxx")
     public String test(){
         return "create-exam";
+    }
+    @GetMapping("/statistic")
+    public String statisticPage(){
+        return "statistic";
     }
 }
