@@ -11,8 +11,13 @@ async function fetchExam() {
                 },
             };
             const response = await fetch("http://localhost:8080/exam/getAllExams",requestOptions)
+            if(!response.ok){
+                window.location.href="login";
+            }
+            else{
             const exam = await response.json();
             return exam;
+            }
         } catch (error) {
             console.error(error);
         }
@@ -76,12 +81,15 @@ function display(baiThi){
         var user_id = localStorage.getItem("user_id");
         for (let baithi of baiThi){
             if(!baithi.startTime){
+                    var moTa="";
+                    if (baithi.examDescription)
+                        moTa=baithi.examDescription;
                         out+=
                     `
                         <div class="box">
                             <div class="TenBaiThi">${baithi.examTitle}</div>
                             <div class="Content">
-                                <span>- Số câu: </span> <br>
+                                <span>${moTa}</span> <br>
                                 <span>- Thời gian: Tự do</span><br>
                                 <span>&nbsp</span>
                             </div>
@@ -92,13 +100,16 @@ function display(baiThi){
                     `;
                     }
             else{
-                start = baithi.startTime.toString();
-                end = baithi.endTime.toString();
+            start = timeFormat(baithi.startTime);
+            end = timeFormat(baithi.endTime);
+            var moTa="";
+            if (baithi.examDescription)
+                moTa=baithi.examDescription;
             out+=
             `   <div class="box">
                     <div class="TenBaiThi">${baithi.examTitle}</div>
                     <div class="Content">
-                        <span>- Số câu: </span> <br>
+                        <span>${moTa}</span> <br>
                         <span>- Thời gian bắt đầu: ${start}</span><br>
                         <span>- Thời gian kết thúc: ${end}</span>
                     </div>
@@ -115,23 +126,11 @@ function display(baiThi){
         placeholder.innerHTML=out;
 }
 
-const ctx2 = document.getElementById('doughnut');
-
-  new Chart(ctx2, {
-    type: 'doughnut',
-    data: {
-      labels: ['Hoàn thành', 'Chưa hoàn thành'],
-      datasets: [{
-        label: 'Tỷ lệ hoàn thành',
-        data: [12, 19],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-
-    }
-  });
+function timeFormat(time){
+    var d = new Date(time);
+    let a = d.toTimeString().substring(0,8)+" " + d.getDate().toString()+ "/" +(d.getMonth()+1).toString()+"/" + d.getFullYear().toString();
+    return a;
+}
 
 
 
