@@ -80,7 +80,7 @@ const validateInputs = () => {
                 }
                 else{
                     alert("Đăng kí thành công");
-                    window.location.href= "login";
+                    window.location.href= "/student/login";
                 }
             })
             .catch(error => {
@@ -134,7 +134,7 @@ const validateInputsLogin = () => {
                         return response.json();
                     })
                     .then(data => {
-                        window.location.href="student"
+                        window.location.href="/student/exam"
                         localStorage.setItem("jwt", data.message);
                         localStorage.setItem("user_id",data.user_id);
                     })
@@ -186,7 +186,7 @@ const validateAdminLogin = () => {
                             return response.json();
                         })
                         .then(data => {
-                            window.location.href="student"
+                            window.location.href="/exam-admin"
                             localStorage.setItem("jwt", data.message);
                             localStorage.setItem("user_id",data.user_id);
                         })

@@ -27,6 +27,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("exam")
@@ -98,4 +100,10 @@ public class ExamController {
     public ResponseEntity<?> getAnswerInExam(@RequestParam int resultId){
         return examService.getAnswerInExam(resultId);
     }
+
+    // @GetMapping("")
+    // public String getMethodName(@RequestParam String param) {
+    //     return new String();
+    // }
+    
 }

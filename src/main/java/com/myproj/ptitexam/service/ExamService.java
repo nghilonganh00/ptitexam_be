@@ -32,14 +32,10 @@ public class ExamService {
 
 
 
-
-
-
     public ResponseEntity<String> editExam(Integer examId, ExamDto updatedExam) {
         try {
             Exam existingExam = examDao.findById(examId)
                     .orElseThrow(() -> new IllegalArgumentException("Exam not found"));
-
             existingExam.setExamTitle(updatedExam.getExamTitle());
             existingExam.setExamDescription(updatedExam.getExamDescription());
 
@@ -67,6 +63,13 @@ public class ExamService {
 
     public ResponseEntity<String> deleteExam(Integer examId) {
         try {
+            Exam exam = examDao.findById(examId).orElseThrow(() -> new RuntimeException("Not found exam"));
+            deleteAllQuestionsInExam(examId);
+
+            List<ExamResult> examResults = examResultDao.findByExam(exam);
+            examResultDao.deleteAll(examResults);
+
+            
             examDao.deleteById(examId);
             return new ResponseEntity<>("Delete successfully", HttpStatus.OK);
         } catch (EmptyResultDataAccessException e) {
@@ -98,7 +101,6 @@ public class ExamService {
         return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
     }
 
-
     public ResponseEntity<String> createExam(ExamDto exam) {
         try {
             Exam newExam = new Exam();
@@ -118,8 +120,8 @@ public class ExamService {
             return new ResponseEntity<>("Create success", HttpStatus.CREATED);
         } catch (Exception e) {
             e.printStackTrace();
+            return new ResponseEntity<>("Failed: " + e, HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>("Failed", HttpStatus.BAD_REQUEST);
     }
 
     public ResponseEntity<?> getAllExams() {
@@ -134,9 +136,18 @@ public class ExamService {
         }
     }
 
-
     public ResponseEntity<?> deleteAllQuestionsInExam( Integer id) {
         List<Question> questions = questionDao.findByExamId(id);
+
+        // ExamResult examResult = examResultDao.findByExam()
+        // examResultDao.delete();
+
+        for(Question question: questions) {
+            List<ExamResultDetail> examResultDeitalList = resultDetailDao.findByQuestion(question);
+            resultDetailDao.deleteAll(examResultDeitalList);
+
+            questionDao.delete(question);
+        }
 
         if (questions == null) {
             return new ResponseEntity<>("Exam not found", HttpStatus.NOT_FOUND);
