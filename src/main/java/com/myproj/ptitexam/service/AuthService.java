@@ -122,19 +122,19 @@ public class AuthService {
     }
 
     public ResponseEntity<String> setPassword(String email, String token, String newPassword) {
-        if(!userDao.existsByEmail(email)) {
+        if (!userDao.existsByEmail(email)) {
             return new ResponseEntity<>("Not found user with this email: " + email, HttpStatus.BAD_REQUEST);
         }
 
         ResetPasswordToken resetPassowordToken = resetPasswordTokenDao.findByEmail(email);
-        if(!token.equalsIgnoreCase(resetPassowordToken.getToken())) {
+        if (!token.equalsIgnoreCase(resetPassowordToken.getToken())) {
             return new ResponseEntity<>("The token is incorrect", HttpStatus.BAD_REQUEST);
         }
 
         Timestamp now = new Timestamp(System.currentTimeMillis());
         long createAt = resetPassowordToken.getCreatedAt().getTime();
         Long nowTime = now.getTime();
-        if(nowTime - createAt > 1200000) {
+        if (nowTime - createAt > 1200000) {
             return new ResponseEntity<>("The token has expired", HttpStatus.BAD_REQUEST);
         }
 
@@ -147,8 +147,8 @@ public class AuthService {
         resetPasswordTokenDao.delete(curr_token);
 
         return new ResponseEntity<>("Set new password successfully!", HttpStatus.OK);
-
-    public ResponseEntity<?> loginAdmin(LoginDTO loginDTO){
+    }
+    public ResponseEntity<?> loginAdmin (LoginDTO loginDTO){
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginDTO.getUsername(), loginDTO.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);

@@ -44,13 +44,9 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
 
-                        .requestMatchers("/auth/**","/login","/register","/student/**", "/exam-admin/**",
-                                "/favicon.ico","export.png", "/",
-
-                        .requestMatchers("/auth/**","/login","/register","/student/**", "/favicon.ico", "/signup",
+                                .requestMatchers("/auth/**","/login","/register","/student/**", "/favicon.ico", "/signup",
                                 "export.png", "/", "/admin", "/startExam","/statistic",
-
-                                "/b21dccn747/**","b21dccn541/**","/B21DCCN687-styles/**",
+                                "/b21dccn747/**","b21dccn541/**","/B21DCCN687-styles/**", "/exam-admin/**",
                                 "/B21DCCN687-js/**","/script001.js","styles001.css","styles002.css").permitAll()
                                 .requestMatchers("/exam/getAllExams",
                                         "/exam/getExams","/exam/getByExamTitleContaining",

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MapController {
-    @GetMapping("/login")
+    @GetMapping("/student")
     public String loginPage(){
         return "index";
     }
@@ -19,7 +19,7 @@ public class MapController {
         return "signup";
     }
 
-    @GetMapping("/student")
+    @GetMapping("/student/exam")
     public String userPage(){
         return "user-main";
     }
