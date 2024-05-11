@@ -1,20 +1,17 @@
 package com.myproj.ptitexam.controller;
 
-import org.springframework.security.authentication.AuthenticationServiceException;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class MapController {
-    @GetMapping("/login")
+    @GetMapping("/student")
     public String loginPage(){
-        return "login";
+        return "index";
     }
 
     @GetMapping("/signup")
@@ -22,9 +19,25 @@ public class MapController {
         return "signup";
     }
 
-    @GetMapping("/student")
+    @GetMapping("/student/exam")
     public String userPage(){
         return "user-main";
+    }
+
+
+    @GetMapping("/exam-admin")
+    public String examPage() {
+        return "exam";
+    }
+
+    @GetMapping("/exam-admin/manage")
+    public String examManagePage() {
+        return "manage-exam";
+    }
+
+    @GetMapping("/exam-admin/create")
+    public String addExamPage() {
+        return "create-exam";
     }
 
     @GetMapping("/admin")
@@ -35,6 +48,7 @@ public class MapController {
     public String doExamPage(){
         return "index001";
     }
+
     @GetMapping("/testxx")
     public String test(){
         return "create-exam";
@@ -54,6 +68,3 @@ public class MapController {
         return "kqbaithi";
     }
 }
-
-
-
