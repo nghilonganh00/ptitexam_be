@@ -46,11 +46,7 @@ public class MapController {
 
     @GetMapping("/acc_manager")
     public String accManager(){
-//        if(isLoggedIn()){
-//            return "acc_manager";
-//        }
-
-        return "login";
+        return "acc_manager";
     }
 
     @GetMapping("/exam_result")
