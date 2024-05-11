@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MapController {
     @GetMapping("/student")
     public String loginPage(){
-        return "acc_manager";
+        return "index";
     }
 
     @GetMapping("/signup")
