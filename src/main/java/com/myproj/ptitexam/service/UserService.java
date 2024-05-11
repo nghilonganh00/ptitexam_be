@@ -5,12 +5,15 @@ import java.util.*;
 import com.myproj.ptitexam.DTO.ExamResultDTO;
 import com.myproj.ptitexam.DTO.addUserRequest;
 import com.myproj.ptitexam.dao.ExamResultDao;
+import com.myproj.ptitexam.dao.ResultDetailDao;
 import com.myproj.ptitexam.model.ExamResult;
+import com.myproj.ptitexam.model.ExamResultDetail;
 import com.myproj.ptitexam.model.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +30,9 @@ public class UserService {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    ResultDetailDao resultDetailDao;
 
     public ResponseEntity<?> getUserResult(int user_id) {
         try{
@@ -130,6 +136,15 @@ public class UserService {
 
     public ResponseEntity<String> deleteUser(Integer userId) {
         try {
+          User delUser = userDao.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+          List<ExamResult> delExamResults = examResultDao.findByUser(delUser);
+          for(ExamResult delExamResult: delExamResults) {
+            List<ExamResultDetail> examResultDetails = resultDetailDao.findByExamResult(delExamResult);
+
+            resultDetailDao.deleteAll(examResultDetails);
+          }
+
+
           userDao.deleteById(userId);
           return new ResponseEntity<>("Delete successfully", HttpStatus.OK);
         } catch (EmptyResultDataAccessException e) {

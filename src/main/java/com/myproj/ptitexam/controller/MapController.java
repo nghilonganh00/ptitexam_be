@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class MapController {
@@ -22,6 +24,22 @@ public class MapController {
         return "user-main";
     }
 
+
+    @GetMapping("/exam-admin")
+    public String examPage() {
+        return "exam";
+    }
+
+    @GetMapping("/exam-admin/manage")
+    public String examManagePage() {
+        return "manage-exam";
+    }
+
+    @GetMapping("/exam-admin/create")
+    public String addExamPage() {
+        return "create-exam";
+    }
+    
     @GetMapping("/admin")
     public String adminLogin(){
         return "admin-login";
@@ -30,6 +48,7 @@ public class MapController {
     public String doExamPage(){
         return "index001";
     }
+
     @GetMapping("/testxx")
     public String test(){
         return "create-exam";

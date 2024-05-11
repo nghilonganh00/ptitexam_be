@@ -5,9 +5,11 @@ import com.myproj.ptitexam.DTO.QuestionInExam;
 import com.myproj.ptitexam.dao.ExamDao;
 import com.myproj.ptitexam.dao.ExamResultDao;
 import com.myproj.ptitexam.dao.QuestionDao;
+import com.myproj.ptitexam.dao.ResultDetailDao;
 import com.myproj.ptitexam.dao.UserDao;
 import com.myproj.ptitexam.model.Exam;
 import com.myproj.ptitexam.model.ExamResult;
+import com.myproj.ptitexam.model.ExamResultDetail;
 import com.myproj.ptitexam.model.Question;
 import com.myproj.ptitexam.DTO.QuestionDTO;
 import com.myproj.ptitexam.model.User;
@@ -36,25 +38,29 @@ public class QuestionService {
     @Autowired
     ExamResultDao examResultDao;
 
+    @Autowired
+    ResultDetailDao resultDetailDao;
+
     public ResponseEntity<String> createQuestion(QuestionDTO questionDTO) {
         try {
-            Exam exam = examDao.findById(questionDTO.getExamId())
-                    .orElseThrow(() -> new IllegalArgumentException("Exam not found"));
+            System.out.println("exam_id: " + questionDTO.getExam_id());
+            Exam exam = examDao.findById(questionDTO.getExam_id())
+            .orElseThrow(() -> new IllegalArgumentException("Exam not found"));
+            
+            Question newQuestion = new Question();
+            System.out.println("finish");
+            newQuestion.setContent(questionDTO.getContent());
+            newQuestion.setOption1(questionDTO.getOption1());
+            newQuestion.setOption2(questionDTO.getOption2());
+            newQuestion.setOption3(questionDTO.getOption3());
+            newQuestion.setOption4(questionDTO.getOption4());
+            newQuestion.setAnswer(questionDTO.getAnswer());
+            newQuestion.setExam(exam);
 
-
-            Question question = new Question();
-            question.setContent(questionDTO.getContent());
-            question.setOption1(questionDTO.getOption1());
-            question.setOption2(questionDTO.getOption2());
-            question.setOption3(questionDTO.getOption3());
-            question.setOption4(questionDTO.getOption4());
-            question.setAnswer(questionDTO.getAnswer());
-            question.setExam(exam);
-
-            questionDao.save(question);
+            questionDao.save(newQuestion);
             return new ResponseEntity<>("Create question success", HttpStatus.CREATED);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Error: " + e);;
         }
         return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
     }
@@ -111,9 +117,16 @@ public class QuestionService {
         }
     }
 
-    public ResponseEntity<String> deleteQuestion(Integer id) {
+    public ResponseEntity<String> deleteQuestion(int id) {
         try {
+            Question delQuestion = questionDao.findById(id).orElseThrow(() -> new Exception());
+            
+            List<ExamResultDetail> examResultDetails = resultDetailDao.findByQuestion(delQuestion);
+
+            resultDetailDao.deleteAll(examResultDetails);
+
             questionDao.deleteById(id);
+
             return new ResponseEntity<>("Delete successfully", HttpStatus.OK);
         } catch (EmptyResultDataAccessException e) {
             return new ResponseEntity<>("Question not found", HttpStatus.NOT_FOUND);
@@ -122,12 +135,12 @@ public class QuestionService {
         }
     }
 
-
     public ResponseEntity<?> getAllQuestionsAdmin(Integer examId) {
         try{
             Exam exam = examDao.findById(examId).orElseThrow(()->new Exception());
             ExamDto result = new ExamDto();
             result.setExamTitle(exam.getExamTitle());
+            result.setExamDescription(exam.getExamDescription());
             if(exam.getStartTime()!=null)
                 result.setStartTime(exam.getStartTime().toString());
 
