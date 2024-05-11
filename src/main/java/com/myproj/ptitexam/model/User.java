@@ -33,7 +33,7 @@ public class User {
     @Column(name="full-name")
     private String fullName;
     @Column(name = "dob")
-    private Date dob;
+    private Timestamp dob;
 
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     @JoinTable(  name = "user_roles",
@@ -94,11 +94,11 @@ public class User {
         this.fullName = fullName;
     }
 
-    public Date getDob() {
+    public Timestamp getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(Timestamp dob) {
         this.dob = dob;
     }
 

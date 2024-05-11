@@ -74,7 +74,6 @@ public class ExamController {
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<?> getAllQuestions(@RequestParam Integer exam_id, @RequestParam Integer user_id){
         return questionService.getAllQuestions(exam_id,user_id);
-
     }
 
     @GetMapping("")
@@ -89,7 +88,6 @@ public class ExamController {
     public ResponseEntity<String> createExam(@RequestBody ExamDto exam){
         return examService.createExam(exam);
     }
-
 
     @PostMapping("/submit")
     @PreAuthorize("hasRole('USER')")
