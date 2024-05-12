@@ -1,9 +1,9 @@
-if (httpStatusCode === 401) {
+if (localStorage.getItem('jwt')===null) {
+alert("Bạn chưa đăng nhập, vui lòng đăng nhập!")
+window.location.href="/login"}
 
-  window.location.href = './login'; // Chuyển hướng đến trang đăng nhập
-}
 console.log('2')
-var acc = [], rowindex=0
+var acc = [], rowindex=0 , roww
 var userId = 0
 async function fetchUser() {
     const jwt = localStorage.getItem('jwt')
@@ -20,6 +20,7 @@ async function fetchUser() {
     return users;
 }
 async function load() {
+    acc=[]
     var data = await fetchUser()
     data.map(e => {
         acc.push({
@@ -106,7 +107,22 @@ document.getElementById("btnThem").addEventListener("click", function () {
     var birthday = document.getElementById('birthday').value
     var email = document.getElementById('email').value
     var password = document.getElementById('password').value
-
+    if(!id || !name|| !email|| !birthday|| !password){
+            alert("Xin vui lòng nhập đủ thông tin!")
+                        return
+        }
+    if(!(isValidDateFormat(birthday))){
+            alert("Xin vui lòng nhập ngày sinh đúng định dạng!")
+            return
+        }
+    if(password.legth<8){
+    alert("Xin vui lòng nhập mật khẩu gồm ít nhất 8 ký tự!")
+                return
+    }
+        if(email.substring(email.length-10,email.length)!=='@gmail.com'){
+        alert("Xin vui lòng nhập email hợp lệ!")
+                    return
+        }
     var formData = {
         username: id,
         fullName: name,
@@ -140,8 +156,13 @@ document.getElementById("btnThem").addEventListener("click", function () {
     document.querySelector(".container").style.display = "none"
 
 })
-
+loadTableAcc(acc)
 var bangduocchon = "score-container1"
+function isValidDateFormat(dateString) {
+  var pattern = /^\d{4}-\d{2}-\d{2}$/;
+  return pattern.test(dateString);
+}
+
 function loadTableAcc(acc) {
     var tableBody = document.querySelector("#dataTable tbody");
 
@@ -196,7 +217,7 @@ function loadTableAcc(acc) {
             userId = acc[rowNumber1].uid
             console.log(userId)
             document.querySelector('.container-edit').style.display = "flex"
-            var roww = acc[x]
+            roww = acc[x]
 
             document.getElementById('id-edit').value = roww.id;
             document.getElementById('name-edit').value = roww.name;
@@ -229,6 +250,7 @@ function loadTableAcc(acc) {
                 },
                 success: function (response) {
                     console.log('xoa thanh cong')
+                    load()
                     capnhapbangtim()
                     loadTableAcc(acc)
                 },
@@ -237,7 +259,7 @@ function loadTableAcc(acc) {
                 }
 
             })
-
+            load()
             console.log(acc)
             capnhapbangtim()
             loadTableAcc(acc)
@@ -283,6 +305,10 @@ function Xacnhansua() {
     var password = document.getElementById('password-edit').value
     var birthday = document.getElementById('birthday-edit').value
     console.log(id + " " + name + " " + email + " " + password)
+    if(!(isValidDateFormat(birthday))){
+        alert("Hãy nhập ngày sinh đúng định dạng!")
+        return
+    }
 
     acc[rowNumber1] = {
         id: id.toString(),
@@ -296,7 +322,7 @@ function Xacnhansua() {
         username: id.toString(),
         fullName: name.toString(),
         email: email.toString(),
-        password: password.toString(),
+        password: (password.toString()  === "" )? roww.password:  password.toString(),
         dob: birthday.toString(),
         roles: []
     }
@@ -457,6 +483,6 @@ const toPDF2 = function (score_table) {
 pdf_btn.onclick = () => {
     toPDF(students_table);
 }
-pdf_btn2.onclick = () => {
-    toPDF2(students_table2);
-}
+//pdf_btn2.onclick = () => {
+//    toPDF2(students_table2);
+//}
