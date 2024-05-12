@@ -6,12 +6,12 @@
         <script src="https://kit.fontawesome.com/983c1d6e7e.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="./b21dccn747/table2excel.js"></script>
-        <link rel="stylesheet" href="./b21dccn747/styles.css" />
+        <script src="/b21dccn747/table2excel.js"></script>
+        <link rel="stylesheet" href="/b21dccn747/styles.css" />
         <title>Thống kê</title>
     </head>
     <body>
-        <header class="header-container">
+        <header class="header-container" id="menu-header" style="display:none">
             <div class="left-menu">
                 <a href="exam.html" class="menu-logo">
                     <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
@@ -25,7 +25,7 @@
                 <a href="index.html" class="menu-item">Đăng xuất</a>
             </div>
         </header>
-        <header class="header-container-mobile">
+        <header class="header-container-mobile" style="display:none">
             <div class="left-menu">
                 <a href="manage-exam.html" class="menu-logo">
                     <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
@@ -36,7 +36,7 @@
                 <button  class="menu-item" id="menu-btn"><i class="fa-solid fa-bars"></i></button>
             </div>
         </header>      
-                <main class="tke-main">
+                <main class="tke-main" id="trang-tke" style="display:none">
                     <div class="mobile-menu" id="mobile-menu">
                         <a href="exam.html">Bài thi</a>
                         <a href="acc_manager.html">Sinh viên</a>
@@ -71,7 +71,6 @@
                                             <th class="cot-1">Mã bài thi</th>
                                             <th class="cot-2">Tên bài thi</th>
                                             <th class="cot-1">Số lượt làm bài</th>
-                                            <th class="cot-1">Tỷ lệ hoàn thành (%)</th>
                                             <th class="cot-1">Điểm trung bình</th>
                                             <th class="cot-1">Phổ điểm</th>
                                         </tr>
@@ -85,7 +84,7 @@
                     <div class="overlay" id="overlay">
                     <div class="chart-container" id="chart-container">
                         <div class="chart-header">
-                            <div class="header-left">         
+                            <div class="header-left" id="header-chart-name">
                                 <h1>Bài kiểm tra</h1>
                                 <button class="print-btn" id="print-btn"><i class="fa-regular fa-file-pdf"></i></button>
                             </div>  
@@ -94,11 +93,8 @@
                                 <button id="close-chart-btn">Đóng</button>
                             </div>
                         </div>
-                        <div class="chart-body">
-                            <div class="chart-row">
-                                <canvas id="doughnut"></canvas>
-                                <h5>Tỉ lệ hoàn thành</h5>
-                            </div>
+                        <div class="chart-body" id="chart-body">
+
                             <div class="chart-row-2">
                                 <canvas id="barChart"></canvas>
                                 <h5>Phổ điểm</h5>

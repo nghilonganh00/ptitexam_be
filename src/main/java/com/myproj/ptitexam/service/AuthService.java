@@ -82,6 +82,7 @@ public class AuthService {
         newUser.setPassword(passwordEncoder.encode(registerDTO.getPassword()));
         newUser.setEmail(registerDTO.getEmail());
         newUser.setRoles(set);
+        newUser.setFullName(registerDTO.getFullName());
         System.out.println(newUser);
         userDao.save(newUser);
 

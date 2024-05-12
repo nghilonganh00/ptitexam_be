@@ -50,7 +50,6 @@ public class AuthController {
     // public ResponseEntity<String> setPassword(@RequestParam String email, @RequestParam String token, @RequestParam String newPassword) {
     //     return authService.setPassword(email, token, newPassword);
     // }
-    @CrossOrigin(origins = "http://127.0.0.1:5500")
     @PutMapping("/set-password")
     public ResponseEntity<String> setPassword(@RequestParam String email, @RequestParam String token, @RequestParam String newPassword) {
         return authService.setPassword(email, token, newPassword);

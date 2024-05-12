@@ -78,10 +78,40 @@
             display: flex;
             justify-content: left;
         }
+        .alert-box {
+            display: none;
+                position: fixed;
+                left: 50%;
+                top: 40%;
+                transform: translate(-50%, -50%);
+                background-color: #fff;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                padding: 20px;
+                box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+            }
+
+        .alert-content {
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+        .closebtn {
+            width: 80px;
+            height: 25px;
+            cursor: pointer;
+            background-color: #c82333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
-<div class="form">
+<div class="form" id="reset-form">
     <h2>Quên Mật Khẩu</h2>
     <input type="password" id="pass" name="pass"  placeholder="Nhập mật khẩu mới" required>
     <input type="password" id="cnf-pass" name="cnf-pass"  placeholder="Xác nhận mật khẩu" required>
@@ -89,6 +119,11 @@
     <div id="error-ms">
     </div>
 </div>
+<div class="alert-box" id="alert">
+    <div class="alert-content">
+        <p>Đổi mật khẩu thành công</p>
+        <button class="closebtn" onclick="location.href = 'student';">OK</button>
+    </div>
 
 </body>
 <script>
@@ -109,12 +144,12 @@
              }
          });
          if(response.ok){
-             console.log("success");
+             document.getElementById("alert").style.display = "block";
+             document.getElementById("reset-form").style.display = "none";
          }else{
-             console.log("fail");
-
+             document.getElementById("error-ms").innerHTML = "<span class='eror-span'>Token đã hết hạn</span>";
          }
-         document.getElementById("error-ms").innerHTML= '<span class="eror-span" id="error">Mật khẩu đã được thay đổi</span>'
     }
+
 </script>
 </html>

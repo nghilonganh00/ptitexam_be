@@ -1,9 +1,18 @@
 package com.myproj.ptitexam.DTO;
 
 public class RegisterDTO {
+    private String fullName;
     private String email;
     private String username;
     private String password;
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 
     public String getEmail() {
         return email;

@@ -15,6 +15,7 @@ const validateInputs = () => {
     const form = document.getElementById('signup-form');
     const email = document.getElementById("signup-email");
     const uname = document.getElementById("signup-uname");
+    const full_name = document.getElementById("fullName").value.trim()
     const pass1 = document.getElementById("signup-pass");
     const pass2 = document.getElementById("signup-pass2");
     const usernameValue = uname.value.trim();
@@ -54,9 +55,12 @@ const validateInputs = () => {
         const user = {
             email: emailValue,
             username: usernameValue,
-            password: passwordValue
+            password: passwordValue,
+            fullName: full_name
         }
+
         let json = JSON.stringify(user);
+        console.log(json)
         const apiUrl = 'http://localhost:8080/auth/register';
         const requestOptions = {
             method: 'POST',
@@ -191,7 +195,7 @@ const validateAdminLogin = () => {
                             localStorage.setItem("user_id",data.user_id);
                         })
                         .catch(error => {
-                            document.getElementById('login-err').innerText = "Sai tài khoản hoặc mật khẩu"
+                            document.getElementById('login-err-admin').innerText = "Sai tài khoản hoặc mật khẩu"
                         });
 
         }

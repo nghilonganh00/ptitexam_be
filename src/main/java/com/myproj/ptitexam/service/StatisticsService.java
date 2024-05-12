@@ -24,7 +24,7 @@ public class StatisticsService {
             Exam exam = examDao.findById(examId).orElseThrow(() -> new Exception());
             List<ExamResult> listResult = examResultDao.findByExam(exam);
             if(listResult.isEmpty()){
-                return new ResponseEntity<String>("No one have done this exam", HttpStatus.OK);
+                return new ResponseEntity<String>("No one have done this exam", HttpStatus.SERVICE_UNAVAILABLE);
             }
 
             int [] scoreArr={0,0,0,0,0};
@@ -41,11 +41,12 @@ public class StatisticsService {
                     scoreArr[4]++;
             }
             Map<String, Object> responseData = new LinkedHashMap<>();
-            responseData.put("0-4", scoreArr[0]);
-            responseData.put("4-6.5", scoreArr[1]);
-            responseData.put("6.5-8", scoreArr[2]);
-            responseData.put("8-9", scoreArr[3]);
-            responseData.put("9-10", scoreArr[4]);
+            responseData.put("exam", exam.getExamTitle());
+            responseData.put("zero", scoreArr[0]);
+            responseData.put("four", scoreArr[1]);
+            responseData.put("sixPointFive", scoreArr[2]);
+            responseData.put("eight", scoreArr[3]);
+            responseData.put("nine", scoreArr[4]);
             return new ResponseEntity<Object>(responseData, HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<String>("Exam not found", HttpStatus.NOT_FOUND);

@@ -2,8 +2,7 @@ if (localStorage.getItem('jwt')===null) {
 alert("Bạn chưa đăng nhập, vui lòng đăng nhập!")
 window.location.href="/login"}
 
-console.log('2')
-var acc = [], rowindex=0 , roww
+var acc = [], rowindex=0 , roww;
 var userId = 0
 async function fetchUser() {
     const jwt = localStorage.getItem('jwt')
@@ -26,10 +25,10 @@ async function load() {
         acc.push({
             uid: e.id,
             id: e.username,
-            name: e.fullName === null ? "null" : e.fullName,
+            name: e.fullName === null ? "" : e.fullName,
             email: e.email,
             password: e.password,
-            birthday: e.dob === null ? "null" : e.dob.slice(0, 10)
+            birthday: e.dob === null ? "" : e.dob.slice(0, 10)
         })
     })
     loadTableAcc(acc)
