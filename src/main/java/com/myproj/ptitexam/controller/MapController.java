@@ -39,7 +39,7 @@ public class MapController {
     public String addExamPage() {
         return "create-exam";
     }
-    
+
     @GetMapping("/admin")
     public String adminLogin(){
         return "admin-login";
@@ -68,6 +68,3 @@ public class MapController {
         return "kqbaithi";
     }
 }
-
-
-

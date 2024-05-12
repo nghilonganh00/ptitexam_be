@@ -1,5 +1,9 @@
+if (localStorage.getItem('jwt')===null) {
+alert("Bạn chưa đăng nhập, vui lòng đăng nhập!")
+window.location.href="/login"}
+
 console.log('2')
-var acc = [], rowindex=0
+var acc = [], rowindex=0 , roww
 var userId = 0
 async function fetchUser() {
     const jwt = localStorage.getItem('jwt')
@@ -16,6 +20,7 @@ async function fetchUser() {
     return users;
 }
 async function load() {
+    acc=[]
     var data = await fetchUser()
     data.map(e => {
         acc.push({
@@ -102,7 +107,22 @@ document.getElementById("btnThem").addEventListener("click", function () {
     var birthday = document.getElementById('birthday').value
     var email = document.getElementById('email').value
     var password = document.getElementById('password').value
-
+    if(!id || !name|| !email|| !birthday|| !password){
+            alert("Xin vui lòng nhập đủ thông tin!")
+                        return
+        }
+    if(!(isValidDateFormat(birthday))){
+            alert("Xin vui lòng nhập ngày sinh đúng định dạng!")
+            return
+        }
+    if(password.legth<8){
+    alert("Xin vui lòng nhập mật khẩu gồm ít nhất 8 ký tự!")
+                return
+    }
+        if(email.substring(email.length-10,email.length)!=='@gmail.com'){
+        alert("Xin vui lòng nhập email hợp lệ!")
+                    return
+        }
     var formData = {
         username: id,
         fullName: name,
@@ -136,8 +156,13 @@ document.getElementById("btnThem").addEventListener("click", function () {
     document.querySelector(".container").style.display = "none"
 
 })
-
+loadTableAcc(acc)
 var bangduocchon = "score-container1"
+function isValidDateFormat(dateString) {
+  var pattern = /^\d{4}-\d{2}-\d{2}$/;
+  return pattern.test(dateString);
+}
+
 function loadTableAcc(acc) {
     var tableBody = document.querySelector("#dataTable tbody");
 
@@ -167,9 +192,9 @@ function loadTableAcc(acc) {
         emailCell.textContent = rowAcc.email;
         row.appendChild(emailCell);
 
-        var passwordCell = document.createElement("td");
-        passwordCell.textContent = rowAcc.password;
-        row.appendChild(passwordCell);
+//        var passwordCell = document.createElement("td");
+//        passwordCell.textContent = rowAcc.password;
+//        row.appendChild(passwordCell);
 
         // Tạo một div chứa cả hai nút Xóa và Sửa
         var buttonContainer = document.createElement("div");
@@ -192,13 +217,13 @@ function loadTableAcc(acc) {
             userId = acc[rowNumber1].uid
             console.log(userId)
             document.querySelector('.container-edit').style.display = "flex"
-            var roww = acc[x]
+            roww = acc[x]
 
             document.getElementById('id-edit').value = roww.id;
             document.getElementById('name-edit').value = roww.name;
             document.getElementById('birthday-edit').value = roww.birthday;
             document.getElementById('email-edit').value = roww.email;
-            document.getElementById('password-edit').value = roww.password;
+            document.getElementById('password-edit').value = "";
             console.log(rowNumber1)
             capnhapbangtim()
 
@@ -211,30 +236,13 @@ function loadTableAcc(acc) {
         deleteButton.classList.add("delete-button")
         deleteButton.id = i.toString()
         deleteButton.addEventListener("click", function () {
+             document.getElementById("container-confirm").style.display="flex"
             rowindex = Number.parseInt(this.id)
-            var userId = acc[rowindex].uid;
+
+             userId = acc[rowindex].uid;
             console.log(userId)
 
-            acc.splice(Number.parseInt(rowindex), 1)
-            const jwt = localStorage.getItem('jwt')
-            $.ajax({
-                url: '/user/delete?userId=' + userId,
-                type: 'DELETE',
-                headers: {
-                    'Authorization': `Bearer ${jwt}`
-                },
-                success: function (response) {
-                    console.log('xoa thanh cong')
-                },
-                error: function (error) {
-                    console.log(error)
-                }
 
-            })
-
-            console.log(acc)
-            capnhapbangtim()
-            loadTableAcc(acc)
         });
 
         buttonContainer.appendChild(deleteButton);
@@ -277,6 +285,11 @@ function Xacnhansua() {
     var password = document.getElementById('password-edit').value
     var birthday = document.getElementById('birthday-edit').value
     console.log(id + " " + name + " " + email + " " + password)
+    if(!(isValidDateFormat(birthday))){
+        alert("Hãy nhập ngày sinh đúng định dạng!")
+        return
+    }
+
     acc[rowNumber1] = {
         id: id.toString(),
         name: name.toString(),
@@ -289,7 +302,7 @@ function Xacnhansua() {
         username: id.toString(),
         fullName: name.toString(),
         email: email.toString(),
-        password: password.toString(),
+        password: (password.toString()  === "" )? roww.password:  password.toString(),
         dob: birthday.toString(),
         roles: []
     }
@@ -305,18 +318,47 @@ function Xacnhansua() {
         data: JSON.stringify(updatedUser),
         success: function (response) {
             console.log("sua thanh cong")
+            load()
+                capnhapbangtim()
+                loadTableAcc(acc)
         },
         error: function (error) {
             console.log(error)
         }
     })
-    capnhapbangtim()
-    loadTableAcc(acc)
+
     document.querySelector('.container-edit').style.display = "none"
 
 }
+function confirm(){
+acc.splice(Number.parseInt(rowindex), 1)
+            const jwt = localStorage.getItem('jwt')
+            $.ajax({
+                url: '/user/delete?userId=' + userId,
+                type: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${jwt}`
+                },
+                success: function (response) {
+                    console.log('xoa thanh cong')
+                    load()
+                    capnhapbangtim()
+                    loadTableAcc(acc)
+                },
+                error: function (error) {
+                    console.log(error)
+                }
 
-
+            })
+            load()
+            console.log(acc)
+            capnhapbangtim()
+            loadTableAcc(acc)
+            document.getElementById("container-confirm").style.display="none"
+}
+function close_popup_confirm(){
+document.getElementById("container-confirm").style.display="none"
+}
 document.getElementById("close-buttonkq1").addEventListener("click", function () {
     document.getElementById("score-container1").style.display = 'none'
     document.getElementById("score-container2").style.display = 'none'
@@ -448,6 +490,6 @@ const toPDF2 = function (score_table) {
 pdf_btn.onclick = () => {
     toPDF(students_table);
 }
-pdf_btn2.onclick = () => {
-    toPDF2(students_table2);
-}
+//pdf_btn2.onclick = () => {
+//    toPDF2(students_table2);
+//}

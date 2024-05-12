@@ -70,7 +70,7 @@
                         <th> Họ tên </th>
                         <th> Ngày sinh </th>
                         <th> Email </th>
-                        <th> Mật khẩu </th>
+<!--                        <th> Mật khẩu </th>-->
                         <th> Thao tác </th>
                         <th> Xem kết quả </th>
                     </tr>
@@ -105,16 +105,27 @@
        <button class="close-button" id="close-button1">X</button>
        <div class="input-form">
         <h1>Sửa thông tin sinh viên</h1>    
-           <input id="id-edit" type="text" placeholder="Tên đăng nhập" />
+           <input id="id-edit" type="text" placeholder="Tên đăng nhập" readonly/>
            <input id="name-edit" type="text" placeholder="Họ tên" />
-           <input id="email-edit" type="email" placeholder="Email" />
+           <input id="email-edit" type="email" placeholder="Email" readonly/>
            <input id="birthday-edit" type="text" placeholder="Ngày sinh" />
            <input id="password-edit" type="text" placeholder="Mật khẩu" />
            <button class="btnThem" id="btnSua" onclick="Xacnhansua()">Xác nhận</button>
        </div>
     </div>
 
+<!--pop up xac nhan xoa-->
+    <div class="container-edit" id="container-confirm" style="max-width:350px; max-height:250px;">
+        <button class="close-button" onclick="close_popup_confirm()">X</button>
+        <div class="input-form">
+            <h1>Xác nhận xóa người dùng</h1>
+            <div style="display: flex; flex-direction: row;!justify-content: space-around;">
+                <button class="btnThem" id="btnHuy" onclick="close_popup_confirm()" style="margin-right:10px;">Hủy</button>
+                <button class="btnThem" id="btnXoa" onclick="confirm()">Xác nhận</button>
+            </div>
 
+        </div>
+    </div>
         <!-- Bang diem tung sinh vien-->
         
         <div class="score-container" id="score-container1">
