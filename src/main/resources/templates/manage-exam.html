@@ -152,7 +152,7 @@
                       ></textarea>
                     </div>
                     <div>
-                      <input type="radio" name="manage-new-answer" value="B" />
+                      <input type="radio" name="manage-new-answer" />
                       <textarea
                         type="text"
                         class="create-exam-input"
@@ -161,7 +161,7 @@
                       ></textarea>
                     </div>
                     <div>
-                      <input type="radio" name="manage-new-answer" value="C" />
+                      <input type="radio" name="manage-new-answer" />
                       <textarea
                         type="text"
                         class="create-exam-input"
@@ -170,7 +170,7 @@
                       ></textarea>
                     </div>
                     <div>
-                      <input type="radio" name="manage-new-answer" value="D" />
+                      <input type="radio" name="manage-new-answer" />
                       <textarea
                         type="text"
                         class="create-exam-input"
@@ -227,7 +227,7 @@
             </div>
             <div class="list-answer-input">
               <label class="answer">
-                <input type="radio" name="edit-answer" value="A" />
+                <input type="radio" name="edit-answer" />
                 <textarea
                   type="text"
                   class="popup-general-input edit-answer"
@@ -237,7 +237,7 @@
                 ></textarea>
               </label>
               <label class="answer">
-                <input type="radio" name="edit-answer" value="B" />
+                <input type="radio" name="edit-answer" />
                 <textarea
                   type="text"
                   class="popup-general-input edit-answer"
@@ -248,7 +248,7 @@
               </label>
 
               <label class="answer">
-                <input type="radio" name="edit-answer" value="C" />
+                <input type="radio" name="edit-answer" />
                 <textarea
                   type="text"
                   class="popup-general-input edit-answer"
@@ -258,7 +258,7 @@
                 ></textarea>
               </label>
               <label class="answer">
-                <input type="radio" name="edit-answer" value="D" />
+                <input type="radio" name="edit-answer" />
                 <textarea
                   type="text"
                   class="popup-general-input edit-answer"
@@ -310,63 +310,79 @@
               </div>
             </div>
             <div class="popup-general-row">
-              <!-- <div style="width: 30%">
+              <div style="width: 19%">
                 <div class="input-label">
                   <label for="examType" class="required-mark">Loại</label>
                 </div>
                 <select
                   name="selectType"
-                  id="popup-general-type"
+                  id="exam-type"
                   class="popup-general-input popup-general-type"
                 >
                   <option value="Tự do">Tự do</option>
-                  <option value="Thời gian cụ thể">Thời gian cụ thể</option>
+                  <option value="Thời gian cố định">Thời gian cố định</option>
                 </select>
-              </div> -->
+              </div>
 
-              <div style="width: 20%">
-                <div class="input-label">
-                  <label for="examType" class="required-mark"
-                    >Ngày bắt đầu</label
-                  >
+              <div
+                id="create-exam-time"
+                style="
+                  display: flex;
+                  flex-wrap: wrap;
+                  justify-content: space-around;
+                  align-items: center;
+                  width: 80%;
+                "
+              >
+                <div style="width: 20%">
+                  <div class="input-label">
+                    <label for="examType" class="required-mark"
+                      >Ngày bắt đầu</label
+                    >
+                  </div>
+                  <input
+                    type="time"
+                    id="popup-general-start-time"
+                    class="popup-general-input"
+                  />
                 </div>
-                <input
-                  type="time"
-                  id="popup-general-start-time"
-                  class="popup-general-input"
-                />
-              </div>
-              <div style="width: 20%">
-                <div class="input-label">
+                <div style="width: 25%">
+                  <div class="input-label">
+                    <label for="examType" class="required-mark"> </label>
+                  </div>
+                  <input
+                    type="date"
+                    required
+                    pattern="\d{4}-\d{2}-\d{2}"
+                    id="popup-general-start-day"
+                    class="popup-general-input"
+                  />
+                </div>
+                <div style="width: 20%">
+                  <div class="input-label">
+                    <label for="examType" class="required-mark"
+                      >Ngày kết thúc</label
+                    >
+                  </div>
+                  <input
+                    type="time"
+                    id="popup-general-end-time"
+                    class="popup-general-input"
+                  />
+                </div>
+                <div style="width: 25%">
                   <label for="examType" class="required-mark"> </label>
+                  <input
+                    type="date"
+                    required
+                    pattern="\d{4}-\d{2}-\d{2}"
+                    id="popup-general-end-day"
+                    class="popup-general-input"
+                  />
                 </div>
-                <input
-                  type="date"
-                  id="popup-general-start-day"
-                  class="popup-general-input"
-                />
-              </div>
-              <div style="width: 20%">
-                <div class="input-label">
-                  <label for="examType" class="required-mark"
-                    >Ngày kết thúc</label
-                  >
-                </div>
-                <input
-                  type="time"
-                  id="popup-general-end-time"
-                  class="popup-general-input"
-                />
-              </div>
-              <div style="width: 20%">
-                <label for="examType" class="required-mark"> </label>
-                <input
-                  type="date"
-                  id="popup-general-end-day"
-                  class="popup-general-input"
-                />
               </div>
             </div>
+            <span class="create-exam-time_err" id="create-exam-time_err"></span>
             <div class="popup-general-row">
               <div style="width: 100%">
                 <div class="input-label">
@@ -403,6 +419,24 @@
       crossorigin="anonymous"
     ></script>
     <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        let currentDate = new Date();
+
+        let year = currentDate.getFullYear();
+        let month = String(currentDate.getMonth() + 1).padStart(2, "0");
+        let day = String(currentDate.getDate()).padStart(2, "0");
+
+        let formattedDate = `${year}-${month}-${day}`;
+        document.getElementById("popup-general-start-day").min = formattedDate;
+        document.getElementById("popup-general-end-day").min = formattedDate;
+      });
+
+      document
+        .getElementById("exam-type")
+        .addEventListener("change", function () {
+          onChangeExamType();
+        });
+
       document.getElementById("menu-btn").addEventListener("click", () => {
         if (document.getElementById("mobile-menu").style.display == "none") {
           document.getElementById("mobile-menu").style.display = "block";

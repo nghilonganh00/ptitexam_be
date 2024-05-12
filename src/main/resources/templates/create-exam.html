@@ -97,8 +97,8 @@
                             id="exam-type"
                             class="edit-select-type"
                           >
-                          <option value="Thời gian cụ thể">
-                            Thời gian cụ thể
+                          <option value="Thời gian cố định">
+                            Thời gian cố định
                           </option>
                             <option value="Tự do">Tự do</option>
                           </select>
@@ -114,6 +114,7 @@
                               type="time"
                               id="exam-start-hour"
                               class="popup-general-input"
+                              min="2024-05-20"
                             />
                           </div>
                           <div>
@@ -123,10 +124,12 @@
                             </div>
                             <input
                               type="date"
+                              required pattern="\d{4}-\d{2}-\d{2}"
                               id="exam-start-time"
                               class="create-exam-input"
                               style="width: 100%"
                             />
+                           
                           </div>
                           <div>
                             <div class="input-label">
@@ -143,20 +146,20 @@
 
                           <div>
                             <div class="input-label">
-                              <label for="examName" class="required-mark"
-                                > </label
-                              >
+                              <label for="examName" class="required-mark"> </label>
                             </div>
                             <input
                               type="date"
                               id="exam-end-time"
                               class="create-exam-input"
+                              placeholder="dd/mm/yyyy"
                               style="width: 100%"
                             />
                           </div>
                         </div>
                       </div>
                     </div>
+                    <span class="create-exam-time_err" id="create-exam-time_err"></span>
                     <div class="input-row">
                       <div class="input-label">
                         <label for="examName" class="create-exam-label"
@@ -280,6 +283,24 @@
     crossorigin="anonymous"
   ></script>
   <script>
+
+    document.addEventListener("DOMContentLoaded", () =>  {
+      const jwt = localStorage.getItem("jwt");
+      if (!jwt) {
+        redirectToNewPage("/admin");
+      }
+
+      let currentDate = new Date();
+
+      let year = currentDate.getFullYear();
+      let month = String(currentDate.getMonth() + 1).padStart(2, '0'); 
+      let day = String(currentDate.getDate()).padStart(2, '0');
+
+      let formattedDate = `${year}-${month}-${day}`;
+      document.getElementById("exam-start-time").min = formattedDate
+      document.getElementById("exam-end-time").min = formattedDate
+    });
+    
     document.getElementById("menu-btn").addEventListener("click", () => {
       if (document.getElementById("mobile-menu").style.display == "none") {
         document.getElementById("mobile-menu").style.display = "block";

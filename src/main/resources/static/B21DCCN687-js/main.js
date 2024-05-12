@@ -1,275 +1,3 @@
-// let initListExam = {
-//   1: {
-//     examTitle: "Giữa kì môn Triết học Mac-Lenin 1",
-//     examType: "Thời gian cụ thể",
-//     examDescription: "",
-//     examStartTime: "2024-03-03",
-//     examEndTime: "2024-03-04",
-//     examCreatedAt: "29-2-2024",
-//     examlistQuestion: {
-//       1: {
-//         topic: "Chọn cách diễn đạt đúng về năng suất lao động?",
-//         listAnswer: {
-//           A: "Năng suất lao động là số sản phẩm được sản xuất ra trong doanh nghiệp",
-//           B: "Năng suất lao động là năng lực sản xuất của người lao động",
-//           C: "Năng suất lao động là khả năng cụ thể lao động",
-//           D: "Cả A và B",
-//         },
-//         correctAnswer: "A",
-//       },
-//       2: {
-//         topic: "Hãy chỉ ra nhận định đúng về chủ nghĩa tư bản độc quyền",
-//         listAnswer: {
-//           A: "Độc quyền không có khả năng và không bành trướng sang các lĩnh vực chính trị, xã hội",
-//           B: "Kết hợp với nhà nước hình thành độc quyền nhà nước chi phối quan hệ, đường lỗi đối nội với đối ngoại của quốc gia",
-//           C: "Không vì lợi ích của các tổ chức độc quyền, vì lợi ích của đa số nhân dân lao động",
-//           D: "Không kết hợp với các nhân viên chính phủ để thực hiện mục đích lợi ích nhóm",
-//         },
-//         correctAnswer: "A",
-//       },
-//       3: {
-//         topic: "Hàng hóa có 2 thuộc tính giá trị sử dụng và giá trị bởi vì:",
-//         listAnswer: {
-//           A: "Lao động của người sản xuất hàng hóa có tính hai mặt: lao động cụ thể và lao động trừu tượng",
-//           B: "Hai thuộc tính này gắn với hàng hóa",
-//           C: "Hàng hóa có hai mặt: lao động cụ thể và lao động trừu tượng",
-//           D: "Cả B và C",
-//         },
-//         correctAnswer: "C",
-//       },
-//       4: {
-//         topic: "Chọn đáp án đúng",
-//         listAnswer: {
-//           A: "Về mặt chính trị, hệ thống các nhà tài phiệt chi phối mọi hoạt động của các cơ quan nhà nước",
-//           B: "Về mặt chính trị, hệ thống các nhà tài phiệt luôn ủng hộ mọi hoạt động của các cơ quan nhà nước",
-//           C: "Về mặt chính trị, hệ thống các nhà tài phiệt luôn ủng hộ các phong trào đấu tranh của giai cấp công nhân",
-//           D: "Cả 3 đáp án",
-//         },
-//         correctAnswer: "A",
-//       },
-//       5: {
-//         topic: "Khái niệm kinh tế chính trị được xuất hiện lần đầu khi nào?",
-//         listAnswer: {
-//           A: "1815",
-//           B: "1715",
-//           C: "1615",
-//           D: "1917",
-//         },
-//         correctAnswer: "A",
-//       },
-//       6: {
-//         topic: "Lợi thuận thương nghiệp",
-//         listAnswer: {
-//           A: "Là toàn bộ giá trị thặng dư",
-//           B: "Trong lưu thông hàng hóa",
-//           C: "Cả 3 phương án trên",
-//           D: "Trong sản xuất hàng hóa",
-//         },
-//         correctAnswer: "B",
-//       },
-//       7: {
-//         topic:
-//           "Điền từ phù hợp nhất vào chỗ trống: 'Trong quá trình phát triển kinh tế thị trường cần chú ý tới những...của thi trường điều tiết khắc phục kịp thời của Nhà nước pháp quyền xã hội chủ nghĩa'",
-//         listAnswer: {
-//           A: "Thất bại và khuyết tất",
-//           B: "Hoạt động",
-//           C: "Vấn đề cốt lỗi",
-//           D: "Sự phát triển",
-//         },
-//         correctAnswer: "D",
-//       },
-//       8: {
-//         topic: "Tiền công danh nghĩa là gì?",
-//         listAnswer: {
-//           A: "Là giá cả sức lao động",
-//           B: "Là tổng số tiền nhận được trong một tháng",
-//           C: "Là tổng số tiền nhận được trong một tháng",
-//           D: "Là số tiền mà người công nhận được do bán sức lao động của mình cho nhà tư sản",
-//         },
-//         correctAnswer: "D",
-//       },
-//     },
-//   },
-//   2: {
-//     examTitle: "Cuối kì môn Vật lí 2, 3",
-//     examType: "Thời gian cụ thể",
-//     examDescription: "",
-//     examCreatedAt: "2022-03-03",
-//     examStartTime: "2022-03-03",
-//     examEndTime: "2022-03-03",
-//     examlistQuestion: {
-//       1: {
-//         topic: "Hiện tượng giao thoa ánh sáng chứng tỏ",
-//         listAnswer: {
-//           A: "Tính chất gián đoạn của ánh sáng",
-//           B: "Ánh sáng là một sống dọc",
-//           C: "Bản chất sóng của ánh sáng",
-//           D: "Ánh sáng là một sóng ngang",
-//         },
-//         correctAnswer: "A",
-//       },
-//       2: {
-//         topic: "Giao thoa ánh sáng là hiện tượng",
-//         listAnswer: {
-//           A: "Gặp nhau của hai hay nhiều sóng ánh sáng tự nhiên",
-//           B: "Gặp nhau của hai hay nhiều sóng ánh sáng kết hợp",
-//           C: "Gặp nhau của hai hay nhiều sóng ánh sáng phân cực",
-//           D: "Gặp nhau của hai nhiều sóng ánh sáng phân cực",
-//         },
-//         correctAnswer: "B",
-//       },
-//       3: {
-//         topic: "Hai sóng ánh sáng kết hợp là:",
-//         listAnswer: {
-//           A: "Hai sóng có hiệu pha thay đổi theo thời gian",
-//           B: "Hai sóng có tần số và hiệu quang lộ thay đổi theo thời gian",
-//           C: "Hai sóng khác tần số và hiệu quang lộ không thay đổi theo thời gian",
-//           D: "Hai sóng có hiệu pha không đổi theo thời gian",
-//         },
-//         correctAnswer: "A",
-//       },
-//       4: {
-//         topic:
-//           "Biểu thức của quang lộ L giữa hai điểm cách nhau một khoảng d trong môi trường chiếu suất n là",
-//         listAnswer: {
-//           A: "L = nd",
-//           B: "L = vt",
-//           C: "L = n/d",
-//           D: "L = d/n",
-//         },
-//         correctAnswer: "C",
-//       },
-//       5: {
-//         topic: "Sóng là quá trình",
-//         listAnswer: {
-//           A: "Truyền pha của dao động",
-//           B: "Truyền li đô của dao động",
-//           C: "Truyền biên độ của dao động",
-//           D: "Truyền dao động",
-//         },
-//         correctAnswer: "A",
-//       },
-//       6: {
-//         topic:
-//           "Trong thí nghiệm Young về giao thoa với ánh sáng đơn sắc có bước sóng A = 0,5um. Khoảng cách từ hai khe đến màn quan sát 1m, khoảng cách giữa hai khe sáng là 0,5mm. Khoảng cách giữa hai vân sáng liên tiếp là?",
-//         listAnswer: {
-//           A: "0,5 mm",
-//           B: "0,1 mm",
-//           C: "2 mm",
-//           D: "1 mm",
-//         },
-//         correctAnswer: "A",
-//       },
-//       7: {
-//         topic:
-//           "Trong thí nghiệm lâng về giao thoa với ánh sáng đơn sắc có bước sóng ) = 0,5um. Khoảng cách từ hai khe đến màn 1m, khoảng cách giữa hai khe sáng là 0,5mm. Tại m trên mà (E) cách vân sáng trung tâm 3,5 mm là vân sáng hay vân tối thứ mấy",
-//         listAnswer: {
-//           A: "Vân sáng thứ 3",
-//           B: "Vân sáng thứ 4",
-//           C: "Vân tối thứ 4",
-//           D: "Vân tối thứ 3",
-//         },
-//         correctAnswer: "D",
-//       },
-//       8: {
-//         topic:
-//           " Trong thí nghiệm lâng về giao thoa ánh sáng đơn sắc có bước sóng A = 0,5um. Khoảng cách từ hai khe đến màn quan sát 1m. Khoảng cách giữa hai khe sáng là 0,5mm. Bề rộng của vùng giao thoa quan sát được trên màn là 13mm. Số vân tối vân sáng trên miền giao thoa là?",
-//         listAnswer: {
-//           A: "13 vân sáng",
-//           B: "14 vân tối",
-//           C: "11 vân sáng",
-//           D: "12 vân tối",
-//         },
-//         correctAnswer: "B",
-//       },
-//     },
-//   },
-//   3: {
-//     examTitle: "Cuối kì môn Thông tin di động",
-//     examType: "Thời gian cụ thể",
-//     examDescription: "",
-//     examCreatedAt: "2022-03-03",
-//     examStartTime: "2022-03-03",
-//     examEndTime: "2022-03-03",
-//     examlistQuestion: {
-//       1: {
-//         topic:
-//           "Một MS muốn thực hiện cuộc gọi thì kênh đầu tiên MS sẽ sử dụng là",
-//         listAnswer: {
-//           A: "RACH",
-//           B: "SDCCH",
-//           C: "TCH",
-//           D: "BCCH",
-//         },
-//         correctAnswer: "A",
-//       },
-//       2: {
-//         topic:
-//           "Trên khung PCM ở giao diện Abis, với một BTS có cấu hình 4/4/4 thì số timeslotsử dụng cho lưu lượng TCH của tất cả TRX là",
-//         listAnswer: {
-//           A: "24",
-//           B: "12",
-//           C: "36",
-//           D: "32",
-//         },
-//         correctAnswer: "B",
-//       },
-//       3: {
-//         topic:
-//           "Khi sử dụng bộ kết hợp Combiner để kết nối 2 TRX thì công suất phát của các TRX giảm bao nhiêu Db",
-//         listAnswer: {
-//           A: "1",
-//           B: "3",
-//           C: "1.5",
-//           D: "2",
-//         },
-//         correctAnswer: "C",
-//       },
-//       4: {
-//         topic: "Các phần tử chính trong mạng di động gồm có",
-//         listAnswer: {
-//           A: "BTS, BSC, MSC",
-//           B: "BTS, BSC, TRAU, PCU, MSC/VLR, HLR",
-//           C: "BTS, BSC, TRAU, PCU, MSC/VLR, HLR, Truyền dẫn",
-//           D: "BTS, BSC, PCU, HLR, MSC/VLR",
-//         },
-//         correctAnswer: "A",
-//       },
-//       5: {
-//         topic: "Giao diện giữa BTS và BSC đực",
-//         listAnswer: {
-//           A: "Giao diện Ater",
-//           B: "Giao diện Abis",
-//           C: "Giao diện A",
-//           D: "Giao diện Atermux",
-//         },
-//         correctAnswer: "C",
-//       },
-//       6: {
-//         topic:
-//           "Giao diện giữa MS và BTS được gọi là giao diện gì? A. Giao diện Um",
-//         listAnswer: {
-//           A: "Giao diện Um",
-//           B: "Giao diện Abis",
-//           C: "Giao diện AXC",
-//           D: "Giao diện RSL",
-//         },
-//         correctAnswer: "A",
-//       },
-//       7: {
-//         topic: "Giao diện giữa BSC và TC được gọi là giao diện gì?",
-//         listAnswer: {
-//           A: "Giao diện Ater",
-//           B: "Giao diện Abis",
-//           C: "Giao diện A",
-//           D: "Giao diện A1",
-//         },
-//         correctAnswer: "A",
-//       },
-//     },
-//   },
-// };
-
 let questionIndex = 0;
 let listQuestion = [];
 
@@ -294,6 +22,31 @@ const createTimestamp = (hourTime, dateTime) => {
   const [hours, minutes] = hourTime.split(":");
 
   return `${year}-${month}-${day} ${hours}:${minutes}:00`;
+};
+
+const compareDates = (dateStr1, dateStr2) => {
+  const [date1, time1] = dateStr1.split(" ");
+  const [date2, time2] = dateStr2.split(" ");
+
+  const [hour1, minute1, s1] = time1.split(":").map(Number);
+  const [hour2, minute2, s2] = time2.split(":").map(Number);
+
+  const [year1, month1, day1] = date1.split("-").map(Number);
+  const [year2, month2, day2] = date2.split("-").map(Number);
+
+  console.log(year1 + " " + month1 + " " + day1);
+  console.log(year2 + " " + month2 + " " + day2);
+
+  const n1 =
+    year1 * 100000000 + month1 * 1000000 + day1 * 10000 + hour1 * 100 + minute1;
+  const n2 =
+    year2 * 100000000 + month2 * 1000000 + day2 * 10000 + hour2 * 100 + minute2;
+
+  if (n1 >= n2) {
+    return false;
+  }
+
+  return true;
 };
 
 const ExamAPI = {
@@ -390,6 +143,7 @@ const ExamAPI = {
     }
   },
   edit: async (examId, examTitle, examDescription, startTime, endTime) => {
+    console.log("edit: ", startTime);
     try {
       const jwt = localStorage.getItem("jwt");
       const exam = await ExamAPI.getDetailById(examId);
@@ -418,6 +172,8 @@ const ExamAPI = {
           questionList: questionListWithoutId,
         }),
       };
+
+      console.log(requestOptions.body);
 
       const response = await fetch(
         `http://localhost:8080/exam/edit?${queryParams}`,
@@ -646,7 +402,6 @@ const openPopUp = (
   document.getElementById("edit-answer-d-input").value = option4;
 
   //Thêm onclick cho 2 button xóa và lưu
-  console.log("del question: ", questionId);
   document.getElementById("popup-del-question").onclick = function () {
     delQuestion(questionId);
   };
@@ -654,12 +409,17 @@ const openPopUp = (
     saveQuestion(questionId);
   };
   const radioInputs = document.getElementsByName("edit-answer");
-  for (let i = 0; i < radioInputs.length; i++) {
-    if (radioInputs[i].value === answer) {
-      radioInputs[i].checked = true;
-      break;
-    }
-  }
+  radioInputs[0].value = option1;
+  radioInputs[1].value = option2;
+  radioInputs[2].value = option3;
+  radioInputs[3].value = option4;
+
+  if (radioInputs[0].value === answer) radioInputs[0].checked = true;
+  else if (radioInputs[1].value === answer) radioInputs[1].checked = true;
+  else if (radioInputs[2].value === answer) radioInputs[2].checked = true;
+  else if (radioInputs[3].value === answer) radioInputs[3].checked = true;
+
+  console.log(radioInputs[0].value + " " + answer);
 };
 
 //General edit page
@@ -669,8 +429,6 @@ const closeGeneralPopUp = () => {
 };
 
 const openGeneralPopup = async () => {
-  console.log("open genertal popup");
-
   const examId = new URLSearchParams(window.location.search).get("id");
   const exam = await ExamAPI.getDetailById(examId);
   const { examTitle, startTime, endTime, examDescription } = exam;
@@ -678,15 +436,24 @@ const openGeneralPopup = async () => {
   document.getElementById("general-popup").style["display"] = "block";
 
   document.getElementById("popup-general-name").value = examTitle;
-  // document.getElementById("popup-general-type").value = examType;
-  const parts = startTime.split(" ");
-  document.getElementById("popup-general-start-time").value = parts[1];
-  document.getElementById("popup-general-start-day").value = parts[0];
 
-  const parts1 = startTime.split(" ");
-  const dateString1 = parts[0];
-  document.getElementById("popup-general-end-time").value = parts1[1];
-  document.getElementById("popup-general-end-day").value = dateString1;
+  console.log("start time: ", startTime);
+  console.log("end time: ", endTime);
+
+  if (startTime && endTime) {
+    const start_parts = startTime.split(" ");
+    document.getElementById("popup-general-start-time").value = start_parts[1];
+    document.getElementById("popup-general-start-day").value = start_parts[0];
+
+    const end_parts = endTime.split(" ");
+    document.getElementById("popup-general-end-time").value = end_parts[1];
+    document.getElementById("popup-general-end-day").value = end_parts[0];
+
+    document.getElementById("exam-type").value = "Thời gian cố định";
+  } else {
+    document.getElementById("exam-type").value = "Tự do";
+    onChangeExamType();
+  }
 
   document.getElementById("popup-general-description").value = examDescription;
 };
@@ -696,14 +463,52 @@ const saveGeneralPopup = async () => {
   const examTitle = normalizeString(
     document.getElementById("popup-general-name").value
   );
-  // const examType = document.getElementById("popup-general-type").value;
-  const startHour = document.getElementById("popup-general-start-time").value;
-  const startDay = document.getElementById("popup-general-start-day").value;
-  const endHour = document.getElementById("popup-general-end-time").value;
-  const endDay = document.getElementById("popup-general-end-day").value;
 
-  const startTime = createTimestamp(startHour, startDay);
-  const endTime = createTimestamp(endHour, endDay);
+  let startHour = null,
+    startDay = null,
+    endHour = null,
+    endDay = null,
+    startTime = null,
+    endTime = null;
+  const examType = document.getElementById("exam-type").value;
+  console.log("exam type: ", examType);
+  if (examType === "Thời gian cố định") {
+    if (startTime === "") {
+      document.getElementById("popup-general-start-time").focus();
+      return;
+    } else if (endTime === "") {
+      document.getElementById("popup-general-end-time").focus();
+      return;
+    }
+    startHour = document.getElementById("popup-general-start-time").value;
+    startDay = document.getElementById("popup-general-start-day").value;
+    endHour = document.getElementById("popup-general-end-time").value;
+    endDay = document.getElementById("popup-general-end-day").value;
+    startTime = createTimestamp(startHour, startDay);
+    endTime = createTimestamp(endHour, endDay);
+
+    if (startDay === "") {
+      document.getElementById("popup-general-start-day").focus();
+      return;
+    } else if (startHour === "") {
+      document.getElementById("popup-general-start-time").focus();
+      return;
+    } else if (endDay === "") {
+      document.getElementById("popup-general-end-day").focus();
+      return;
+    } else if (endHour === "") {
+      document.getElementById("popup-general-end-time").focus();
+      return;
+    } else if (!compareDates(startTime, endTime)) {
+      document.getElementById("create-exam-time_err").innerText =
+        "Thời gian bắt đầu phải lớn hơn thời gian kết thúc";
+      return;
+    }
+    console.log(compareDates(startTime, endTime));
+    console.log("finish");
+  }
+
+  console.log("start time: ", startTime);
 
   const examDescription = normalizeString(
     document.getElementById("popup-general-description").value
@@ -711,13 +516,6 @@ const saveGeneralPopup = async () => {
 
   if (!examTitle || examTitle === "") {
     document.getElementById("popup-general-name").focus();
-    return;
-  }
-  if (startTime === "") {
-    document.getElementById("popup-general-start-time").focus();
-    return;
-  } else if (endTime === "") {
-    document.getElementById("popup-general-end-time").focus();
     return;
   }
 
@@ -754,6 +552,11 @@ const addQuestionOnManage = async () => {
       answer = checkbox[i].value;
     }
   }
+
+  if (answer === "A") answer = option1;
+  else if (answer === "B") answer = option2;
+  else if (answer === "C") answer = option3;
+  else answer = option4;
 
   await QuestionAPI.add(
     content,
@@ -833,10 +636,10 @@ const delExam = async () => {
 const onChangeExamType = () => {
   const examType = document.getElementById("exam-type").value;
   const examTime = document.getElementById("create-exam-time");
-  console.log(examType);
+  console.log("exam type: ", examType);
   if (examType === "Tự do") {
     examTime.style.visibility = "hidden";
-  } else if (examType === "Thời gian cụ thể") {
+  } else if (examType === "Thời gian cố định") {
     examTime.style.visibility = "visible";
   }
 };
@@ -864,27 +667,27 @@ const addQuestion = (content, option1, option2, option3, option4, answer) => {
     >
     <form onchange="onChangeCorrectAnswer(this, ${questionIndex})">
       <label class="answer">
-        <input type="radio" name="answer" value="A"  ${
-          answer === "A" ? "checked" : ""
-        } /> A.
+        <input type="radio" name="answer" value="${option1}"  ${
+    answer === option1 ? "checked" : ""
+  } /> A.
         ${option1}
       </label>
       <label class="answer">
-        <input type="radio" name="answer" value="B" ${
-          answer === "B" ? "checked" : ""
-        }/> B.
+        <input type="radio" name="answer" value="${option2}" ${
+    answer === option2 ? "checked" : ""
+  }/> B.
         ${option2}
       </label>
       <label class="answer">
-        <input type="radio" name="answer" value="C" ${
-          answer === "C" ? "checked" : ""
-        }/> C.
+        <input type="radio" name="answer" value="${option3}" ${
+    answer === option3 ? "checked" : ""
+  }/> C.
          ${option3}
       </label>
       <label class="answer">
-        <input type="radio" name="answer" value="D" ${
-          answer === "D" ? "checked" : ""
-        }/> D.
+        <input type="radio" name="answer" value="${option4}" ${
+    answer === option4 ? "checked" : ""
+  }/> D.
         ${option4}
       </label>
     </form>
@@ -910,7 +713,7 @@ const addQuestionByManual = () => {
   const option2 = document.getElementById("answer-b-input").value;
   const option3 = document.getElementById("answer-c-input").value;
   const option4 = document.getElementById("answer-d-input").value;
-  const answer = "A";
+  const answer = option1;
 
   addQuestion(content, option1, option2, option3, option4, answer);
   console.log("list question: ", listQuestion);
@@ -937,7 +740,13 @@ const addQuestionByFile = () => {
         const option2 = sheet[`C${i}`].v;
         const option3 = sheet[`D${i}`].v;
         const option4 = sheet[`E${i}`].v;
-        const answer = sheet[`F${i}`].v;
+        let answer = sheet[`F${i}`].v;
+
+        if (answer === "A") answer = option1;
+        else if (answer === "B") answer = option2;
+        else if (answer === "C") answer = option3;
+        else answer = option4;
+
         addQuestion(content, option1, option2, option3, option4, answer);
       }
     };
@@ -978,18 +787,21 @@ const onChangeCorrectAnswer = (form, id) => {
 };
 
 const saveNewExam = async () => {
-  const dateNow = Date.now();
-
   const examTitle = normalizeString(document.getElementById("exam-name").value);
   const examType = document.getElementById("exam-type").value;
-  let startTime = null;
-  let endTime = null;
-  if (examType !== "Tự do") {
-    const startDate = document.getElementById("exam-start-time").value;
-    const endDate = document.getElementById("exam-end-time").value;
+  let startTime = null,
+    endTime = null,
+    startDate = null,
+    endDate = null,
+    startHour = null,
+    endHour = null;
 
-    const startHour = document.getElementById("exam-start-hour").value;
-    const endHour = document.getElementById("exam-end-hour").value;
+  if (examType !== "Tự do") {
+    startDate = document.getElementById("exam-start-time").value;
+    endDate = document.getElementById("exam-end-time").value;
+
+    startHour = document.getElementById("exam-start-hour").value;
+    endHour = document.getElementById("exam-end-hour").value;
 
     startTime = createTimestamp(startHour, startDate);
     endTime = createTimestamp(endHour, endDate);
@@ -1003,22 +815,29 @@ const saveNewExam = async () => {
     document.getElementById("exam-name").focus();
     return;
   }
-  // if (examType === "Thời gian cụ thể") {
-  //   if (examStartTime === "") {
-  //     document.getElementById("exam-start-time").focus();
-  //     return;
-  //   } else if (examEndTime === "") {
-  //     document.getElementById("exam-end-time").focus();
-  //     return;
-  //   }
-  // }
 
-  // console.log("new exam: ", newExam);
-  // console.log("examTitle: " + examTitle);
-  // console.log("examDescription: " + examDescription);
-  // console.log("startTime: " + startTime);
-  // console.log("endTime: " + endTime);
-  // listQuestion.forEach((question) => console.log("question: ", question));
+  if (examType === "Thời gian cố định") {
+    if (startDate === "") {
+      document.getElementById("exam-start-time").focus();
+      return;
+    } else if (startHour === "") {
+      document.getElementById("exam-start-hour").focus();
+      return;
+    } else if (endDate === "") {
+      document.getElementById("exam-end-time").focus();
+      return;
+    } else if (endHour === "") {
+      document.getElementById("exam-end-hour").focus();
+      return;
+    } else if (!compareDates(startTime, endTime)) {
+      document.getElementById("create-exam-time_err").innerText =
+        "Thời gian bắt đầu phải lớn hơn thời gian kết thúc";
+      document.getElementById("exam-end-hour").focus();
+      return;
+    }
+    console.log(compareDates(startTime, endTime));
+  }
+
   await ExamAPI.add(
     examTitle,
     examDescription,
@@ -1031,6 +850,10 @@ const saveNewExam = async () => {
 };
 
 const loadExamPage = async (inputExam) => {
+  const jwt = localStorage.getItem("jwt");
+  if (!jwt) {
+    redirectToNewPage("/admin");
+  }
   listExams = await ExamAPI.getAll();
 
   document.getElementById("exam-list").innerHTML = "";
@@ -1046,7 +869,6 @@ const loadExamPage = async (inputExam) => {
       examDescription,
       examStartTime,
       examEndTime,
-      // examlistQuestion,
       startTime,
       endTime,
     } = exam;
@@ -1106,6 +928,11 @@ const loadExamPage = async (inputExam) => {
 };
 
 const loadManageExamPage = async () => {
+  const jwt = localStorage.getItem("jwt");
+  if (!jwt) {
+    redirectToNewPage("/admin");
+  }
+
   const examId = new URLSearchParams(window.location.search).get("id");
   const { examTitle, startTime, endTime, examDescription, questionList } =
     await ExamAPI.getDetailById(examId);
@@ -1122,6 +949,8 @@ const loadManageExamPage = async () => {
       covertTimestampToString(endTime);
   } else {
     document.getElementById("manage-exam-type").innerText = "Tự do";
+    document.getElementById("manage-exam-start-time").innerText = "";
+    document.getElementById("manage-exam-end-time").innerText = "";
   }
 
   document.getElementById("manage-exam-question-total").innerText =
@@ -1180,7 +1009,7 @@ const loadManageExamPage = async () => {
         D. ${option4}
       </span>
     </div>
-    <div><span>Đáp án đúng: ${answer.toUpperCase()}</span></div>
+    <div><span>Đáp án đúng: ${answer}</span></div>
   `;
     newQuestionBox.appendChild(answerContainer);
 
