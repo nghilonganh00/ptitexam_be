@@ -236,33 +236,13 @@ function loadTableAcc(acc) {
         deleteButton.classList.add("delete-button")
         deleteButton.id = i.toString()
         deleteButton.addEventListener("click", function () {
+             document.getElementById("container-confirm").style.display="flex"
             rowindex = Number.parseInt(this.id)
-            var userId = acc[rowindex].uid;
+
+             userId = acc[rowindex].uid;
             console.log(userId)
 
-            acc.splice(Number.parseInt(rowindex), 1)
-            const jwt = localStorage.getItem('jwt')
-            $.ajax({
-                url: '/user/delete?userId=' + userId,
-                type: 'DELETE',
-                headers: {
-                    'Authorization': `Bearer ${jwt}`
-                },
-                success: function (response) {
-                    console.log('xoa thanh cong')
-                    load()
-                    capnhapbangtim()
-                    loadTableAcc(acc)
-                },
-                error: function (error) {
-                    console.log(error)
-                }
 
-            })
-            load()
-            console.log(acc)
-            capnhapbangtim()
-            loadTableAcc(acc)
         });
 
         buttonContainer.appendChild(deleteButton);
@@ -350,8 +330,35 @@ function Xacnhansua() {
     document.querySelector('.container-edit').style.display = "none"
 
 }
+function confirm(){
+acc.splice(Number.parseInt(rowindex), 1)
+            const jwt = localStorage.getItem('jwt')
+            $.ajax({
+                url: '/user/delete?userId=' + userId,
+                type: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${jwt}`
+                },
+                success: function (response) {
+                    console.log('xoa thanh cong')
+                    load()
+                    capnhapbangtim()
+                    loadTableAcc(acc)
+                },
+                error: function (error) {
+                    console.log(error)
+                }
 
-
+            })
+            load()
+            console.log(acc)
+            capnhapbangtim()
+            loadTableAcc(acc)
+            document.getElementById("container-confirm").style.display="none"
+}
+function close_popup_confirm(){
+document.getElementById("container-confirm").style.display="none"
+}
 document.getElementById("close-buttonkq1").addEventListener("click", function () {
     document.getElementById("score-container1").style.display = 'none'
     document.getElementById("score-container2").style.display = 'none'

@@ -114,7 +114,18 @@
        </div>
     </div>
 
+<!--pop up xac nhan xoa-->
+    <div class="container-edit" id="container-confirm" style="max-width:350px; max-height:250px;">
+        <button class="close-button" onclick="close_popup_confirm()">X</button>
+        <div class="input-form">
+            <h1>Xác nhận xóa người dùng</h1>
+            <div style="display: flex; flex-direction: row;!justify-content: space-around;">
+                <button class="btnThem" id="btnHuy" onclick="close_popup_confirm()" style="margin-right:10px;">Hủy</button>
+                <button class="btnThem" id="btnXoa" onclick="confirm()">Xác nhận</button>
+            </div>
 
+        </div>
+    </div>
         <!-- Bang diem tung sinh vien-->
         
         <div class="score-container" id="score-container1">
