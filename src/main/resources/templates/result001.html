@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kết Quả Bài Thi</title>
-    <link rel="stylesheet" href="../static/styles001.css">
-    <script src="../static/script001.js" defer></script>
+    <link rel="stylesheet" href="/styles001.css">
+    <script src="/script002.js" defer></script>
 </head>
 <body>
     <div class="page">
@@ -54,13 +54,7 @@
                 <div id="answers" class="answers-container" style="display:none;"></div>
             </main>
         </div>
-        <script>
-            var score = sessionStorage.getItem('score');
-            var totalQuestions = 10; // Tổng số câu hỏi
-            let result = score * 10/10
-            document.getElementById('score').innerText = "Số câu đúng: " + score + "/" + totalQuestions; // Hiển thị điểm / tổng
-            document.getElementById('result').innerText = "Điểm: " + result; // Hiển thị điểm
-        </script>
+
     </div>
     <script src="https://kit.fontawesome.com/983c1d6e7e.js" crossorigin="anonymous"></script>
   <script>document.getElementById("menu-btn").addEventListener('click', ()=>{

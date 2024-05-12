@@ -349,4 +349,12 @@ button:hover {
     background-color: #bb2019;
     border: none;
   }
+  .check-mark {
+      color: green;
+  }
+
+  .cross-mark {
+      color: red;
+  }
+
 }
