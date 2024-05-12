@@ -2,6 +2,7 @@ package com.myproj.ptitexam.service;
 
 import com.myproj.ptitexam.DTO.ExamDto;
 import com.myproj.ptitexam.DTO.QuestionInExam;
+import com.myproj.ptitexam.DTO.StartExamResponse;
 import com.myproj.ptitexam.dao.ExamDao;
 import com.myproj.ptitexam.dao.ExamResultDao;
 import com.myproj.ptitexam.dao.QuestionDao;
@@ -69,13 +70,15 @@ public class QuestionService {
     public ResponseEntity<?> getAllQuestions(Integer examId, Integer userId) {
         try {
             List<Question> list_question = questionDao.findByExamId(examId);
+
+            if(list_question.isEmpty()) {
+                return new ResponseEntity<>("No question", HttpStatus.OK);
+            }
             List<QuestionInExam> responses = new ArrayList<>();
             for(Question question:list_question){
                 responses.add(new QuestionInExam(question.getId(),question.getContent(),question.getOption1(),question.getOption2(),question.getOption3(),question.getOption4()));
             }
-            if(list_question.isEmpty()) {
-                return new ResponseEntity<>("No question", HttpStatus.OK);
-            }
+
             ExamResult examResult = new ExamResult();
             Exam exam = examDao.findById(examId).orElseThrow(() -> new Exception("Loi"));
             User user = userDao.findById(userId).orElseThrow(()->new Exception("user not found"));
@@ -83,7 +86,8 @@ public class QuestionService {
             examResult.setExam(exam);
             examResult.setUser(user);
             examResultDao.save(examResult);
-            return new ResponseEntity<>(responses, HttpStatus.OK);
+            StartExamResponse startExamResponse = new StartExamResponse(examResult.getId(),responses);
+            return new ResponseEntity<>(startExamResponse, HttpStatus.OK);
         } catch(Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

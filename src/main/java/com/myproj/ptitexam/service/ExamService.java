@@ -12,9 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ExamService {
@@ -179,7 +177,12 @@ public class ExamService {
             examResult.setEndTime(new Timestamp(System.currentTimeMillis()));
             examResult.setScore(score);
             examResultDao.save(examResult);
-            return new ResponseEntity<Double>(score, HttpStatus.OK);
+            Map<String, Object> temp = new LinkedHashMap<>();
+            List<Object> returnList= new ArrayList<>();
+            temp.put("correctCnt", num);
+            temp.put("score",score);
+            returnList.add(temp);
+            return new ResponseEntity<>(returnList, HttpStatus.OK);
         } catch (Exception e){
             System.out.println(e);
             return new ResponseEntity<>("Submit failed",HttpStatus.BAD_REQUEST);
