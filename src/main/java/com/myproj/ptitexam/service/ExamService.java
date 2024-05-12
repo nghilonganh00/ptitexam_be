@@ -41,10 +41,18 @@ public class ExamService {
 
             if(updatedExam.getStartTime()!=null){
                 existingExam.setStartTime(Timestamp.valueOf(updatedExam.getStartTime()));
+            } else {
+                existingExam.setStartTime(null);
             }
+
             if(updatedExam.getEndTime()!=null){
                 existingExam.setEndTime(Timestamp.valueOf(updatedExam.getEndTime()));
+            } else {
+                existingExam.setEndTime(null);
             }
+
+
+
             List<Question> listQ = updatedExam.getQuestionList();
             for(Question question: listQ )
                 question.setExam(existingExam);
@@ -161,7 +169,6 @@ public class ExamService {
 
     public ResponseEntity<?> caculateScore(int take_id, List<UserAnswerReponse> reponses) {
         try {
-
             ExamResult examResult= examResultDao.findById(take_id).orElseThrow(() -> new Exception("Not found"));
             System.out.println("hi");
             List<Question> questions = examResult.getExam().getListQuestion();
@@ -208,7 +215,7 @@ public class ExamService {
         List<Exam> limited = new ArrayList<>();
         for(Exam exam:listExam){
             if(exam.getStartTime()==null){
-                unlimited.add(exam);
+                unlimited.add(exam);    
             }else {
                 limited.add(exam);
             }

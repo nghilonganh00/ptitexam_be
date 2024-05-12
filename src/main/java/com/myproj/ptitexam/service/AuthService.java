@@ -138,7 +138,6 @@ public class AuthService {
             return new ResponseEntity<>("The token has expired", HttpStatus.BAD_REQUEST);
         }
 
-
         User user = userDao.findByEmail(email);
         user.setPassword(passwordEncoder.encode(newPassword));
         userDao.save(user);

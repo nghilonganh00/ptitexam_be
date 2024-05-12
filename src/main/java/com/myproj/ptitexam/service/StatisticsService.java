@@ -18,7 +18,7 @@ public class StatisticsService {
     ExamDao examDao;
     @Autowired
     ExamResultDao examResultDao;
-    //Pho diem 0-4  4-6.5 6.5-8 8-9 9-10
+
     public ResponseEntity<?> getScoreDistribution(Integer examId) {
         try{
             Exam exam = examDao.findById(examId).orElseThrow(() -> new Exception());
@@ -40,6 +40,7 @@ public class StatisticsService {
                 else
                     scoreArr[4]++;
             }
+            
             Map<String, Object> responseData = new LinkedHashMap<>();
             responseData.put("0-4", scoreArr[0]);
             responseData.put("4-6.5", scoreArr[1]);
