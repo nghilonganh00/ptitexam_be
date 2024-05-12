@@ -73,7 +73,7 @@ public class ExamController {
     @GetMapping("/getExam")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<?> getAllQuestions(@RequestParam Integer exam_id, @RequestParam Integer user_id){
-        return questionService.getAllQuestions(exam_id,user_id);
+        return questionService.getAllQuestions(exam_id, user_id);
     }
 
     @GetMapping("")

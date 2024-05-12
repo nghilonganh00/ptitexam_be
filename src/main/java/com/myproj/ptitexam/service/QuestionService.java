@@ -139,7 +139,7 @@ public class QuestionService {
         }
     }
 
-    public ResponseEntity<?> getAllQuestionsAdmin(Integer examId) {
+    public ResponseEntity<?> getAllQuestionsAdmin(Integer examId) { 
         try{
             Exam exam = examDao.findById(examId).orElseThrow(()->new Exception());
             ExamDto result = new ExamDto();
