@@ -44,11 +44,14 @@ public class MapController {
     public String adminLogin(){
         return "admin-login";
     }
-    @GetMapping("/startExam")
+    @GetMapping("/student/startExam")
     public String doExamPage(){
         return "index001";
     }
-
+    @GetMapping("/student/result001")
+    public String Resultpage(){
+        return "result001";
+    }
     @GetMapping("/testxx")
     public String test(){
         return "create-exam";

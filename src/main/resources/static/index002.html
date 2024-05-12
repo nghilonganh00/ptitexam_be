@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles002.css?v=1">
+    <script src="./script002.js"></script>
+    <title>Bài Thi</title>
+</head>
+<body>
+<div class="page">
+    <header class="header-container">
+        <div class="left-menu">
+            <a href="user-main.html" class="menu-logo">
+                <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
+                <h3>PTIT EXAM</h3>
+            </a>
+            <a href="user-main.html" class="menu-item">Trang chủ</a>
+        </div>
+        <div class="right-menu">
+            <a href="index.html" class="menu-item">Đăng xuất</a>
+        </div>
+    </header>
+    <header class="header-container-mobile">
+        <div class="left-menu">
+            <a href="user-main.html" class="menu-logo">
+                <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
+                <h3>PTIT EXAM</h3>
+            </a>
+        </div>
+        <div class="right-menu">
+            <button  class="menu-item" id="menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </header>
+
+
+    <div class="body">
+        <main>
+
+            <div class="mobile-menu" id="mobile-menu">
+                <a href="user-main.html">Trang chủ</a>
+                <a href="index.html">Đăng xuất</a>
+            </div>
+
+            <form name="quiz" id="quiz" >
+                <div class="Name">
+                    <h2>Bài kiểm tra số 1</h2>
+                    <div id="timer">Thời gian: <span id="time">45:00</span></div>
+                </div>
+                <div class="quiz">
+                    <h3>Câu hỏi 1: Thiết bị hub thông thường nằm ở tầng nào của mô hình OSI?
+                    </h3>
+                    <div class="options">
+                        <label><input type="radio" name="question1" value="option1">Tầng 1</label><br>
+                        <label><input type="radio" name="question1" value="option2">Tầng 2</label><br>
+                        <label><input type="radio" name="question1" value="option3">Tầng 3</label><br>
+                        <label><input type="radio" name="question1" value="option4">Tầng 4</label><br>
+                    </div>
+                    <h3>Câu hỏi 2: Thiết bị Switch thông thường nằm ở tầng nào của mô hình OSI?
+                    </h3>
+                    <div class="options">
+                        <label><input type="radio" name="question2" value="option1">Tầng 1</label><br>
+                        <label><input type="radio" name="question2" value="option2">Tầng 2</label><br>
+                        <label><input type="radio" name="question2" value="option3">Tầng 3</label><br>
+                        <label><input type="radio" name="question2" value="option4">Tầng 4</label><br>
+                    </div>
+                    <h3>Câu hỏi 3: Thiết bị Repeater nằm ở tầng nào của mô hình OSI?
+                    </h3>
+                    <div class="options">
+                        <label><input type="radio" name="question3" value="option1">Tầng 1</label><br>
+                        <label><input type="radio" name="question3" value="option2">Tầng 2</label><br>
+                        <label><input type="radio" name="question3" value="option3">Tầng 3</label><br>
+                        <label><input type="radio" name="question3" value="option4">Tầng 4</label><br>
+                    </div><h3>Câu hỏi 4: Thiết bị Bridge nằm ở tầng nào của mô hình OSI?
+                </h3>
+                    <div class="options">
+                        <label><input type="radio" name="question4" value="option1">Tầng 1</label><br>
+                        <label><input type="radio" name="question4" value="option2">Tầng 2</label><br>
+                        <label><input type="radio" name="question4" value="option3">Tầng 3</label><br>
+                        <label><input type="radio" name="question4" value="option4">Tầng 4</label><br>
+                    </div>
+                    <h3>Câu hỏi 5: Cáp UTP có thể kết nối tối đa bao nhiêu mét?
+                    </h3>
+                    <div class="options">
+                        <label><input type="radio" name="question5" value="option1"> 10</label><br>
+                        <label><input type="radio" name="question5" value="option2"> 20</label><br>
+                        <label><input type="radio" name="question5" value="option3"> 100</label><br>
+                        <label><input type="radio" name="question5" value="option4"> 200</label><br>
+                    </div>
+                    <h3>Câu hỏi 6: Mô tả nào thích hợp cho mạng Bus:
+                    </h3>
+                    <div class="options">
+                        <label><input type="radio" name="question6" value="option1">Cần nhiều cáp hơn các cấu hình khác
+                        </label><br>
+                        <label><input type="radio" name="question6" value="option2">Phương tiện rẻ tiền và dễ sử dụng
+                        </label><br>
+                        <label><input type="radio" name="question6" value="option3">Dễ sửa chữa hơn các cấu hình khác
+                        </label><br>
+                        <label><input type="radio" name="question6" value="option4">Số lượng máy trên mạng không ảnh hưởng đến hiệu suất mạng
+                        </label><br>
+                    </div>
+                    <h3>Câu hỏi 7: Môi trường truyền tin thông thường trong mạng máy tính là:
+                    </h3>
+                    <div class="options">
+                        <label><input type="radio" name="question7" value="option1">Các loại cáp như: đồng trục, xoắn đôi, Cáp quang, cáp điện thoại,...
+                        </label><br>
+                        <label><input type="radio" name="question7" value="option2">Sóng điện từ,..
+                        </label><br>
+                        <label><input type="radio" name="question7" value="option3">Cáp quang
+                        </label><br>
+                        <label><input type="radio" name="question7" value="option4">Tất cả môi trường nêu trên
+                        </label><br>
+                    </div>
+                    <h3>Câu hỏi 8: Các mạng máy tính được thiết kế và cài đặt theo quan điểm: </h3>
+                    <div class="options">
+                        <label><input type="radio" name="question8" value="option1">Có cấu trúc đa tầng</label><br>
+                        <label><input type="radio" name="question8" value="option2"> Nhiều tầng</label><br>
+                        <label><input type="radio" name="question8" value="option3"> Theo lớp </label><br>
+                        <label><input type="radio" name="question8" value="option4"> Tập hợp</label><br>
+                    </div>
+                    <h3>Câu hỏi 9: Đơn vị cơ bản đo tốc độ truyền dữ liệu là</h3>
+                    <div class="options">
+                        <label><input type="radio" name="question9" value="option1"> Bit </label><br>
+                        <label><input type="radio" name="question9" value="option2"> Byte </label><br>
+                        <label><input type="radio" name="question9" value="option3"> Bps (bit per second) </label><br>
+                        <label><input type="radio" name="question9" value="option4"> Hz</label><br>
+                    </div>
+                    <h3>Câu hỏi 10: Cáp UTP Cat5e sử dụng đầu nối</h3>
+                    <div class="options">
+                        <label><input type="radio" name="question10" value="option1"> RJ - 58 </label><br>
+                        <label><input type="radio" name="question10" value="option2"> BNC</label><br>
+                        <label><input type="radio" name="question10" value="option3"> RJ - 45</label><br>
+                        <label><input type="radio" name="question10" value="option4"> ST</label><br>
+                    </div>
+                </div>
+                <div class="button">
+                    <button type="button" onclick="submitQuiz()">Nộp bài</button>
+                </div>
+                <button id="resultBtn" style="display: none;" type="button"  onclick="showResultPage()">Xem Kết Quả</button>
+            </form>
+        </main>
+    </div>
+</div>
+<script src="https://kit.fontawesome.com/983c1d6e7e.js" crossorigin="anonymous"></script>
+<script>document.getElementById("menu-btn").addEventListener('click', ()=>{
+      if(document.getElementById('mobile-menu').style.display=='none'){
+          document.getElementById('mobile-menu').style.display='block';
+      }
+      else{
+          document.getElementById('mobile-menu').style.display='none';
+      }
+  })
+</script>
+</body>
+</html>
