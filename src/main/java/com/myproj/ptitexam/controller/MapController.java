@@ -67,6 +67,14 @@ public class MapController {
     public String examResultPage(){
         return "kqbaithi";
     }
+    @GetMapping("/recovery")
+    public String recovery(){
+        return "forgotPassword";
+    }
+    @GetMapping("set-password")
+    public String resetPass(){
+        return "resetPass";
+    }
 }
 
 

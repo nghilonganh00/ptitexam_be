@@ -51,6 +51,7 @@ public class UserService {
             }
             return new ResponseEntity<>(returnList,HttpStatus.OK);
         } catch (Exception e){
+            System.out.println(e);
             return  new ResponseEntity<>("User not found!", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
