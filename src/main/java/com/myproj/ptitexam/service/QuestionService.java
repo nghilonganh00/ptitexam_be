@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -70,17 +71,25 @@ public class QuestionService {
     public ResponseEntity<?> getAllQuestions(Integer examId, Integer userId) {
         try {
             List<Question> list_question = questionDao.findByExamId(examId);
-
-            if(list_question.isEmpty()) {
-                return new ResponseEntity<>("No question", HttpStatus.OK);
+            Exam exam = examDao.findById(examId).orElseThrow(() -> new Exception("Exam not found"));
+            if(exam.getStartTime()!=null){
+                Date date = new Date();
+                Timestamp now=new Timestamp(date.getTime());
+                if(now.before(exam.getStartTime()) || now.after(exam.getEndTime())){
+                    return new ResponseEntity<> ("Not valid", HttpStatus.FORBIDDEN);
+                }
             }
+            if(list_question.isEmpty()) {
+                return new ResponseEntity<>("No question", HttpStatus.NOT_FOUND);
+            }
+
             List<QuestionInExam> responses = new ArrayList<>();
             for(Question question:list_question){
                 responses.add(new QuestionInExam(question.getId(),question.getContent(),question.getOption1(),question.getOption2(),question.getOption3(),question.getOption4()));
             }
 
             ExamResult examResult = new ExamResult();
-            Exam exam = examDao.findById(examId).orElseThrow(() -> new Exception("Loi"));
+
             User user = userDao.findById(userId).orElseThrow(()->new Exception("user not found"));
             examResult.setStartTime(new Timestamp(System.currentTimeMillis()));
             examResult.setExam(exam);

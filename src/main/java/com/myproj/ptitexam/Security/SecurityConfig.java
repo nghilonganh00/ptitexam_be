@@ -47,9 +47,9 @@ public class SecurityConfig {
                                 .requestMatchers("/auth/**","/login","/register","/student/**", "/favicon.ico", "/signup",
                                 "export.png", "/", "/admin", "/startExam","/statistic", "/acc_manager", "/exam_result",
                                 "/b21dccn747/**","b21dccn541/**","/B21DCCN687-styles/**", "/exam-admin/**", "/recovery", "/set-password",
-                                "/B21DCCN687-js/**","/script001.js","styles001.css","styles002.css").permitAll()
+                                "/B21DCCN687-js/**","/script001.js","styles001.css","/styles002.css","/script002.js").permitAll()
                                 .requestMatchers("/exam/getAllExams",
-                                        "/exam/getExams","/exam/getByExamTitleContaining",
+                                        "/exam/getExams","/exam/getByExamTitleContaining", "/exam/resultDetail",
                                         "/exam/getExam","/exam/submit","/user/getResult","/exam/review").hasAnyAuthority("USER","ADMIN")
                                 .requestMatchers("/user/**","/exam/**","/statisticApi/**").hasAuthority("ADMIN")
 

@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 @RequestMapping("exam")
 public class ExamController {
     @Autowired
@@ -99,6 +100,12 @@ public class ExamController {
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<?> getAnswerInExam(@RequestParam int resultId){
         return examService.getAnswerInExam(resultId);
+    }
+
+    @GetMapping("resultDetail")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public ResponseEntity<?> getResultDetail(@RequestParam int resultId){
+        return examService.getResultDetail(resultId);
     }
 
     // @GetMapping("")

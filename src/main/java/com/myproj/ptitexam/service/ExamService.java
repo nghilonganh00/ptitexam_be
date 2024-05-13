@@ -3,6 +3,7 @@ package com.myproj.ptitexam.service;
 import com.myproj.ptitexam.DTO.ExamDto;
 import com.myproj.ptitexam.DTO.ResultDetailDTO;
 import com.myproj.ptitexam.DTO.UserAnswerReponse;
+import com.myproj.ptitexam.DTO.UserResultDetail;
 import com.myproj.ptitexam.dao.*;
 import com.myproj.ptitexam.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -178,7 +179,6 @@ public class ExamService {
                 resultDetailDao.save(erd);
                 if (reponse.getAnswer().equals(question.getAnswer()))
                     num++;
-                System.out.println("hi");
             }
             double score = (double) num / questions.size() * 10.0;
             examResult.setEndTime(new Timestamp(System.currentTimeMillis()));
@@ -207,6 +207,22 @@ public class ExamService {
             }
 
             return new ResponseEntity<List<ResultDetailDTO>>(list, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>("Not found!", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public ResponseEntity<?> getResultDetail(int resultId) {
+        try {
+            ExamResult er = examResultDao.findById(resultId).orElseThrow(()-> new Exception(""));
+            List<ExamResultDetail> examResultDetail = resultDetailDao.findByExamResult(er);
+            List<ResultDetailDTO> list = new ArrayList<>();
+            for (ExamResultDetail detail : examResultDetail) {
+                ResultDetailDTO temp = new ResultDetailDTO(detail.getQuestion().getContent(), detail.getQuestion().getOption1(), detail.getQuestion().getOption2(), detail.getQuestion().getOption3(), detail.getQuestion().getOption4(), detail.getAnswer(), detail.getQuestion().getAnswer());
+                list.add(temp);
+            }
+
+            return new ResponseEntity<>(new UserResultDetail(er.getExam().getExamTitle(),er.getScore(),er.getEndTime(),list), HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>("Not found!", HttpStatus.NOT_FOUND);
         }

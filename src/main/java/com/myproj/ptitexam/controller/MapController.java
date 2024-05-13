@@ -78,6 +78,11 @@ public class MapController {
     public String resetPass(){
         return "resetPass";
     }
+
+    @GetMapping("/student/result")
+    public String studentResult(){
+        return "result001";
+    }
 }
 
 

@@ -7,18 +7,18 @@
         <link rel="stylesheet" href="/b21dccn747/styles.css">
         <title>Trang chủ</title>
     </head>
-    <body>
+    <body id="user-page" style="display:none">
         <div class="page">
             <header class="header-container">
                 <div class="left-menu">
-                    <a href="user-main.html" class="menu-logo">
+                    <a href="http://localhost:8080/student/exam" class="menu-logo">
                         <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
                         <h3>PTIT EXAM</h3>
                     </a>
-                    <a href="user-main.html" class="menu-item">Trang chủ</a>
+                    <a href="/student/exam" class="menu-item">Trang chủ</a>
                 </div>
                 <div class="right-menu">
-                    <a href="index.html" class="menu-item">Đăng xuất</a>
+                    <a href="/student" onclick="return DangXuat();" class="menu-item">Đăng xuất</a>
                 </div>
             </header>
             <header class="header-container-mobile">
@@ -71,7 +71,10 @@
       else{
           document.getElementById('mobile-menu').style.display='none';
       }
-  }) 
+  })
+      function DangXuat(){
+        localStorage.clear();
+      }
   </script>
   </body>
 </html>

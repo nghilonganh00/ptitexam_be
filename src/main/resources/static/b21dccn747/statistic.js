@@ -82,6 +82,7 @@ function displayTable (tkBT) {
                             'Authorization': `Bearer ${jwt}`
                         },
                     };
+        document.getElementById('header-chart-name').innerHTML= "<h1>"+baithi.examTitle+"</h1><button class='print-btn' id='print-btn'><i class='fa-regular fa-file-pdf'></i></button>";
         const response = await fetch("http://localhost:8080/statisticApi/scoreDistribution?exam_id="+baithi.examId.toString(),requestOptions);
         if(response.status===200){
             var x = await response.json();
@@ -93,7 +94,7 @@ function displayTable (tkBT) {
             arr.push(x.eight)
             arr.push(x.nine);
             document.getElementById('chart-body').innerHTML="<div class='chart-row-2'><canvas id='barChart'></canvas><h5>Phổ điểm</h5></div> ";
-            document.getElementById('header-chart-name').innerHTML= "<h1>"+x.exam+"</h1><button class='print-btn' id='print-btn'><i class='fa-regular fa-file-pdf'></i></button>"
+
                     const ctx = document.getElementById('barChart');
                     if(barChart)
                         barChart.destroy();
@@ -147,3 +148,6 @@ closeBtn.addEventListener('click', () => {
 
 
 
+function DangXuat(){
+    localStorage.clear();
+}

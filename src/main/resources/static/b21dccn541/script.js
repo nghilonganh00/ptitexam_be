@@ -492,3 +492,7 @@ pdf_btn.onclick = () => {
 //pdf_btn2.onclick = () => {
 //    toPDF2(students_table2);
 //}
+
+function DangXuat(){
+    localStorage.clear();
+}

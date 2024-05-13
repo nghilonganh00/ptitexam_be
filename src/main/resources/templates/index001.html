@@ -3,67 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles002.css?v=1">
-    <script src="/script002.js"></script>
+    <link rel="stylesheet" href="/styles002.css">
+    <script src="/script001.js"></script>
     <title>Bài Thi</title>
 </head>
-<body>
-    <div class="page">
-        <header class="header-container">
-            <div class="left-menu">
-                <a href="user-main.html" class="menu-logo">
-                    <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
-                    <h3>PTIT EXAM</h3>
-                </a>
-                <a href="user-main.html" class="menu-item">Trang chủ</a>
-            </div>
-            <div class="right-menu">
-                <a href="index.html" class="menu-item">Đăng xuất</a>
-            </div>
-        </header>
-        <header class="header-container-mobile">
-            <div class="left-menu">
-                <a href="user-main.html" class="menu-logo">
-                    <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
-                    <h3>PTIT EXAM</h3>
-                </a>
-            </div>
-            <div class="right-menu">
-                <button  class="menu-item" id="menu-btn"><i class="fa-solid fa-bars"></i></button>
-            </div>
-        </header>
-
-
-        <div class="body">
-            <main>
-
-                <div class="mobile-menu" id="mobile-menu">
-                    <a href="user-main.html">Trang chủ</a>
-                    <a href="index.html">Đăng xuất</a>
-                </div>
-
-                <form name="quiz" id="quiz" >
-                    <div class="Name">
-                        <h2>Bài kiểm tra số 1</h2>
-                        <div id="timer">Thời gian: <span id="time">45:00</span></div>
-                    </div>
-                    <div class="quiz">
-
-                    </div>
-
-                </form>
-            </main>
+<body id="startExamPage" style="display:none">
+<div class="page">
+    <header class="header-container">
+        <div class="left-menu">
+            <a href="user-main.html" class="menu-logo">
+                <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
+                <h3>PTIT EXAM</h3>
+            </a>
+            <a href="user-main.html" class="menu-item">Trang chủ</a>
         </div>
+        <div class="right-menu">
+            <a href="/student" onclick="return DangXuat();" class="menu-item"> Đăng xuất</a>
+        </div>
+    </header>
+    <header class="header-container-mobile" >
+        <div class="left-menu">
+            <a href="user-main.html" class="menu-logo">
+                <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
+                <h3>PTIT EXAM</h3>
+            </a>
+        </div>
+        <div class="right-menu">
+            <button  class="menu-item" id="menu-btn"><i class="fa-solid fa-bars" ></i></button>
+        </div>
+    </header>
+
+
+    <div class="body">
+        <main>
+
+            <div class="mobile-menu" id="mobile-menu">
+                <a href="user-main.html">Trang chủ</a>
+                <a href="index.html">Đăng xuất</a>
+            </div>
+
+            <form name="quiz" id="quiz" >
+                <div class="Name">
+                    <h2>Bài kiểm tra số 1</h2>
+                    <div id="timer">Thời gian: <span id="time"></span></div>
+                </div>
+                <div class="quiz" id="out-quiz"></div>
+                <div class="button">
+                    <button type="button" id="submit-button">Nộp bài</button>
+                </div>
+                <button id="resultBtn" style="display: none;" type="button"  onclick="showResultPage()">Xem Kết Quả</button>
+            </form>
+        </main>
     </div>
-    <script src="https://kit.fontawesome.com/983c1d6e7e.js" crossorigin="anonymous"></script>
-  <script>document.getElementById("menu-btn").addEventListener('click', ()=>{
+</div>
+<script src="https://kit.fontawesome.com/983c1d6e7e.js" crossorigin="anonymous"></script>
+<script>document.getElementById("menu-btn").addEventListener('click', ()=>{
       if(document.getElementById('mobile-menu').style.display=='none'){
           document.getElementById('mobile-menu').style.display='block';
       }
       else{
           document.getElementById('mobile-menu').style.display='none';
       }
-  }) 
-  </script>
+  })
+</script>
 </body>
 </html>

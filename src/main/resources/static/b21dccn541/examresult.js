@@ -97,3 +97,11 @@ $.ajax({
 function trove() {
     window.location.href = './acc_manager'
 }
+
+function DangXuat(){
+    localStorage.clear();
+}
+
+function DangXuat(){
+    localStorage.clear();
+}

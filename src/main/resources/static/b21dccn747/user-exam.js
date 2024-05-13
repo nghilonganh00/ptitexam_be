@@ -12,9 +12,10 @@ async function fetchExam() {
             };
             const response = await fetch("http://localhost:8080/exam/getAllExams",requestOptions)
             if(!response.ok){
-                window.location.href="login";
+                window.location.href="/student";
             }
             else{
+            document.getElementById('user-page').style.display="block";
             const exam = await response.json();
             return exam;
             }
@@ -132,7 +133,9 @@ function timeFormat(time){
     return a;
 }
 
-
+function DangXuat(){
+    localStorage.clear();
+}
 
 
 //document.getElementById('do-exam-btn').addEventListener('click', ()=>{

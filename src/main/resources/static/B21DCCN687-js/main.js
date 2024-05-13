@@ -1018,3 +1018,7 @@ const loadManageExamPage = async () => {
       .appendChild(newQuestionBox);
   });
 };
+
+function DangXuat(){
+    localStorage.clear();
+}
