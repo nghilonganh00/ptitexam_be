@@ -1,6 +1,6 @@
 const jwt=localStorage.getItem("jwt");
 var timer; // Biến để lưu định danh của bộ đếm thời gian
-
+var check = false;
 var temp;
 window.onload = async function() {
     var time = 50*60, // Thời gian là 50 phút
@@ -42,6 +42,7 @@ async function outTimeSubmit(){
     };
     var response1 = await fetch("http://localhost:8080/exam/submit?take_id="+temp.takeId.toString(),requestOptions1);
     if(response1.ok){
+        check=true;
         document.getElementById('resultBtn').style.display="block";
         document.getElementById("submit-button").style.display="none";
     }else{
@@ -152,6 +153,7 @@ async function loadQuestions() {
             };
             var response1 = await fetch("http://localhost:8080/exam/submit?take_id="+exam.takeId.toString(),requestOptions1);
             if(response1.ok){
+                check=true;
                 clearInterval(timer); // Dừng bộ đếm thời gian
                 alert("Bài của bạn đã được nộp!");
                 document.getElementById("submit-button").style.display="none";
@@ -176,4 +178,13 @@ function showResultPage() {
 
 function DangXuat(){
     localStorage.clear();
+}
+
+window.onbeforeunload = function() {
+    if(!check)
+        return "";
+}
+window.onunload = function(){
+    if(!check)
+        outTimeSubmit();
 }
