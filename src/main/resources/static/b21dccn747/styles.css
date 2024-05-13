@@ -446,6 +446,10 @@ option:active{
   font-size: 1em;
 }
 
+.open-result{
+      text-decoration: none;
+      color:red;
+}
 
 
 @media screen and (max-width:740px) {

@@ -12,11 +12,12 @@ async function fetchInfo() {
             };
             const response = await fetch("http://localhost:8080/statisticApi",requestOptions)
             const exam = await response.json();
-            document.getElementById('menu-header').style.display="flex";
-            document.getElementById('trang-tke').style.display="block"
+            document.getElementById('statisticPage').style.display="block"
             return exam;
         } catch (error) {
-            window.location.href="/admin";
+            console.log(error);
+            if(response.status==401)
+                window.location.href="/admin";
         }
 }
 

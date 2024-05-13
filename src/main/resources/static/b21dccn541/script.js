@@ -414,7 +414,7 @@ const jwt  = localStorage.getItem("jwt")
                         row.appendChild(nameCell);
 
                         let scoreCell = document.createElement("td");
-                        scoreCell.textContent = e.score;
+                        scoreCell.textContent = e.score.toFixed(2);
                         row.appendChild(scoreCell);
 
                         let startTimeCell = document.createElement("td");
@@ -428,7 +428,7 @@ const jwt  = localStorage.getItem("jwt")
                             localStorage.setItem('username',acc[rowindex].id)
                             localStorage.setItem('ExamResultId',ExamResultId)
                             localStorage.setItem('ExamTitle',ExamTitle)
-                            localStorage.setItem('score',score)
+                            localStorage.setItem('score',score.toFixed(2))
                             localStorage.setItem('ExamId',ExamId)
                             window.location.href="./exam_result"
 //                                window.location.href="./startExam"

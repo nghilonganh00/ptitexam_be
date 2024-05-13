@@ -1,152 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script src="https://kit.fontawesome.com/983c1d6e7e.js" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="/b21dccn747/table2excel.js"></script>
-        <link rel="stylesheet" href="/b21dccn747/styles.css" />
-        <title>Thống kê</title>
-    </head>
-    <body>
-        <header class="header-container" id="menu-header" style="display:none">
-            <div class="left-menu">
-                <a href="exam.html" class="menu-logo">
-                    <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
-                    <h3>PTIT EXAM</h3>
-                </a>
-                <a href="exam.html" class="menu-item">Bài thi</a>
-                <a href="acc_manager.html" class="menu-item">Sinh viên</a>
-                <a href="statistic.html" class="menu-item">Thống kê</a>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/983c1d6e7e.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/b21dccn747/table2excel.js"></script>
+    <link rel="stylesheet" href="/b21dccn747/styles.css" />
+    <title>Thống kê</title>
+</head>
+<body id="statisticPage" style="display:none">
+<header class="header-container">
+    <div class="left-menu">
+        <a href="/exam-admin" class="menu-logo">
+            <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
+            <h3>PTIT EXAM</h3>
+        </a>
+        <a href="/exam-admin" class="menu-item">Bài thi</a>
+        <a href="/acc_manager" class="menu-item">Sinh viên</a>
+        <a href="/statistic" class="menu-item">Thống kê</a>
+    </div>
+    <div class="right-menu">
+        <a href="/admin" onclick="return DangXuat();" class="menu-item">Đăng xuất</a>
+    </div>
+</header>
+<header class="header-container-mobile" style="display:none">
+    <div class="left-menu">
+        <a href="manage-exam.html" class="menu-logo">
+            <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
+            <h3>PTIT EXAM</h3>
+        </a>
+    </div>
+    <div class="right-menu">
+        <button  class="menu-item" id="menu-btn"><i class="fa-solid fa-bars"></i></button>
+    </div>
+</header>
+<main class="tke-main" id="trang-tke" >
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="exam.html">Bài thi</a>
+        <a href="acc_manager.html">Sinh viên</a>
+        <a href="statistic.html">Thống kê</a>
+        <a href="index.html">Đăng xuất</a>
+    </div>
+    <div class ="searchbox">
+        <div class="row">
+            <input type="text" name="search-box" id="search-box" placeholder="Tìm kiếm bài thi" data-search>
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+    </div>
+    <div class="table-container" style="background-color: #fff;">
+        <div class = "table-container-header">
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;Bảng thống kê các kì thi</h4>
+        </div>
+        <div class ="table-container-body" >
+            <button type="button" class="pdf-btn" id="export-pdf">
+                <i style="padding-right: .5rem" class="fa-regular fa-file-pdf"></i>
+                Xuất pdf</button>
+            <button  class="pdf-btn excel-btn" type="button"  id="export-excel">
+                <i class="fa-regular fa-file-excel"></i>
+                Xuất excel</button>
+            <h4 style="margin: 0px 0px 8px 50px; float: right;">
+                Tổng số:
+                <input class="ant-input" type="text" id="cnt-exam" style="border: 1px solid #948f8f;text-align: center;width: 90px; font-weight: 700; font-size: 16px; margin-left: 10px; color: rgb(204, 13, 0);">
+            </h4>
+            <div class="table-wrapper">
+                <table id="exported-table">
+                    <thead>
+                    <tr>
+                        <th class="cot-1">Mã bài thi</th>
+                        <th class="cot-2">Tên bài thi</th>
+                        <th class="cot-1">Số lượt làm bài</th>
+                        <th class="cot-1">Điểm trung bình</th>
+                        <th class="cot-1">Phổ điểm</th>
+                    </tr>
+                    </thead>
+                    <tbody id="data-output">
+                    </tbody>
+                </table>
             </div>
-            <div class="right-menu">
-                <a href="index.html" class="menu-item">Đăng xuất</a>
+        </div>
+    </div>
+    <div class="overlay" id="overlay">
+        <div class="chart-container" id="chart-container">
+            <div class="chart-header">
+                <div class="header-left" id="header-chart-name">
+                    <h1>Bài kiểm tra</h1>
+                    <button class="print-btn" id="print-btn"><i class="fa-regular fa-file-pdf"></i></button>
+                </div>
+                <div class="header-item">
+
+                    <button id="close-chart-btn">Đóng</button>
+                </div>
             </div>
-        </header>
-        <header class="header-container-mobile" style="display:none">
-            <div class="left-menu">
-                <a href="manage-exam.html" class="menu-logo">
-                    <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
-                    <h3>PTIT EXAM</h3>
-                </a>
+            <div class="chart-body" id="chart-body">
+
+                <div class="chart-row-2">
+                    <canvas id="barChart"></canvas>
+                    <h5>Phổ điểm</h5>
+                </div>
             </div>
-            <div class="right-menu">
-                <button  class="menu-item" id="menu-btn"><i class="fa-solid fa-bars"></i></button>
-            </div>
-        </header>      
-                <main class="tke-main" id="trang-tke" style="display:none">
-                    <div class="mobile-menu" id="mobile-menu">
-                        <a href="exam.html">Bài thi</a>
-                        <a href="acc_manager.html">Sinh viên</a>
-                        <a href="statistic.html">Thống kê</a>
-                        <a href="index.html">Đăng xuất</a>
-                    </div>  
-                    <div class ="searchbox">
-                        <div class="row">
-                            <input type="text" name="search-box" id="search-box" placeholder="Tìm kiếm bài thi" data-search>
-                            <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                        </div>
-                    </div>
-                    <div class="table-container" style="background-color: #fff;">
-                        <div class = "table-container-header">
-                            <h4>&nbsp;&nbsp;&nbsp;&nbsp;Bảng thống kê các kì thi</h4>
-                        </div>
-                        <div class ="table-container-body" >
-                            <button type="button" class="pdf-btn" id="export-pdf">
-                                <i style="padding-right: .5rem" class="fa-regular fa-file-pdf"></i>
-                                Xuất pdf</button>
-                            <button  class="pdf-btn excel-btn" type="button"  id="export-excel">
-                                <i class="fa-regular fa-file-excel"></i>
-                                Xuất excel</button>
-                            <h4 style="margin: 0px 0px 8px 50px; float: right;">
-                                Tổng số:
-                                <input class="ant-input" type="text" id="cnt-exam" style="border: 1px solid #948f8f;text-align: center;width: 90px; font-weight: 700; font-size: 16px; margin-left: 10px; color: rgb(204, 13, 0);">
-                            </h4>
-                            <div class="table-wrapper">
-                                <table id="exported-table">
-                                    <thead>
-                                        <tr>
-                                            <th class="cot-1">Mã bài thi</th>
-                                            <th class="cot-2">Tên bài thi</th>
-                                            <th class="cot-1">Số lượt làm bài</th>
-                                            <th class="cot-1">Điểm trung bình</th>
-                                            <th class="cot-1">Phổ điểm</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="data-output">                                 
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="overlay" id="overlay">
-                    <div class="chart-container" id="chart-container">
-                        <div class="chart-header">
-                            <div class="header-left" id="header-chart-name">
-                                <h1>Bài kiểm tra</h1>
-                                <button class="print-btn" id="print-btn"><i class="fa-regular fa-file-pdf"></i></button>
-                            </div>  
-                            <div class="header-item">
-                                
-                                <button id="close-chart-btn">Đóng</button>
-                            </div>
-                        </div>
-                        <div class="chart-body" id="chart-body">
-
-                            <div class="chart-row-2">
-                                <canvas id="barChart"></canvas>
-                                <h5>Phổ điểm</h5>
-                            </div>         
-                        </div>
-                    </div>
-                    </div>
-                </main>
+        </div>
+    </div>
+</main>
 
 
 
-        <script>
-            document.getElementById("export-excel").addEventListener("click", ()=>{
-                var table2excel = new Table2Excel();
-                table2excel.export(document.querySelectorAll("#exported-table"),"tkBaiThi");
-            })
-            document.getElementById("export-pdf").addEventListener("click", ()=>{
-                var element = document.getElementById('exported-table');
-                var opt={
-                    margin: 0.5,
-                    filename: 'tkBaiThi',
-                    image: {type: 'jpeg', quality:0.98},
-                    html2canvas: {scale:2},
-                    jsPDF: {unit: 'in', format: 'letter', orientation: 'portrait'}
-                };
-                html2pdf(element,opt);
-            })
-            document.getElementById("menu-btn").addEventListener('click', ()=>{
-                if(document.getElementById('mobile-menu').style.display=='none'){
-                    document.getElementById('mobile-menu').style.display='block';
-                }
-                else{
-                    document.getElementById('mobile-menu').style.display='none';
-                }
-            })           
-            
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-        <script src="./b21dccn747/statistic.js"></script>
-        <script>
-            document.getElementById('print-btn').addEventListener('click',()=>{
-                html2canvas(document.querySelector('#chart-container')).then((canvas) => {
-                    let base64image = canvas.toDataURL('image/png');
-                    
-                    let pdf = new jsPDF('p','px',[1600,1131]);
-                    pdf.addImage(base64image,'PNG',15,15,1110,381);
-                    pdf.save('tkBai-1.pdf');
+<script>
+    document.getElementById("export-excel").addEventListener("click", ()=>{
+        var table2excel = new Table2Excel();
+        table2excel.export(document.querySelectorAll("#exported-table"),"tkBaiThi");
+    })
+    document.getElementById("export-pdf").addEventListener("click", ()=>{
+        var element = document.getElementById('exported-table');
+        var opt={
+            margin: 0.5,
+            filename: 'tkBaiThi',
+            image: {type: 'jpeg', quality:0.98},
+            html2canvas: {scale:2},
+            jsPDF: {unit: 'in', format: 'letter', orientation: 'portrait'}
+        };
+        html2pdf(element,opt);
+    })
+    document.getElementById("menu-btn").addEventListener('click', ()=>{
+        if(document.getElementById('mobile-menu').style.display=='none'){
+            document.getElementById('mobile-menu').style.display='block';
+        }
+        else{
+            document.getElementById('mobile-menu').style.display='none';
+        }
+    })
 
-                });
-            });
-        </script>
-  </body>
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="./b21dccn747/statistic.js"></script>
+<script>
+    document.getElementById('print-btn').addEventListener('click',()=>{
+        html2canvas(document.querySelector('#chart-container')).then((canvas) => {
+            let base64image = canvas.toDataURL('image/png');
+
+            let pdf = new jsPDF('p','px',[1600,1131]);
+            pdf.addImage(base64image,'PNG',15,15,1110,381);
+            pdf.save('tkBai-1.pdf');
+
+        });
+    });
+</script>
+</body>
 </html>

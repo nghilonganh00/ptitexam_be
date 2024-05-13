@@ -83,6 +83,11 @@ public class MapController {
     public String studentResult(){
         return "result001";
     }
+
+    @GetMapping("/student/allResult")
+    public String allResult(){
+        return "userResult.html";
+    }
 }
 
 

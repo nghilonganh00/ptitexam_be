@@ -15,16 +15,16 @@
 
     <div class="header-container">
         <div class="left-menu">
-            <a href="exam.html" class="menu-logo">
+            <a href="/exam-admin" class="menu-logo">
                 <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
                 <h3>PTIT EXAM</h3>
             </a>
-            <a href="exam.html" class="menu-item">Bài thi</a>
-            <a href="acc_manager.html" class="menu-item">Sinh viên</a>
-            <a href="statistic.html" class="menu-item">Thống kê</a>
+            <a href="/exam-admin" class="menu-item">Bài thi</a>
+            <a href="/acc_manager" class="menu-item">Sinh viên</a>
+            <a href="/statistic" class="menu-item">Thống kê</a>
         </div>
         <div class="right-menu">
-            <a href="index.html" class="menu-item">Đăng xuất</a>
+            <a href="/admin" onclick="return DangXuat();" class="menu-item">Đăng xuất</a>
         </div>
     </div>
     <div class="header-container-mobile">
@@ -55,7 +55,7 @@
             <h1>Tài khoản sinh viên</h1>
              <div class="input-group">
                 <input type="search" placeholder="Tìm kiếm sinh viên...">
-                <img src="./b21dccn541/search.png" alt="&nbsp" >
+                <img src="/b21dccn541/search.png" alt="&nbsp" >
             </div>  
             <button class="plus-button" id="plus-button">+</button>  
         </section>
@@ -144,7 +144,7 @@
                           <tr>
                               <th> Tên bài thi </th>
                               <th> Điểm </th>
-                              <th> Thời gian tham gia </th>
+                              <th> Thời gian nộp bài</th>
                               <th> </th>
                           </tr>
                       </thead>
